@@ -1,9 +1,9 @@
 import { Coordinate, CollectibleKind } from './definitions.js';
 
 export class Hero {
-  private coords: Coordinate;
-  private backpack: CollectibleKind[];
-  private stepsTaken: number;
+  private coords:
+  private backpack:
+  private stepsTaken:
 
   constructor(startCoords: Coordinate) {
     this.coords = startCoords;

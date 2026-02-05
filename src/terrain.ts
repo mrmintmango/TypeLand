@@ -58,6 +58,7 @@ export class WorldTerrain {
     }
   }
 
+  // Fix treasure locations to be in traversable cells and not in water
   private scatterTreasures(): void {
     // Array of collectible tuples
     const treasureLocations: CollectibleEntry[] = [
