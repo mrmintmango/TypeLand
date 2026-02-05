@@ -1,0 +1,26 @@
+{
+  "name": "typeland",
+  "version": "1.0.0",
+  "description": "A testing environment to learn new coding practices and techniques.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrmintmango/TypeLand.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mrmintmango/TypeLand/issues"
+  },
+  "homepage": "https://github.com/mrmintmango/TypeLand#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
