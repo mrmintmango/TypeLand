@@ -5,44 +5,20 @@ import { Coordinate, CollectibleKind, Weapon, WeaponStats } from './definitions.
 
 export const AVAILABLE_WEAPONS: Weapon[] = [
   {
-    name: 'Wooden Staff',
-    damage: 5,
-    category: 'melee',
-    rarity: 'common',
-    emoji: '🪵',
-    description: 'A simple wooden staff for beginners'
+    //create a weapon object for the Hero to use in the game.
   },
   {
-    name: 'Steel Sword',
-    damage: 15,
-    category: 'melee',
-    rarity: 'rare',
-    emoji: '⚔️',
-    description: 'A finely crafted steel blade'
+    //create another weapon here
   },
   {
-    name: 'Enchanted Bow',
-    damage: 20,
-    category: 'ranged',
-    rarity: 'rare',
-    emoji: '🏹',
-    description: 'A bow imbued with magical power'
+    // and here
   },
   {
-    name: 'Fire Wand',
-    damage: 25,
-    category: 'magic',
-    rarity: 'legendary',
-    emoji: '🔥',
-    description: 'Channel the power of flames'
+    // here too
   },
   {
-    name: 'Crystal Staff',
-    damage: 30,
-    category: 'magic',
-    rarity: 'legendary',
-    emoji: '✨',
-    description: 'A legendary staff of pure crystal'
+    // after you make one here, you should have a total of 5 weapons in the game.
+    // Each weapon should have a unique value for each property, and the description should be fun and creative!
   }
 ];
 
