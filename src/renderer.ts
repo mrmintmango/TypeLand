@@ -45,6 +45,19 @@ class UIRenderer {
           this.updateStatsDisplay();
         }
       }
+      
+      // Weapon switching controls
+      if (event.key === 'q' || event.key === 'Q') {
+        event.preventDefault();
+        this.engine.switchToPreviousWeapon();
+        this.renderFrame();
+        this.updateStatsDisplay();
+      } else if (event.key === 'e' || event.key === 'E') {
+        event.preventDefault();
+        this.engine.switchToNextWeapon();
+        this.renderFrame();
+        this.updateStatsDisplay();
+      }
     });
   }
 
@@ -123,6 +136,16 @@ class UIRenderer {
       heroC * this.cellSize + this.cellSize / 2,
       heroR * this.cellSize + this.cellSize / 2
     );
+
+    // Draw equipped weapon next to hero
+    const hero = this.engine.getHero();
+    const equippedWeapon = hero.getEquippedWeapon();
+    this.ctx.font = '18px Arial';
+    this.ctx.fillText(
+      equippedWeapon.emoji,
+      heroC * this.cellSize + this.cellSize / 2 + 12,
+      heroR * this.cellSize + this.cellSize / 2 - 10
+    );
   }
 
   private updateStatsDisplay(): void {
@@ -152,8 +175,49 @@ class UIRenderer {
           <p>📜 Ancient Scrolls: ${counts[CollectibleKind.ANCIENT_SCROLL]}</p>
           <p>💠 Crystal Gems: ${counts[CollectibleKind.CRYSTAL_GEM]}</p>
         </div>
+        <div class="weapon-info">
+          <h4>⚔️ Equipped Weapon:</h4>
+          <p>${this.getCurrentWeaponDisplay()}</p>
+          <p style="font-size: 0.9em; color: #666;">Press Q/E to switch weapons</p>
+          ${this.getWeaponListDisplay()}
+        </div>
       `;
     }
+  }
+
+  // Display current weapon information using the Weapon interface
+  private getCurrentWeaponDisplay(): string {
+    const hero = this.engine.getHero();
+    const weapon = hero.getEquippedWeapon();
+    const rarityColor = weapon.rarity === 'legendary' ? '#ff6600' : 
+                        weapon.rarity === 'rare' ? '#9966ff' : '#666';
+    
+    return `
+      <strong style="color: ${rarityColor};">
+        ${weapon.emoji} ${weapon.name}
+      </strong><br/>
+      <span style="font-size: 0.9em;">
+        Damage: ${weapon.damage} | Type: ${weapon.category}<br/>
+        ${weapon.description}
+      </span>
+    `;
+  }
+
+  // Display all available weapons from Objects array
+  private getWeaponListDisplay(): string {
+    const hero = this.engine.getHero();
+    const allWeapons = hero.getAllWeapons();
+    const currentWeapon = hero.getEquippedWeapon();
+    
+    const weaponList = allWeapons.map(weapon => {
+      const isEquipped = weapon === currentWeapon;
+      const style = isEquipped ? 'font-weight: bold; color: #00aa00;' : 'color: #888;';
+      return `<div style="${style}; font-size: 0.85em;">
+        ${isEquipped ? '▶' : '  '} ${weapon.emoji} ${weapon.name} (${weapon.damage} dmg)
+      </div>`;
+    }).join('');
+    
+    return `<div style="margin-top: 8px;"><strong>Arsenal:</strong><br/>${weaponList}</div>`;
   }
 }
 

@@ -72,4 +72,13 @@ export class AdventureEngine {
       remaining: this.world.getRemainingTreasures().length
     };
   }
+
+  // Weapon management methods
+  switchToNextWeapon(): void {
+    this.protagonist.equipNextWeapon();
+  }
+
+  switchToPreviousWeapon(): void {
+    this.protagonist.equipPreviousWeapon();
+  }
 }
