@@ -1,9 +1,9 @@
 // Core enums for the adventure game
 export enum MovementKey {
-  NORTH
-  SOUTH 
-  EAST 
-  WEST
+  NORTH = 'NORTH',
+  SOUTH = 'SOUTH',
+  EAST = 'EAST',
+  WEST = 'WEST'
 }
 
 export enum GroundMaterial {
@@ -13,7 +13,7 @@ export enum GroundMaterial {
   SAND = 'SAND'
 }
 
-export CollectibleKind {
+export enum CollectibleKind {
   TREASURE_CHEST = 'TREASURE_CHEST',
   MAGIC_ORB = 'MAGIC_ORB',
   ANCIENT_SCROLL = 'ANCIENT_SCROLL',
@@ -21,7 +21,7 @@ export CollectibleKind {
 }
 
 // Use tuples for coordinates [row, column]
-
+export type Coordinate = readonly [number, number];
 
 // Tuple storing collectible with its location and kind
 export type CollectibleEntry = readonly [Coordinate, CollectibleKind];
@@ -29,7 +29,7 @@ export type CollectibleEntry = readonly [Coordinate, CollectibleKind];
 // Terrain cell structure
 export type TerrainCell = {
   readonly material: GroundMaterial;
-  readonly canTraverse: 
+  readonly canTraverse: boolean;
 };
 
 // ===== WEAPON SYSTEM TYPES =====
