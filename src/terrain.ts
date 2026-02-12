@@ -36,10 +36,10 @@ export class WorldTerrain {
           traversable = false;
         } 
         // Create lake obstacles using pattern
-        else if ((r * c) % 11 === 0 || (r + c) % 13 === 0) {
-          cellMaterial = GroundMaterial.LAKE;
-          traversable = false;
-        }
+        // else if ((r * c) % 11 === 0 || (r + c) % 13 === 0) {
+        //   cellMaterial = GroundMaterial.LAKE;
+        //   traversable = false;
+        // }
         // Sand paths
         else if ((r % 3 === 0 && c % 2 === 0) || (r % 2 === 0 && c % 3 === 0)) {
           cellMaterial = GroundMaterial.SAND;

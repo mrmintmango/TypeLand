@@ -31,3 +31,27 @@ export type TerrainCell = {
   readonly material: GroundMaterial;
   readonly canTraverse: 
 };
+
+// ===== WEAPON SYSTEM TYPES =====
+
+// Type Alias: Weapon category type
+export type WeaponCategory = 'melee' | 'ranged' | 'magic';
+
+// Type Alias: Weapon rarity levels
+export type WeaponRarity = 'common' | 'rare' | 'legendary';
+
+// Interface: Defines the structure of a weapon object
+export interface Weapon {
+  readonly name: string;
+  readonly damage: number;
+  readonly category: WeaponCategory;
+  readonly rarity: WeaponRarity;
+  readonly emoji: string;
+  readonly description: string;
+}
+
+// Type Alias: Object type for weapon stats
+export type WeaponStats = {
+  totalDamage: number;
+  weaponCount: number;
+};
