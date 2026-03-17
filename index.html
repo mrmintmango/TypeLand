@@ -1,52 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TypeLand Mini RPG Adventure</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1>🏰 TypeLand Mini RPG Adventure 🏰</h1>
-      <p class="instructions">
-        Use <strong>Arrow Keys</strong> or <strong>WASD</strong> to move your wizard 🧙 around the map and collect treasures!
-      </p>
-    </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypeLand Mini RPG Adventure</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🏰 TypeLand Mini RPG Adventure 🏰</h1>
+        <p class="instructions">
+          Use <strong>Arrow Keys</strong> or <strong>WASD</strong> to move your
+          wizard 🧙 around the map and collect treasures!
+        </p>
+      </header>
 
-    <main>
-      <div class="game-area">
-        <canvas id="gameCanvas"></canvas>
-      </div>
-
-      <aside id="stats" class="stats-panel">
-        <h3>Adventure Stats</h3>
-        <p>Steps Taken: 0</p>
-        <p>Items Collected: 0 / 8</p>
-        <div class="inventory">
-          <h4>Backpack:</h4>
-          <p>💎 Treasure Chests: 0</p>
-          <p>🔮 Magic Orbs: 0</p>
-          <p>📜 Ancient Scrolls: 0</p>
-          <p>💠 Crystal Gems: 0</p>
+      <main>
+        <div class="game-area">
+          <canvas id="gameCanvas"></canvas>
         </div>
-      </aside>
-    </main>
 
-    <footer>
-      <div class="legend">
-        <h4>Map Legend:</h4>
-        <div class="legend-items">
-          <span class="legend-item"><span class="color-box meadow"></span> Meadow (walkable)</span>
-          <span class="legend-item"><span class="color-box sand"></span> Sand (walkable)</span>
-          <span class="legend-item"><span class="color-box lake"></span> Lake (blocked)</span>
-          <span class="legend-item"><span class="color-box stone"></span> Stone (blocked)</span>
+        <aside id="stats" class="stats-panel">
+          <h3>Adventure Stats</h3>
+          <p>Steps Taken: 0</p>
+          <p>Items Collected: 0 / 8</p>
+          <div class="inventory">
+            <h4>Backpack:</h4>
+            <p>💎 Treasure Chests: 0</p>
+            <p>🔮 Magic Orbs: 0</p>
+            <p>📜 Ancient Scrolls: 0</p>
+            <p>💠 Crystal Gems: 0</p>
+          </div>
+        </aside>
+      </main>
+
+      <footer>
+        <div class="legend">
+          <h4>Map Legend:</h4>
+          <div class="legend-items">
+            <span class="legend-item"
+              ><span class="color-box meadow"></span> Meadow (walkable)</span
+            >
+            <span class="legend-item"
+              ><span class="color-box sand"></span> Sand (walkable)</span
+            >
+            <span class="legend-item"
+              ><span class="color-box lake"></span> Lake (blocked)</span
+            >
+            <span class="legend-item"
+              ><span class="color-box stone"></span> Stone (blocked)</span
+            >
+          </div>
         </div>
-      </div>
-    </footer>
-  </div>
+        <div
+          style="
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+          "
+        >
+          <a
+            href="quiz.html"
+            style="
+              color: #667eea;
+              text-decoration: none;
+              font-size: 1.1em;
+              font-weight: 600;
+              transition: color 0.2s;
+            "
+          >
+            📚 Take the TypeScript Quiz →
+          </a>
+        </div>
+      </footer>
+    </div>
 
-  <script type="module" src="dist/renderer.js"></script>
-</body>
+    <script type="module" src="renderer.js"></script>
+  </body>
 </html>
