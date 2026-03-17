@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypeLand Quiz Kingdom</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="src/QuizKingdom/quizStyles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>📚 TypeLand Quiz Kingdom 📚</h1>
+        <p class="instructions">
+          Test your TypeScript knowledge with this interactive quiz!
+        </p>
+      </header>
+
+      <main class="quiz-container">
+        <!-- Name Entry Section -->
+        <section id="nameEntrySection" class="quiz-section name-entry">
+          <h2>Welcome to the Quiz!</h2>
+          <p>Please enter your name to begin:</p>
+
+          <div class="name-input-group">
+            <input
+              type="text"
+              id="studentName"
+              placeholder="Enter your name..."
+              autocomplete="name"
+              maxlength="100"
+            />
+          </div>
+
+          <div id="errorMessage" class="error-message"></div>
+
+          <button id="startQuizButton" class="start-button">Start Quiz</button>
+
+          <div style="margin-top: 30px">
+            <a href="index.html" class="back-link"
+              >← Back to TypeLand Adventure</a
+            >
+          </div>
+        </section>
+
+        <!-- Quiz Question Section -->
+        <section id="quizSection" class="quiz-section">
+          <div class="quiz-content">
+            <div id="progressDisplay" class="progress-bar">
+              Question 1 of 10
+            </div>
+
+            <div class="question-container">
+              <div id="questionText" class="question-text">
+                Question text will appear here
+              </div>
+
+              <div id="hintDisplay" class="hint-text">
+                Hint will appear here
+              </div>
+            </div>
+
+            <div id="answerContainer" class="answer-container">
+              <!-- Answer inputs will be dynamically inserted here -->
+            </div>
+
+            <div class="navigation-buttons">
+              <button id="previousButton" class="nav-button previous">
+                ← Previous
+              </button>
+
+              <button id="nextButton" class="nav-button next">Next →</button>
+
+              <button
+                id="submitQuizButton"
+                class="nav-button submit"
+                style="display: none"
+              >
+                ✓ Submit Quiz
+              </button>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 20px">
+            <a href="index.html" class="back-link"
+              >← Back to TypeLand Adventure</a
+            >
+          </div>
+        </section>
+
+        <!-- Completion Section -->
+        <section id="completionSection" class="quiz-section completion-content">
+          <h2>🎉 Quiz Complete! 🎉</h2>
+
+          <div id="completionMessage" class="completion-message">
+            Thank you for completing the quiz!
+          </div>
+
+          <div class="completion-buttons">
+            <button id="downloadButton" class="download-button">
+              📥 Download Results
+            </button>
+
+            <button id="retakeButton" class="retake-button">
+              🔄 Retake Quiz
+            </button>
+          </div>
+
+          <div style="margin-top: 30px">
+            <a href="index.html" class="back-link"
+              >← Back to TypeLand Adventure</a
+            >
+          </div>
+        </section>
+      </main>
+
+      <footer style="padding: 20px; text-align: center; color: #666">
+        <p>Part of the TypeLand learning environment</p>
+      </footer>
+    </div>
+
+    <script type="module" src="dist/QuizKingdom/quizRenderer.js"></script>
+  </body>
+</html>
