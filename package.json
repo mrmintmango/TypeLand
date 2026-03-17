@@ -4,6 +4,7 @@
   "description": "A testing environment to learn new coding practices and techniques.",
   "main": "index.js",
   "scripts": {
+    "dev": "cd dist && python3 -m http.server 8000",
     "build": "tsc && npm run copy-files",
     "copy-files": "cp index.html dist/ && cp quiz.html dist/ && cp styles.css dist/ && cp src/QuizKingdom/quizStyles.css dist/QuizKingdom/",
     "watch": "tsc --watch",

@@ -454,7 +454,7 @@ export class QuizRenderer {
     if (this.submitQuizButton) {
       if (this.engine.isLastQuestion()) {
         this.submitQuizButton.style.display = "inline-block";
-        this.submitQuizButton.disabled = !this.engine.areAllQuestionsAnswered();
+        this.submitQuizButton.disabled = false;
       } else {
         this.submitQuizButton.style.display = "none";
       }
