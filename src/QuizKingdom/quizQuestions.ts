@@ -195,7 +195,7 @@ logProduct(x);`,
     type: QuestionType.CodeCompletion,
     question:
       "Create an interface 'CartItem' with productId: number, quantity: number, and optional notes: string. Then write a function 'totalItems(items: CartItem[]): number' that returns the sum of quantities. Provide the code.",
-    hint: "Use array methods like reduce() or a loop to sum quantities",
     starterCode: "",
+    hint: "Use array methods like reduce() or a loop to sum quantities",
   },
 ];
