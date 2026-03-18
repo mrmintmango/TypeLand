@@ -15,8 +15,8 @@ export const quizQuestions = [
     // Question 3 - Variables and Primitive Types (3 points)
     {
         type: QuestionType.CodeCompletion,
-        question: "Fill in types so the code compiles without 'any' and noImplicitAny errors:\n\nlet id = 42;\nlet name = \"Widget\";\nlet active = true;\n\nfunction format(item) {\n  return `${item.id}: ${item.name} (${item.active})`;\n}\n\nProvide the corrected code.",
-        starterCode: 'let id: number = 42;\nlet name: string = "Widget";\nlet active: boolean = true;\n\nfunction format(item: { id: number; name: string; active: boolean }): string {\n  return `${item.id}: ${item.name} (${item.active})`;\n}',
+        question: "Fill in types so the code compiles without 'any' and noImplicitAny errors\nCorrect the provided code.",
+        starterCode: 'let id = 42;\nlet name = "Widget";\nlet active = true;\n\nfunction format(item): string {\n  return `${item.id}: ${item.name} (${item.active})`;\n}',
         hint: "noImplicitAny means you need to prevent Typescript from inferring 'any' type for the item parameter",
     },
     // Question 4 - Variables and Primitive Types (1 point)
@@ -51,7 +51,7 @@ export const quizQuestions = [
     {
         type: QuestionType.CodeCompletion,
         question: "Create a type alias 'ID' that accepts either a string or a number and write a function 'getById' signature that accepts id: ID and returns Promise<object | null>.",
-        starterCode: "type ID = string | number;\n\nfunction getById(id: ID): Promise<object | null> {\n  // TODO: implement\n  return Promise.resolve(null);\n}",
+        starterCode: "",
         hint: "Use a union type for ID and async function or Promise return type",
     },
     // Question 8 - Functions and Generics (1 point)
@@ -87,15 +87,15 @@ export const quizQuestions = [
     {
         type: QuestionType.CodeCompletion,
         question: "Define a tuple type 'ProductTuple' for [id: number, name: string, inStock: boolean] and create a variable 'p' of that type.",
-        starterCode: 'type ProductTuple = [id: number, name: string, inStock: boolean];\n\nconst p: ProductTuple = [1, "Socks", true];',
+        starterCode: "",
         hint: "Remember Tuples are special arrays that can have different types at each index",
     },
     // Question 13 - Arrays Tuples and Objects (3 points)
     {
         type: QuestionType.CodeCompletion,
-        question: 'The following code fails type checking. Fix the types only:\n\nconst product = {\n  id: "100",\n  name: "Socks",\n  price: 9.99\n};\n\nfunction printPrice(p: { id: number; price: number }) {\n  console.log(p.price);\n}\n\nprintPrice(product);',
-        starterCode: 'const product = {\n  id: 100,\n  name: "Socks",\n  price: 9.99\n};\n\nfunction printPrice(p: { id: number; price: number }) {\n  console.log(p.price);\n}\n\nprintPrice(product);',
-        hint: "The id property should be a number, not a string",
+        question: "The following code fails type checking. Fix the types only",
+        starterCode: 'const product = {\n  id: "100",\n  name: "Socks",\n  price: 9.99\n};\n\nfunction printPrice(p: { id: number; price: number }) {\n  console.log(p.price);\n}\n\nprintPrice(product);',
+        hint: "",
     },
     // Question 14 - Arrays Tuples and Objects (2 points)
     {
@@ -112,9 +112,9 @@ export const quizQuestions = [
     // Question 16 - Classes and Interfaces (4 points)
     {
         type: QuestionType.CodeCompletion,
-        question: "Write a class 'User' that implements this interface and includes a constructor:\n\ninterface IUser {\n  id: number;\n  name: string;\n  isActive?: boolean;\n  greet(): string;\n}\n\nProvide the class code.",
-        starterCode: "interface IUser {\n  id: number;\n  name: string;\n  isActive?: boolean;\n  greet(): string;\n}\n\nclass User implements IUser {\n  constructor(\n    public id: number,\n    public name: string,\n    public isActive?: boolean\n  ) {}\n\n  greet(): string {\n    return `Hello, ${this.name}!`;\n  }\n}",
-        hint: "Use 'implements IUser' and define all required properties and methods",
+        question: "Write a class 'User' that implements this interface and includes a constructor",
+        starterCode: "interface IUser {\n  id: number;\n  name: string;\n  isActive?: boolean;\n  greet(): string;\n}",
+        hint: "Make sure to define all required properties and methods",
     },
     // Question 17 - Classes and Interfaces (2 points)
     {
@@ -124,10 +124,9 @@ export const quizQuestions = [
     },
     // Question 18 - Classes and Interfaces (3 points)
     {
-        type: QuestionType.CodeCompletion,
-        question: 'Fix the interface usage so the function accepts any object that has id: number and name: string:\n\ninterface Product {\n  id: number;\n  name: string;\n}\n\nfunction logProduct(p: Product) {\n  console.log(p.id, p.name);\n}\n\nconst x = { id: 1, name: "Hat", color: "red" };\nlogProduct(x);',
-        starterCode: 'interface Product {\n  id: number;\n  name: string;\n}\n\nfunction logProduct(p: Product): void {\n  console.log(p.id, p.name);\n}\n\nconst x = { id: 1, name: "Hat", color: "red" };\nlogProduct(x);',
-        hint: "TypeScript structural typing should already allow this - what might be the issue?",
+        type: QuestionType.TextInput,
+        question: 'Is the following valid TypeScript code? If not, explain the error and how to fix it.\n\ninterface Product {\n  id: number;\n  name: string;\n}\n\nfunction logProduct(p: Product): void {\n  console.log(p.id, p.name);\n}\n\nconst x = { id: 1, name: "Hat", color: "red" };\nlogProduct(x);',
+        hint: "Think about how interfaces are handled",
     },
     // Question 19 - Classes and Interfaces (1 point)
     {
@@ -142,9 +141,8 @@ export const quizQuestions = [
     },
     // Question 20 - Classes and Interfaces (4 points)
     {
-        type: QuestionType.CodeCompletion,
+        type: QuestionType.TextInput,
         question: "Create an interface 'CartItem' with productId: number, quantity: number, and optional notes: string. Then write a function 'totalItems(items: CartItem[]): number' that returns the sum of quantities. Provide the code.",
-        starterCode: "interface CartItem {\n  productId: number;\n  quantity: number;\n  notes?: string;\n}\n\nfunction totalItems(items: CartItem[]): number {\n  return items.reduce((sum, item) => sum + item.quantity, 0);\n}",
         hint: "Use array methods like reduce() or a loop to sum quantities",
     },
 ];
