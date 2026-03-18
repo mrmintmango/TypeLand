@@ -4,7 +4,7 @@
  */
 
 import { QuizEngine } from "./quizEngine.js";
-import { QuestionType, QuizState } from "./quizDefinitions.js";
+import { QuestionType, QuizQuestion, QuizState } from "./quizDefinitions.js";
 import { exportQuizResults } from "./fileExporter.js";
 
 export class QuizRenderer {
@@ -329,7 +329,7 @@ export class QuizRenderer {
     }
 
     // Render answer input based on question type
-    this.renderAnswerInput(question.type, question.options);
+    this.renderAnswerInput(question);
 
     // Update navigation buttons
     this.updateNavigationButtons();
@@ -338,7 +338,7 @@ export class QuizRenderer {
   /**
    * Render appropriate answer input based on question type
    */
-  private renderAnswerInput(type: QuestionType, options?: string[]): void {
+  private renderAnswerInput(question: QuizQuestion): void {
     if (!this.answerContainer) return;
 
     // Clear previous input
@@ -347,10 +347,10 @@ export class QuizRenderer {
     // Get existing answer if any
     const existingAnswer = this.engine.getCurrentAnswer();
 
-    switch (type) {
+    switch (question.type) {
       case QuestionType.MultipleChoice:
       case QuestionType.TrueFalse:
-        this.renderRadioButtons(options || [], existingAnswer);
+        this.renderRadioButtons(question.options || [], existingAnswer);
         break;
 
       case QuestionType.TextInput:
@@ -358,7 +358,7 @@ export class QuizRenderer {
         break;
 
       case QuestionType.CodeCompletion:
-        this.renderCodeInput(existingAnswer);
+        this.renderCodeInput(existingAnswer, question.starterCode);
         break;
     }
   }
@@ -416,7 +416,10 @@ export class QuizRenderer {
   /**
    * Render textarea for code completion questions
    */
-  private renderCodeInput(existingValue: string | null): void {
+  private renderCodeInput(
+    existingValue: string | null,
+    starterCode?: string,
+  ): void {
     if (!this.answerContainer) return;
 
     const textarea = document.createElement("textarea");
@@ -426,6 +429,8 @@ export class QuizRenderer {
 
     if (existingValue) {
       textarea.value = existingValue;
+    } else if (starterCode) {
+      textarea.value = starterCode;
     }
 
     this.answerContainer.appendChild(textarea);

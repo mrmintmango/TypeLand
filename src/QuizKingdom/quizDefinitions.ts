@@ -31,6 +31,7 @@ export interface QuizQuestion {
   options?: string[]; // For MultipleChoice and TrueFalse
   correctAnswer?: string; // Optional: for self-grading later
   hint?: string; // Optional: helpful hint for students
+  starterCode?: string; // Optional: prefilled code template for code completion
 }
 
 /**

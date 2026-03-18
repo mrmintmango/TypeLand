@@ -260,30 +260,30 @@ export class QuizRenderer {
             }
         }
         // Render answer input based on question type
-        this.renderAnswerInput(question.type, question.options);
+        this.renderAnswerInput(question);
         // Update navigation buttons
         this.updateNavigationButtons();
     }
     /**
      * Render appropriate answer input based on question type
      */
-    renderAnswerInput(type, options) {
+    renderAnswerInput(question) {
         if (!this.answerContainer)
             return;
         // Clear previous input
         this.answerContainer.innerHTML = "";
         // Get existing answer if any
         const existingAnswer = this.engine.getCurrentAnswer();
-        switch (type) {
+        switch (question.type) {
             case QuestionType.MultipleChoice:
             case QuestionType.TrueFalse:
-                this.renderRadioButtons(options || [], existingAnswer);
+                this.renderRadioButtons(question.options || [], existingAnswer);
                 break;
             case QuestionType.TextInput:
                 this.renderTextInput(existingAnswer);
                 break;
             case QuestionType.CodeCompletion:
-                this.renderCodeInput(existingAnswer);
+                this.renderCodeInput(existingAnswer, question.starterCode);
                 break;
         }
     }
@@ -329,7 +329,7 @@ export class QuizRenderer {
     /**
      * Render textarea for code completion questions
      */
-    renderCodeInput(existingValue) {
+    renderCodeInput(existingValue, starterCode) {
         if (!this.answerContainer)
             return;
         const textarea = document.createElement("textarea");
@@ -338,6 +338,9 @@ export class QuizRenderer {
         textarea.rows = 5;
         if (existingValue) {
             textarea.value = existingValue;
+        }
+        else if (starterCode) {
+            textarea.value = starterCode;
         }
         this.answerContainer.appendChild(textarea);
     }
