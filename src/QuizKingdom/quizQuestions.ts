@@ -162,7 +162,18 @@ export const quizQuestions: QuizQuestion[] = [
   {
     type: QuestionType.TextInput,
     question:
-      'Is the following valid TypeScript code? If not, explain the error and how to fix it.\n\ninterface Product {\n  id: number;\n  name: string;\n}\n\nfunction logProduct(p: Product): void {\n  console.log(p.id, p.name);\n}\n\nconst x = { id: 1, name: "Hat", color: "red" };\nlogProduct(x);',
+      "Is the following valid TypeScript code? If not, explain the error and how to fix it.",
+    exampleCode: `interface Product {
+  id: number;
+  name: string;
+}
+
+function logProduct(p: Product): void {
+  console.log(p.id, p.name);
+}
+
+const x = { id: 1, name: "Hat", color: "red" };
+logProduct(x);`,
     hint: "Think about how interfaces are handled",
   },
 

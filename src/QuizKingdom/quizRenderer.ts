@@ -354,7 +354,7 @@ export class QuizRenderer {
         break;
 
       case QuestionType.TextInput:
-        this.renderTextInput(existingAnswer);
+        this.renderTextInput(existingAnswer, question.exampleCode);
         break;
 
       case QuestionType.CodeCompletion:
@@ -398,8 +398,21 @@ export class QuizRenderer {
   /**
    * Render text input for short answer questions
    */
-  private renderTextInput(existingValue: string | null): void {
+  private renderTextInput(
+    existingValue: string | null,
+    exampleCode?: string,
+  ): void {
     if (!this.answerContainer) return;
+
+    // Display example code if provided
+    if (exampleCode) {
+      const codeBlock = document.createElement("pre");
+      codeBlock.className = "question-example-code";
+      const codeContent = document.createElement("code");
+      codeContent.textContent = exampleCode;
+      codeBlock.appendChild(codeContent);
+      this.answerContainer.appendChild(codeBlock);
+    }
 
     const input = document.createElement("input");
     input.type = "text";

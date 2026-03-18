@@ -32,6 +32,7 @@ export interface QuizQuestion {
   correctAnswer?: string; // Optional: for self-grading later
   hint?: string; // Optional: helpful hint for students
   starterCode?: string; // Optional: prefilled code template for code completion
+  exampleCode?: string; // Optional: code example to display under question text
 }
 
 /**
