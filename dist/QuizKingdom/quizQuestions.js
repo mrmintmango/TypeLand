@@ -16,7 +16,7 @@ export const quizQuestions = [
     {
         type: QuestionType.CodeCompletion,
         question: "Fill in types so the code compiles without 'any' and noImplicitAny errors:\n\nlet id = 42;\nlet name = \"Widget\";\nlet active = true;\n\nfunction format(item) {\n  return `${item.id}: ${item.name} (${item.active})`;\n}\n\nProvide the corrected code.",
-        starterCode: "let id: number = 42;\nlet name: string = \"Widget\";\nlet active: boolean = true;\n\nfunction format(item: { id: number; name: string; active: boolean }): string {\n  return `${item.id}: ${item.name} (${item.active})`;\n}",
+        starterCode: 'let id: number = 42;\nlet name: string = "Widget";\nlet active: boolean = true;\n\nfunction format(item: { id: number; name: string; active: boolean }): string {\n  return `${item.id}: ${item.name} (${item.active})`;\n}',
         hint: "noImplicitAny means you need to prevent Typescript from inferring 'any' type for the item parameter",
     },
     // Question 4 - Variables and Primitive Types (1 point)
@@ -87,14 +87,14 @@ export const quizQuestions = [
     {
         type: QuestionType.CodeCompletion,
         question: "Define a tuple type 'ProductTuple' for [id: number, name: string, inStock: boolean] and create a variable 'p' of that type.",
-        starterCode: "type ProductTuple = [id: number, name: string, inStock: boolean];\n\nconst p: ProductTuple = [1, \"Socks\", true];",
+        starterCode: 'type ProductTuple = [id: number, name: string, inStock: boolean];\n\nconst p: ProductTuple = [1, "Socks", true];',
         hint: "Remember Tuples are special arrays that can have different types at each index",
     },
     // Question 13 - Arrays Tuples and Objects (3 points)
     {
         type: QuestionType.CodeCompletion,
         question: 'The following code fails type checking. Fix the types only:\n\nconst product = {\n  id: "100",\n  name: "Socks",\n  price: 9.99\n};\n\nfunction printPrice(p: { id: number; price: number }) {\n  console.log(p.price);\n}\n\nprintPrice(product);',
-        starterCode: "const product = {\n  id: 100,\n  name: \"Socks\",\n  price: 9.99\n};\n\nfunction printPrice(p: { id: number; price: number }) {\n  console.log(p.price);\n}\n\nprintPrice(product);",
+        starterCode: 'const product = {\n  id: 100,\n  name: "Socks",\n  price: 9.99\n};\n\nfunction printPrice(p: { id: number; price: number }) {\n  console.log(p.price);\n}\n\nprintPrice(product);',
         hint: "The id property should be a number, not a string",
     },
     // Question 14 - Arrays Tuples and Objects (2 points)
@@ -126,7 +126,7 @@ export const quizQuestions = [
     {
         type: QuestionType.CodeCompletion,
         question: 'Fix the interface usage so the function accepts any object that has id: number and name: string:\n\ninterface Product {\n  id: number;\n  name: string;\n}\n\nfunction logProduct(p: Product) {\n  console.log(p.id, p.name);\n}\n\nconst x = { id: 1, name: "Hat", color: "red" };\nlogProduct(x);',
-        starterCode: "interface Product {\n  id: number;\n  name: string;\n}\n\nfunction logProduct(p: Product): void {\n  console.log(p.id, p.name);\n}\n\nconst x = { id: 1, name: \"Hat\", color: \"red\" };\nlogProduct(x);",
+        starterCode: 'interface Product {\n  id: number;\n  name: string;\n}\n\nfunction logProduct(p: Product): void {\n  console.log(p.id, p.name);\n}\n\nconst x = { id: 1, name: "Hat", color: "red" };\nlogProduct(x);',
         hint: "TypeScript structural typing should already allow this - what might be the issue?",
     },
     // Question 19 - Classes and Interfaces (1 point)
