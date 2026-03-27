@@ -165,6 +165,31 @@
       </div>
     </div>
 
+    <script>
+      document.querySelectorAll(".topic-card").forEach((card) => {
+        const topicLink = card.querySelector(".topic-link");
+        if (!topicLink) {
+          return;
+        }
+
+        card.setAttribute("role", "link");
+        card.setAttribute("tabindex", "0");
+
+        card.addEventListener("click", (event) => {
+          if (event.target.closest("a")) {
+            return;
+          }
+          window.location.href = topicLink.href;
+        });
+
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            window.location.href = topicLink.href;
+          }
+        });
+      });
+    </script>
     <script src="../styles/navigation.js"></script>
   </body>
 </html>

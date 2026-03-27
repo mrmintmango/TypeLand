@@ -14,10 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!isMobile && sidebarState === "true") {
     sidebar.classList.remove("collapsed");
     contentWrapper.classList.add("sidebar-open");
+    menuToggle.classList.add("active"); // Show X when open
   } else if (!isMobile && sidebarState !== "false") {
     // Default to open on desktop if no state saved
     sidebar.classList.remove("collapsed");
     contentWrapper.classList.add("sidebar-open");
+    menuToggle.classList.add("active"); // Show X when open
     localStorage.setItem("sidebarOpen", "true");
   }
 
@@ -28,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sidebar.classList.toggle("open");
       sidebarOverlay.classList.toggle("active");
 
+      // Button shows X when sidebar is open
       const isOpen = sidebar.classList.contains("open");
       menuToggle.classList.toggle("active", isOpen);
     } else {
@@ -35,10 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
       sidebar.classList.toggle("collapsed");
       contentWrapper.classList.toggle("sidebar-open");
 
+      // Button shows X when sidebar is NOT collapsed (open)
       const isOpen = !sidebar.classList.contains("collapsed");
       menuToggle.classList.toggle("active", isOpen);
-
-      // Save state
       localStorage.setItem("sidebarOpen", isOpen);
     }
   });
@@ -47,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   sidebarOverlay.addEventListener("click", () => {
     sidebar.classList.remove("open");
     sidebarOverlay.classList.remove("active");
-    menuToggle.classList.remove("active");
+    menuToggle.classList.remove("active"); // Show hamburger when closed
   });
 
   // Handle window resize
@@ -74,9 +76,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (savedState === "true") {
           sidebar.classList.remove("collapsed");
           contentWrapper.classList.add("sidebar-open");
+          menuToggle.classList.add("active"); // Show X when open
         } else if (savedState === "false") {
           sidebar.classList.add("collapsed");
           contentWrapper.classList.remove("sidebar-open");
+          menuToggle.classList.remove("active"); // Show hamburger when closed
         }
       }
     }, 250);
