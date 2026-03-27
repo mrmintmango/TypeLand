@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modules & Namespaces - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../../index.html">🏠 Home</a></li>
+          <li><a href="../adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="../quiz.html">📚 Quiz Kingdom</a></li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="../beginners.html">📗 Beginner Course</a></li>
+          <li><a href="../intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../intermediate.html" class="back-to-course"
+            >← Back to Course</a
+          >
+
+          <h1>📦 Modules & Namespaces</h1>
+
+          <div class="topic-intro">
+            <p>
+              Modules help organize TypeScript code into separate files with
+              explicit imports and exports. TypeLand uses ES2020 modules to
+              structure the Adventure Game and Quiz code across multiple files!
+            </p>
+          </div>
+
+          <h2>ES6 Modules (Recommended)</h2>
+
+          <p>Modern TypeScript uses ES6 module syntax with import/export:</p>
+
+          <div class="code-example">
+            <h4>Example: Exporting from a Module</h4>
+            <pre><code>// File: types.ts
+export interface Player {
+  name: string;
+  level: number;
+  health: number;
+}
+
+export enum Direction {
+  North,
+  South,
+  East,
+  West
+}
+
+export function createPlayer(name: string): Player {
+  return {
+    name,
+    level: 1,
+    health: 100
+  };
+}
+
+// Default export (one per file)
+export default class Game {
+  private players: Player[] = [];
+  
+  addPlayer(player: Player): void {
+    this.players.push(player);
+  }
+}</code></pre>
+          </div>
+
+          <div class="code-example">
+            <h4>Example: Importing from a Module</h4>
+            <pre><code>// File: main.ts
+
+// Named imports
+import { Player, Direction, createPlayer } from './types.js';
+
+// Default import
+import Game from './types.js';
+
+// Import everything as namespace
+import * as Types from './types.js';
+
+// Using imports
+const player: Player = createPlayer("Hero");
+const game = new Game();
+game.addPlayer(player);
+
+// Using namespace import
+const direction: Types.Direction = Types.Direction.North;</code></pre>
+          </div>
+
+          <h2>TypeLand's Module Structure</h2>
+
+          <p>Here's how the TypeLand Adventure Game organizes its modules:</p>
+
+          <div class="code-example">
+            <h4>Example: TypeLand Module Organization</h4>
+            <pre><code>// File: definitions.ts - Core types and enums
+export type Coordinate = [number, number];
+
+export enum MovementKey {
+  NORTH = "NORTH",
+  SOUTH = "SOUTH",
+  EAST = "EAST",
+  WEST = "WEST"
+}
+
+export enum GroundMaterial {
+  MEADOW = "MEADOW",
+  STONE = "STONE",
+  LAKE = "LAKE",
+  SAND = "SAND"
+}
+
+// ---
+
+// File: hero.ts - Hero class
+import { Coordinate, CollectibleKind } from './definitions.js';
+
+export class Hero {
+  private position: Coordinate;
+  private backpack: CollectibleKind[];
+  
+  constructor(startPos: Coordinate) {
+    this.position = startPos;
+    this.backpack = [];
+  }
+  
+  getPosition(): Coordinate {
+    return this.position;
+  }
+}
+
+// ---
+
+// File: terrain.ts - WorldTerrain class
+import { Coordinate, GroundMaterial } from './definitions.js';
+
+export class WorldTerrain {
+  private grid: GroundMaterial[][];
+  
+  getMaterial(pos: Coordinate): GroundMaterial {
+    const [row, col] = pos;
+    return this.grid[row][col];
+  }
+}
+
+// ---
+
+// File: adventure.ts - Main game engine
+import { Hero } from './hero.js';
+import { WorldTerrain } from './terrain.js';
+import { MovementKey, Coordinate } from './definitions.js';
+
+export class AdventureEngine {
+  private hero: Hero;
+  private world: WorldTerrain;
+  
+  constructor() {
+    this.hero = new Hero([7, 7]);
+    this.world = new WorldTerrain();
+  }
+  
+  moveHero(direction: MovementKey): boolean {
+    // Movement logic
+    return true;
+  }
+}</code></pre>
+          </div>
+
+          <h2>Export Types</h2>
+
+          <p>Different ways to export from modules:</p>
+
+          <div class="code-example">
+            <h4>Example: Export Variations</h4>
+            <pre><code>// Named exports (multiple per file)
+export const PI = 3.14159;
+export function add(a: number, b: number): number {
+  return a + b;
+}
+
+// Export existing declarations
+const VERSION = "1.0.0";
+function multiply(a: number, b: number): number {
+  return a * b;
+}
+export { VERSION, multiply };
+
+// Export with rename
+const internalName = "TypeLand";
+export { internalName as gameName };
+
+// Re-export from another module
+export { Player, Game } from './types.js';
+export * from './utils.js';  // Re-export all
+
+// Default export (one per file)
+export default class Application {
+  // Main application class
+}</code></pre>
+          </div>
+
+          <h2>Import Types</h2>
+
+          <div class="code-example">
+            <h4>Example: Import Variations</h4>
+            <pre><code>// Named imports
+import { Player, Game } from './types.js';
+
+// Import with rename
+import { gameName as appName } from './constants.js';
+
+// Default import (name it whatever you want)
+import App from './app.js';
+import MyApp from './app.js';  // Same thing, different name
+
+// Combined default and named imports
+import Game, { Player, Level } from './game.js';
+
+// Import all as namespace
+import * as Utils from './utils.js';
+Utils.formatDate(new Date());
+
+// Type-only imports (removed in JavaScript output)
+import type { Player } from './types.js';
+import { type Game, startGame } from './game.js';</code></pre>
+          </div>
+
+          <h2>Module Resolution</h2>
+
+          <p>TypeScript needs to find your modules:</p>
+
+          <div class="code-example">
+            <h4>Example: Import Path Styles</h4>
+            <pre><code>// Relative imports (most common)
+import { Player } from './types.js';           // Same directory
+import { Game } from '../game.js';             // Parent directory
+import { Utils } from '../../utils/helpers.js'; // Up two levels
+
+// tsconfig.json configuration for module resolution
+{
+  "compilerOptions": {
+    "module": "ES2020",           // Module format
+    "moduleResolution": "node",   // How to resolve imports
+    "baseUrl": "./src",           // Base directory
+    "paths": {                    // Path aliases
+      "@models/*": ["models/*"],
+      "@utils/*": ["utils/*"]
+    }
+  }
+}
+
+// Using path aliases
+import { Player } from '@models/player.js';
+import { formatDate } from '@utils/date.js';</code></pre>
+          </div>
+
+          <h2>Namespaces (Legacy)</h2>
+
+          <p>
+            Namespaces are TypeScript's older module system. Use ES6 modules
+            instead for new code:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Namespaces (for reference)</h4>
+            <pre><code>// Namespace (avoid in new code)
+namespace Game {
+  export interface Player {
+    name: string;
+    score: number;
+  }
+  
+  export class Engine {
+    start(): void {
+      console.log("Game starting...");
+    }
+  }
+}
+
+// Usage
+const player: Game.Player = { name: "Hero", score: 0 };
+const engine = new Game.Engine();
+
+// Prefer ES6 modules instead!
+// They have better tooling support and tree-shaking</code></pre>
+          </div>
+
+          <h2>Best Practices</h2>
+
+          <div class="code-example">
+            <h4>Example: Module Best Practices</h4>
+            <pre><code>// ✓ GOOD: Clear, single-purpose modules
+
+// File: player.ts
+export interface Player {
+  id: number;
+  name: string;
+  health: number;
+}
+
+export function createPlayer(name: string): Player {
+  return { id: Date.now(), name, health: 100 };
+}
+
+// ---
+
+// File: game.ts
+import { Player, createPlayer } from './player.js';
+
+export class Game {
+  private players: Player[] = [];
+  
+  addPlayer(name: string): Player {
+    const player = createPlayer(name);
+    this.players.push(player);
+    return player;
+  }
+}
+
+// ✗ AVOID: Circular dependencies
+// File A imports File B, File B imports File A
+
+// ✓ GOOD: Use index files for cleaner imports
+
+// File: models/index.ts
+export { Player } from './player.js';
+export { Game } from './game.js';  
+export { Level } from './level.js';
+
+// Now import from one place:
+import { Player, Game, Level } from './models/index.js';</code></pre>
+          </div>
+
+          <div class="key-concepts">
+            <h3>🎯 Key Concepts</h3>
+            <ul>
+              <li>
+                Use ES6 modules (import/export) for all new TypeScript code
+              </li>
+              <li>Each file is a module with its own scope</li>
+              <li>
+                Use <code>export</code> to make things available to other
+                modules
+              </li>
+              <li>
+                Use <code>import</code> to bring in code from other modules
+              </li>
+              <li>
+                Default exports are useful for main class/function per file
+              </li>
+              <li>
+                Relative imports (<code>./</code>, <code>../</code>) are most
+                common
+              </li>
+              <li>TypeLand uses modules to organize game components!</li>
+              <li>Avoid circular dependencies between modules</li>
+            </ul>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/modules.html"
+                  target="_blank"
+                  >TypeScript Handbook: Modules</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/module-resolution.html"
+                  target="_blank"
+                  >TypeScript: Module Resolution</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+                  target="_blank"
+                  >MDN: JavaScript Modules</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../intermediate.html" class="back-to-course"
+            >← Back to Intermediate Course</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>
