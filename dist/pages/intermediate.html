@@ -19,6 +19,7 @@
           <li><a href="../index.html">🏠 Home</a></li>
           <li><a href="adventure.html">🎮 Adventure Game</a></li>
           <li><a href="quiz.html">📚 Quiz Kingdom</a></li>
+          <li><a href="grades.html">📝 Grades</a></li>
           <li class="nav-section">
             <div class="nav-section-title">Courses</div>
           </li>
@@ -165,6 +166,31 @@
       </div>
     </div>
 
+    <script>
+      document.querySelectorAll(".topic-card").forEach((card) => {
+        const topicLink = card.querySelector(".topic-link");
+        if (!topicLink) {
+          return;
+        }
+
+        card.setAttribute("role", "link");
+        card.setAttribute("tabindex", "0");
+
+        card.addEventListener("click", (event) => {
+          if (event.target.closest("a")) {
+            return;
+          }
+          window.location.href = topicLink.href;
+        });
+
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            window.location.href = topicLink.href;
+          }
+        });
+      });
+    </script>
     <script src="../styles/navigation.js"></script>
   </body>
 </html>

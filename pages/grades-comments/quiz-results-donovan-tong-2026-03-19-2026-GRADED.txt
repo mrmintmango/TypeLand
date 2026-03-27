@@ -1,0 +1,289 @@
+======================================================================
+TYPELAND QUIZ RESULTS
+======================================================================
+
+Student Name: Donovan Tong
+Quiz Started: March 19, 2026 at 02:15:31 PM
+Quiz Completed: March 19, 2026 at 02:52:34 PM
+Duration: 37 minutes 3 seconds
+Total Questions: 20
+
+Grading Rubric: 
+multiple choice: 1 point
+short answer: 2 points
+code completion: 3 points
+
+----------------------------------------------------------------------
+
+Question 1:
+Which declaration allows reassignment but not redeclaration in the same scope?
+
+Answer:
+let
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 2:
+List all the Typescript primitive types that we have gone over so far.
+
+Answer:
+Symbol, undefined, null, void, never
+
+Points: 1/2
+// Good job on remembering the lesser known ones,
+// but you forgot about the basic ones like string, number, Boolean, and bigInt
+
+----------------------------------------------------------------------
+
+Question 3:
+Fill in types so the code compiles without 'any' and noImplicitAny errors
+Correct the provided code.
+
+Answer:
+const item = {
+let id: number = 42;
+let name: string = "Widget";
+let active: boolean = true;
+}
+
+function format(item): string {
+  return `${item.id}: ${item.name} (${item.active})`;
+}
+
+Points: 2/3
+// You set the types of the item properties, but how is the format function
+// supposed to know what type item is supposed to be?
+
+----------------------------------------------------------------------
+
+Question 4:
+When should we favor using undefined instead of null in TypeScript?
+
+Answer:
+When a variable is intentionally left uninitialized
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 5:
+Which syntax defines a type alias for a union of string literals?
+
+Answer:
+type Size = 'S' | 'M' | 'L'
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 6:
+Explain the difference between a type alias and an interface in TypeScript in one sentence.
+
+Answer:
+Type alias is another way to rename a type in order to improve readability but are more general. Interfaces only define shapes for classes.
+
+Points: 2/2
+// Good job
+
+----------------------------------------------------------------------
+
+Question 7:
+Create a type alias 'ID' that accepts either a string or a number and write a function 'getById' signature that accepts id: ID and returns Promise<object | null>.
+
+Answer:
+type ID = string | number;
+const getById(id:ID) = {
+     return Promise<object | null>
+}
+
+Points: 1/3
+// making a function should start with the keyword function, not const
+// Also Promise<object | null> is a type, not something that can physically
+// be returned by the function. 
+
+----------------------------------------------------------------------
+
+Question 8:
+Which function signature correctly types a function that takes a number and returns a number?
+
+Answer:
+function f(x: number): number {}
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 9:
+Explain the difference between extends and implements in TypeScript classes and when you would use each one.
+
+Answer:
+Extends can add more methods to the interface, whereas implements uses the interfaces as is with the current defined methods.
+
+Points: 1/2
+// Good definitions, but you never explained when to use each one
+
+----------------------------------------------------------------------
+
+Question 10:
+What does the 'void' return type indicate and when would you use 'never' instead?
+
+Answer:
+Void is when nothing will be returned within the scope of the method/function. Never is defining a case to prevent it from happening.
+
+Points: 1/2
+// Goode definition for Void, and Never defines something that should never happen
+// You didn't explain when you would use Never, you only explained what it was. 
+
+----------------------------------------------------------------------
+
+Question 11:
+Which type annotation declares an array of strings?
+
+Answer:
+Both A and B
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 12:
+Define a tuple type 'ProductTuple' for [id: number, name: string, inStock: boolean] and create a variable 'p' of that type.
+
+Answer:
+type ProductTuple = [id: number, name: string, instock: boolean];
+const p: ProductTuple = [id: 6221, name: Sheet, instock: True];
+
+Points: 3/3
+// You don't need to name the properties in the Tuple type, you could
+// just write type ProductTuple = [number, string, boolean]; 
+// You also forgot to put "" around Sheet, and True should be lowercase 
+// But I won't dock points for that because you were really close. 
+
+----------------------------------------------------------------------
+
+Question 13:
+The following code fails type checking. Fix the types only
+
+Answer:
+const product = {
+  id: "100",
+  name: "Socks",
+  price: 9.99
+};
+
+function printPrice(p: { id: string; name: string; price: number }) {
+  console.log(p.price);
+}
+
+printPrice(product);
+
+Points: 3/3
+
+----------------------------------------------------------------------
+
+Question 14:
+Explain why one would explicitly declare an object type when TypeScript can often infer it from the assigned value.
+
+Answer:
+In order to ensure that any instance of that object is not reassigned incorrectly or mutated incorrectly.
+
+Points: 0/2
+// Declaring an object type mainly helps with readability and code maintainability 
+// TypeScript will infer the type of an object that wasn't given one when it is first assigned
+// a value, and then after that will warn you if you try to assign it to a value of a
+// different type. 
+
+----------------------------------------------------------------------
+
+Question 15:
+Which keyword enforces that a class implements a contract shape?
+
+Answer:
+implements
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 16:
+Write a class 'User' that implements this interface and includes a constructor
+
+Answer:
+interface IUser {
+  id: number;
+  name: string;
+  isActive?: boolean;
+  greet(): string;
+}
+
+class User = {
+  constructor(id: number, name: string, isActive?: boolean) = {
+    this.id = id;
+    this.name = name;
+    this.isActive = isActive;
+  }
+  greet();
+}
+
+Points: 0/3
+// You created the class but never implemented the IUser interface. You need to use
+// the implements keyword. Also there are no properties defined in the User class to use
+// the this keyword. Also the greet function is defined incorrectly, it looks like you are 
+// calling the greet function there instead of defining it. 
+
+----------------------------------------------------------------------
+
+Question 17:
+What is the difference between public, private, and protected class members in TypeScript?
+
+Answer:
+a public variable can be changed anywhere (outside class), private can only be changed within a class, protected can be changed within derived classes.
+
+Points: 2/2
+// Good definitions! I'm assuming you mean inherited when you say derived. 
+
+----------------------------------------------------------------------
+
+Question 18:
+Is the following valid TypeScript code? If not, explain the error and how to fix it.
+
+Answer:
+No, variable x cannot have color: "red" it has too many parameters.
+
+Points: 0/2
+// It was valid TypeScript code. If you remember the example, an object can be considered
+// an interface shape if it has that interfaces properties, even if it has more properties.
+
+----------------------------------------------------------------------
+
+Question 19:
+Which of the following allows adding new properties to an existing interface declaration across multiple files?
+
+Answer:
+Interface declaration merging
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 20:
+Create an interface 'CartItem' with productId: number, quantity: number, and optional notes: string. Then write a function 'totalItems(items: CartItem[]): number' that returns the sum of quantities. Provide the code.
+
+Answer:
+Interface CartItem {
+  productId: number;
+  quantity: number;
+  notes?: string;
+  totalItems(items: CartItem[]): number
+}
+
+Points: 1/3
+// You made an interface, but the totalItems function should be defined outside of
+// the interface and should be fully implemented. 
+
+======================================================================
+END OF QUIZ RESULTS --> 24/39 Points --> 62% 
+======================================================================
+// Come see me if you have any questions about your grade. 
