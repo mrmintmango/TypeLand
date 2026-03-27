@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cd dist && python3 -m http.server 8000",
     "build": "tsc && npm run copy-files",
-    "copy-files": "cp index.html dist/ && cp quiz.html dist/ && cp styles.css dist/ && cp src/QuizKingdom/quizStyles.css dist/QuizKingdom/",
+    "copy-files": "cp index.html dist/ && cp -r pages dist/ && cp -r styles dist/ && cp src/QuizKingdom/quizStyles.css dist/QuizKingdom/",
     "watch": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "predeploy": "npm run build",

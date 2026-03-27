@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced Generics - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../../index.html">🏠 Home</a></li>
+          <li><a href="../adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="../quiz.html">📚 Quiz Kingdom</a></li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="../beginners.html">📗 Beginner Course</a></li>
+          <li><a href="../intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../intermediate.html" class="back-to-course"
+            >← Back to Course</a
+          >
+
+          <h1>🔷 Advanced Generics</h1>
+
+          <div class="topic-intro">
+            <p>
+              Generics are one of TypeScript's most powerful features. Beyond
+              basic generics, you can use constraints, multiple type parameters,
+              and generic utility types to create highly flexible and type-safe
+              code.
+            </p>
+          </div>
+
+          <h2>Generic Constraints</h2>
+
+          <p>
+            Constraints limit what types can be used as generic parameters using
+            the <code>extends</code> keyword:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Generic Constraints</h4>
+            <pre><code>// Constraint: T must have a length property
+function logLength&lt;T extends { length: number }&gt;(item: T): void {
+  console.log(`Length: ${item.length}`);
+}
+
+logLength("hello");        // ✓ OK - strings have length
+logLength([1, 2, 3]);      // ✓ OK - arrays have length
+// logLength(123);         // ✗ Error - numbers don't have length
+
+// Constraint with interface
+interface Nameable {
+  name: string;
+}
+
+function greetEntity&lt;T extends Nameable&gt;(entity: T): string {
+  return `Hello, ${entity.name}!`;
+}
+
+greetEntity({ name: "Hero", level: 5 });  // ✓ OK
+// greetEntity({ id: 1 });  // ✗ Error - missing 'name'</code></pre>
+          </div>
+
+          <h2>Multiple Type Parameters</h2>
+
+          <p>
+            Functions and classes can have multiple generic type parameters:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Multiple Type Parameters</h4>
+            <pre><code>// Function with two type parameters
+function pair&lt;K, V&gt;(key: K, value: V): [K, V] {
+  return [key, value];
+}
+
+const entry1 = pair("name", "Alice");      // [string, string]
+const entry2 = pair(1, { data: "value" }); // [number, { data: string }]
+
+// Generic map function
+function mapObject&lt;T, U&gt;(
+  obj: Record&lt;string, T&gt;,
+  mapper: (value: T) => U
+): Record&lt;string, U&gt; {
+  const result: Record&lt;string, U&gt; = {};
+  for (const key in obj) {
+    result[key] = mapper(obj[key]);
+  }
+  return result;
+}
+
+const numbers = { a: 1, b: 2, c: 3 };
+const doubled = mapObject(numbers, n => n * 2);
+// { a: 2, b: 4, c: 6 }</code></pre>
+          </div>
+
+          <h2>Generic Classes</h2>
+
+          <p>Classes can be generic, allowing flexible data structures:</p>
+
+          <div class="code-example">
+            <h4>Example: Generic Classes</h4>
+            <pre><code>// Generic Stack data structure
+class Stack&lt;T&gt; {
+  private items: T[] = [];
+  
+  push(item: T): void {
+    this.items.push(item);
+  }
+  
+  pop(): T | undefined {
+    return this.items.pop();
+  }
+  
+  peek(): T | undefined {
+    return this.items[this.items.length - 1];
+  }
+  
+  isEmpty(): boolean {
+    return this.items.length === 0;
+  }
+  
+  size(): number {
+    return this.items.length;
+  }
+}
+
+// Use with different types
+const numberStack = new Stack&lt;number&gt;();
+numberStack.push(1);
+numberStack.push(2);
+console.log(numberStack.pop());  // 2
+
+const stringStack = new Stack&lt;string&gt;();
+stringStack.push("hello");
+stringStack.push("world");</code></pre>
+          </div>
+
+          <h2>Generic Constraints with Keyof</h2>
+
+          <p>
+            The <code>keyof</code> operator creates a union of an object's keys:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Keyof Constraints</h4>
+            <pre><code>// Get property value by key name (type-safe)
+function getProperty&lt;T, K extends keyof T&gt;(obj: T, key: K): T[K] {
+  return obj[key];
+}
+
+const player = {
+  name: "Hero",
+  level: 5,
+  health: 100
+};
+
+const name = getProperty(player, "name");    // string
+const level = getProperty(player, "level");  // number
+// const invalid = getProperty(player, "invalid");  // ✗ Error
+
+// Update property (type-safe setter)
+function setProperty&lt;T, K extends keyof T&gt;(
+  obj: T,
+  key: K,
+  value: T[K]
+): void {
+  obj[key] = value;
+}
+
+setProperty(player, "level", 6);  // ✓ OK
+// setProperty(player, "level", "six");  // ✗ Error - wrong type</code></pre>
+          </div>
+
+          <h2>Generic Type Inference</h2>
+
+          <p>TypeScript can infer complex generic types from usage:</p>
+
+          <div class="code-example">
+            <h4>Example: Advanced Type Inference</h4>
+            <pre><code>// TypeScript infers both type parameters
+function merge&lt;T, U&gt;(obj1: T, obj2: U): T & U {
+  return { ...obj1, ...obj2 };
+}
+
+const result = merge(
+  { name: "Hero" },
+  { level: 5 }
+);
+// Type inferred as: { name: string } & { level: number }
+// Which simplifies to: { name: string; level: number }
+
+console.log(result.name);   // ✓ OK
+console.log(result.level);  // ✓ OK
+
+// Conditional type with generics
+type ArrayOrSingle&lt;T&gt; = T extends any[] ? T : T[];
+
+function ensureArray&lt;T&gt;(value: T): ArrayOrSingle&lt;T&gt; {
+  return (Array.isArray(value) ? value : [value]) as ArrayOrSingle&lt;T&gt;;
+}
+
+const arr1 = ensureArray([1, 2, 3]);  // number[]
+const arr2 = ensureArray(5);          // number[]</code></pre>
+          </div>
+
+          <h2>Real-World Example</h2>
+
+          <div class="code-example">
+            <h4>Example: Typed Event System</h4>
+            <pre><code>// Generic event system with type safety
+type EventMap = {
+  "player:move": { x: number; y: number; };
+  "player:damage": { amount: number; source: string; };
+  "item:collect": { itemId: string; itemType: string; };
+};
+
+class EventBus&lt;T extends Record&lt;string, any&gt;&gt; {
+  private listeners: {
+    [K in keyof T]?: Array&lt;(data: T[K]) => void&gt;;
+  } = {};
+  
+  on&lt;K extends keyof T&gt;(event: K, callback: (data: T[K]) => void): void {
+    if (!this.listeners[event]) {
+      this.listeners[event] = [];
+    }
+    this.listeners[event]!.push(callback);
+  }
+  
+  emit&lt;K extends keyof T&gt;(event: K, data: T[K]): void {
+    const callbacks = this.listeners[event];
+    if (callbacks) {
+      callbacks.forEach(callback => callback(data));
+    }
+  }
+}
+
+const events = new EventBus&lt;EventMap&gt;();
+
+// Type-safe event listeners
+events.on("player:move", (data) => {
+  console.log(`Player moved to ${data.x}, ${data.y}`);
+});
+
+events.on("player:damage", (data) => {
+  console.log(`Player took ${data.amount} damage from ${data.source}`);
+});
+
+// Type-safe event emission
+events.emit("player:move", { x: 10, y: 5 });
+events.emit("player:damage", { amount: 25, source: "enemy" });
+// events.emit("player:move", { invalid: true });  // ✗ Error</code></pre>
+          </div>
+
+          <div class="key-concepts">
+            <h3>🎯 Key Concepts</h3>
+            <ul>
+              <li>Use <code>extends</code> to constrain generic types</li>
+              <li>Multiple type parameters enable complex relationships</li>
+              <li><code>keyof T</code> creates a union of object keys</li>
+              <li><code>T[K]</code> accesses the type of property K in T</li>
+              <li>Generic classes create reusable data structures</li>
+              <li>TypeScript infers generic types from usage when possible</li>
+              <li>Combine generics with utility types for powerful patterns</li>
+            </ul>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/generics.html"
+                  target="_blank"
+                  >TypeScript Handbook: Generics</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/keyof-types.html"
+                  target="_blank"
+                  >TypeScript: Keyof Type Operator</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/conditional-types.html"
+                  target="_blank"
+                  >TypeScript: Conditional Types</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../intermediate.html" class="back-to-course"
+            >← Back to Intermediate Course</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

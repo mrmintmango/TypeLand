@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Objects & Interfaces - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../../index.html">🏠 Home</a></li>
+          <li><a href="../adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="../quiz.html">📚 Quiz Kingdom</a></li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="../beginners.html">📗 Beginner Course</a></li>
+          <li><a href="../intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../beginners.html" class="back-to-course"
+            >← Back to Course</a
+          >
+
+          <h1>🏗️ Objects & Interfaces</h1>
+
+          <div class="topic-intro">
+            <p>
+              Objects are central to JavaScript and TypeScript. Interfaces and
+              type aliases let you define the shape of objects, ensuring
+              consistency and catching errors before they happen.
+            </p>
+          </div>
+
+          <h2>Object Types</h2>
+
+          <p>
+            You can define object types inline or extract them into reusable
+            interfaces:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Inline Object Types</h4>
+            <pre><code>// Inline object type
+function printPlayer(player: { name: string; level: number }) {
+  console.log(`${player.name} is level ${player.level}`);
+}
+
+printPlayer({ name: "Hero", level: 5 });
+
+// Object type with optional properties
+function createUser(config: { 
+  username: string; 
+  email?: string;  // Optional
+  age?: number; 
+}) {
+  return config;
+}
+
+createUser({ username: "alice" });
+createUser({ username: "bob", email: "bob@example.com", age: 30 });</code></pre>
+          </div>
+
+          <h2>Interfaces</h2>
+
+          <p>
+            Interfaces are the recommended way to define object shapes in
+            TypeScript. They're reusable, extendable, and self-documenting:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Interface Definitions</h4>
+            <pre><code>// Define an interface
+interface Player {
+  name: string;
+  health: number;
+  level: number;
+  isAlive: boolean;
+}
+
+// Use the interface
+const hero: Player = {
+  name: "Aragon",
+  health: 100,
+  level: 5,
+  isAlive: true
+};
+
+// Function using interface
+function healPlayer(player: Player, amount: number): void {
+  player.health += amount;
+  console.log(`${player.name} healed for ${amount} HP`);
+}
+
+healPlayer(hero, 25);</code></pre>
+          </div>
+
+          <h2>Optional and Readonly Properties</h2>
+
+          <p>
+            Interfaces support optional properties (<code>?</code>) and readonly
+            properties:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Optional and Readonly</h4>
+            <pre><code>interface GameConfig {
+  readonly maxPlayers: number;  // Cannot be changed after creation
+  difficulty: string;
+  soundEnabled?: boolean;       // Optional property
+  musicVolume?: number;         // Optional property
+}
+
+const config: GameConfig = {
+  maxPlayers: 4,
+  difficulty: "normal"
+};
+
+// config.maxPlayers = 8;  // ✗ Error: Cannot assign to 'maxPlayers'
+config.difficulty = "hard"; // ✓ OK
+
+// Optional properties can be undefined
+if (config.soundEnabled === undefined) {
+  config.soundEnabled = true;
+}</code></pre>
+          </div>
+
+          <h2>Interface Extension</h2>
+
+          <p>Interfaces can extend other interfaces, creating hierarchies:</p>
+
+          <div class="code-example">
+            <h4>Example: Extending Interfaces</h4>
+            <pre><code>// Base interface
+interface Character {
+  name: string;
+  health: number;
+}
+
+// Extended interface inherits base properties
+interface Warrior extends Character {
+  weaponType: string;
+  armor: number;
+}
+
+interface Mage extends Character {
+  mana: number;
+  spells: string[];
+}
+
+const knight: Warrior = {
+  name: "Sir Galahad",
+  health: 150,
+  weaponType: "sword",
+  armor: 80
+};
+
+const wizard: Mage = {
+  name: "Merlin",
+  health: 80,
+  mana: 200,
+  spells: ["fireball", "ice storm"]
+};</code></pre>
+          </div>
+
+          <h2>Type Aliases vs Interfaces</h2>
+
+          <p>
+            Type aliases can also define object shapes. Choose based on your
+            needs:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Type Aliases</h4>
+            <pre><code>// Type alias (similar to interface)
+type Point = {
+  x: number;
+  y: number;
+};
+
+// Type alias can also define unions
+type Status = "active" | "inactive" | "pending";
+
+// Type alias for function signature
+type ClickHandler = (event: MouseEvent) => void;
+
+// When to use interfaces vs type aliases:
+// - Use INTERFACE for object shapes (extendable, better error messages)
+// - Use TYPE for unions, intersections, and complex types
+
+// Intersection with type aliases
+type Named = { name: string };
+type Aged = { age: number };
+type Person = Named & Aged;  // Combines both types
+
+const person: Person = {
+  name: "Alice",
+  age: 30
+};</code></pre>
+          </div>
+
+          <h2>Methods in Interfaces</h2>
+
+          <p>Interfaces can include method signatures:</p>
+
+          <div class="code-example">
+            <h4>Example: Interface Methods</h4>
+            <pre><code>interface Inventory {
+  items: string[];
+  capacity: number;
+  
+  // Method signatures
+  addItem(item: string): boolean;
+  removeItem(item: string): boolean;
+  isFull(): boolean;
+}
+
+// Implementing the interface
+class PlayerInventory implements Inventory {
+  items: string[] = [];
+  capacity: number = 20;
+  
+  addItem(item: string): boolean {
+    if (this.items.length < this.capacity) {
+      this.items.push(item);
+      return true;
+    }
+    return false;
+  }
+  
+  removeItem(item: string): boolean {
+    const index = this.items.indexOf(item);
+    if (index > -1) {
+      this.items.splice(index, 1);
+      return true;
+    }
+    return false;
+  }
+  
+  isFull(): boolean {
+    return this.items.length >= this.capacity;
+  }
+}
+
+const backpack = new PlayerInventory();
+backpack.addItem("sword");
+backpack.addItem("potion");</code></pre>
+          </div>
+
+          <div class="key-concepts">
+            <h3>🎯 Key Concepts</h3>
+            <ul>
+              <li>Interfaces define the structure (shape) of objects</li>
+              <li>Use <code>?</code> for optional properties</li>
+              <li>
+                Use <code>readonly</code> for properties that shouldn't change
+              </li>
+              <li>Interfaces can extend other interfaces for code reuse</li>
+              <li>
+                Prefer interfaces for object types, type aliases for
+                unions/intersections
+              </li>
+              <li>Interfaces can include method signatures</li>
+              <li>
+                Classes can implement interfaces to ensure they match a
+                structure
+              </li>
+            </ul>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/objects.html"
+                  target="_blank"
+                  >TypeScript Handbook: Object Types</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces"
+                  target="_blank"
+                  >TypeScript Handbook: Interfaces</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces"
+                  target="_blank"
+                  >Type Aliases vs Interfaces</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../beginners.html" class="back-to-course"
+            >← Back to Beginner Course</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

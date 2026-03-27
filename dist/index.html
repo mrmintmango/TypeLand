@@ -3,80 +3,304 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TypeLand Mini RPG Adventure</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>TypeLand - Learn TypeScript Through Interactive Experiences</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/navigation.css" />
+    <style>
+      .hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 80px 30px;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero p {
+        font-size: 1.3em;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        opacity: 0.95;
+      }
+
+      .home-content {
+        padding: 50px 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        color: #667eea;
+        font-size: 2.2em;
+        margin-bottom: 40px;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: 15px;
+        padding: 35px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        text-align: center;
+        border: 3px solid transparent;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        border-color: #667eea;
+      }
+
+      .feature-icon {
+        font-size: 4em;
+        margin-bottom: 20px;
+      }
+
+      .feature-card h3 {
+        color: #667eea;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+      }
+
+      .feature-card p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 25px;
+      }
+
+      .feature-button {
+        display: inline-block;
+        padding: 12px 30px;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .feature-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+      }
+
+      .course-section {
+        background: #f8f9fa;
+        padding: 50px 30px;
+        border-radius: 15px;
+      }
+
+      .course-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .course-card {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-left: 6px solid #667eea;
+      }
+
+      .course-card.intermediate {
+        border-left-color: #f5576c;
+      }
+
+      .course-card h3 {
+        color: #667eea;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+      }
+
+      .course-card.intermediate h3 {
+        color: #f5576c;
+      }
+
+      .course-card p {
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+
+      .course-card ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 25px;
+      }
+
+      .course-card li {
+        padding: 8px 0;
+        color: #555;
+      }
+
+      .course-card li::before {
+        content: "✓ ";
+        color: #4caf50;
+        font-weight: bold;
+        margin-right: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2em;
+        }
+
+        .hero p {
+          font-size: 1.1em;
+        }
+
+        .section-title {
+          font-size: 1.8em;
+        }
+
+        .feature-grid,
+        .course-cards {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div class="container">
-      <header>
-        <h1>🏰 TypeLand Mini RPG Adventure 🏰</h1>
-        <p class="instructions">
-          Use <strong>Arrow Keys</strong> or <strong>WASD</strong> to move your
-          wizard 🧙 around the map and collect treasures!
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="index.html" class="active">🏠 Home</a></li>
+          <li><a href="pages/adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="pages/quiz.html">📚 Quiz Kingdom</a></li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="pages/beginners.html">📗 Beginner Course</a></li>
+          <li><a href="pages/intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="hero">
+        <h1>🏰 Welcome to TypeLand 🏰</h1>
+        <p>
+          Master TypeScript through interactive games, quizzes, and
+          comprehensive courses. Learn by doing in a fun, engaging environment!
         </p>
-      </header>
+      </div>
 
-      <main>
-        <div class="game-area">
-          <canvas id="gameCanvas"></canvas>
-        </div>
+      <div class="home-content">
+        <h2 class="section-title">Interactive Learning Experiences</h2>
 
-        <aside id="stats" class="stats-panel">
-          <h3>Adventure Stats</h3>
-          <p>Steps Taken: 0</p>
-          <p>Items Collected: 0 / 8</p>
-          <div class="inventory">
-            <h4>Backpack:</h4>
-            <p>💎 Treasure Chests: 0</p>
-            <p>🔮 Magic Orbs: 0</p>
-            <p>📜 Ancient Scrolls: 0</p>
-            <p>💠 Crystal Gems: 0</p>
-          </div>
-        </aside>
-      </main>
-
-      <footer>
-        <div class="legend">
-          <h4>Map Legend:</h4>
-          <div class="legend-items">
-            <span class="legend-item"
-              ><span class="color-box meadow"></span> Meadow (walkable)</span
-            >
-            <span class="legend-item"
-              ><span class="color-box sand"></span> Sand (walkable)</span
-            >
-            <span class="legend-item"
-              ><span class="color-box lake"></span> Lake (blocked)</span
-            >
-            <span class="legend-item"
-              ><span class="color-box stone"></span> Stone (blocked)</span
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🎮</div>
+            <h3>Adventure Game</h3>
+            <p>
+              Explore a mini RPG where you move a wizard through a 16×16 grid,
+              collecting treasures while learning about Arrays, Tuples, and
+              Enums in action.
+            </p>
+            <a href="pages/adventure.html" class="feature-button"
+              >Start Adventure</a
             >
           </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>Quiz Kingdom</h3>
+            <p>
+              Test your TypeScript knowledge with an interactive quiz system.
+              Track your progress and download your results to see how much
+              you've learned!
+            </p>
+            <a href="pages/quiz.html" class="feature-button">Take Quiz</a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📖</div>
+            <h3>Learning Courses</h3>
+            <p>
+              Dive deep into TypeScript with structured courses for beginners
+              and intermediate developers. Each topic includes examples,
+              explanations, and helpful resources.
+            </p>
+            <a href="pages/beginners.html" class="feature-button"
+              >Browse Courses</a
+            >
+          </div>
         </div>
-        <div
-          style="
-            text-align: center;
-            padding: 20px 0;
-            border-top: 1px solid #eee;
-            margin-top: 20px;
-          "
-        >
-          <a
-            href="quiz.html"
-            style="
-              color: #667eea;
-              text-decoration: none;
-              font-size: 1.1em;
-              font-weight: 600;
-              transition: color 0.2s;
-            "
-          >
-            📚 Take the TypeScript Quiz →
-          </a>
+
+        <div class="course-section">
+          <h2 class="section-title">Available Courses</h2>
+
+          <div class="course-cards">
+            <div class="course-card">
+              <h3>📗 Beginner Course</h3>
+              <p>
+                Perfect for those new to TypeScript! Learn the fundamentals with
+                clear explanations and practical examples.
+              </p>
+              <ul>
+                <li>Variables & Basic Types</li>
+                <li>Functions & Type Annotations</li>
+                <li>Arrays & Tuples</li>
+                <li>Objects & Interfaces</li>
+                <li>Type Inference & Basic Generics</li>
+              </ul>
+              <a href="pages/beginners.html" class="feature-button"
+                >Start Learning</a
+              >
+            </div>
+
+            <div class="course-card intermediate">
+              <h3>📘 Intermediate Course</h3>
+              <p>
+                Ready to level up? Explore advanced TypeScript features and
+                patterns used in real-world applications.
+              </p>
+              <ul>
+                <li>Advanced Generics</li>
+                <li>Enums & Literal Types</li>
+                <li>Utility Types</li>
+                <li>Modules & Namespaces</li>
+                <li>Decorators & Metadata</li>
+              </ul>
+              <a href="pages/intermediate.html" class="feature-button"
+                >Continue Learning</a
+              >
+            </div>
+          </div>
         </div>
-      </footer>
+      </div>
     </div>
 
-    <script type="module" src="renderer.js"></script>
+    <script src="styles/navigation.js"></script>
   </body>
 </html>

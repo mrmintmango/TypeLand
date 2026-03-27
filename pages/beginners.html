@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beginner TypeScript Course - TypeLand</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/navigation.css" />
+    <link rel="stylesheet" href="../styles/courses.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../index.html">🏠 Home</a></li>
+          <li><a href="adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="quiz.html">📚 Quiz Kingdom</a></li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li>
+            <a href="beginners.html" class="active">📗 Beginner Course</a>
+          </li>
+          <li><a href="intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container">
+        <div class="course-header">
+          <h1>📗 Beginner TypeScript Course</h1>
+          <p>
+            Master the fundamentals of TypeScript with clear explanations,
+            practical examples, and hands-on learning.
+          </p>
+        </div>
+
+        <div class="course-content">
+          <div class="topic-intro">
+            <h2>Welcome to TypeScript!</h2>
+            <p>
+              This course is designed for developers who are new to TypeScript
+              or want to strengthen their understanding of the fundamentals.
+              Each topic builds on the previous one, so we recommend following
+              them in order.
+            </p>
+            <p>
+              <strong>What you'll learn:</strong> Type safety, basic types,
+              functions, arrays, tuples, objects, interfaces, and more!
+            </p>
+          </div>
+
+          <h2>Course Topics</h2>
+
+          <div class="topic-grid">
+            <div class="topic-card">
+              <h3>
+                📝 Variables & Basic Types
+                <span class="difficulty-badge beginner">Beginner</span>
+              </h3>
+              <p>
+                Learn about TypeScript's fundamental types including string,
+                number, boolean, and how to declare variables with proper type
+                annotations using let and const.
+              </p>
+              <a href="beginners/variables.html" class="topic-link"
+                >Start Learning →</a
+              >
+            </div>
+
+            <div class="topic-card">
+              <h3>
+                ⚡ Functions & Type Annotations
+                <span class="difficulty-badge beginner">Beginner</span>
+              </h3>
+              <p>
+                Discover how to write type-safe functions with parameter and
+                return type annotations. Learn about arrow functions, optional
+                parameters, and default values.
+              </p>
+              <a href="beginners/functions.html" class="topic-link"
+                >Start Learning →</a
+              >
+            </div>
+
+            <div class="topic-card">
+              <h3>
+                🎯 Arrays & Tuples
+                <span class="difficulty-badge beginner">Beginner</span>
+              </h3>
+              <p>
+                Understand how to work with arrays and tuples in TypeScript. See
+                these concepts in action in the TypeLand Adventure Game!
+              </p>
+              <a href="beginners/arrays.html" class="topic-link"
+                >Start Learning →</a
+              >
+            </div>
+
+            <div class="topic-card">
+              <h3>
+                🏗️ Objects & Interfaces
+                <span class="difficulty-badge beginner">Beginner</span>
+              </h3>
+              <p>
+                Learn how to define object shapes with interfaces and type
+                aliases. Understand property types, optional properties, and
+                readonly modifiers.
+              </p>
+              <a href="beginners/objects.html" class="topic-link"
+                >Start Learning →</a
+              >
+            </div>
+
+            <div class="topic-card">
+              <h3>
+                🔮 Type Inference & Basic Generics
+                <span class="difficulty-badge beginner">Beginner</span>
+              </h3>
+              <p>
+                Discover how TypeScript's type inference works and get
+                introduced to generic types. Learn when to explicitly annotate
+                types and when to let TypeScript figure it out.
+              </p>
+              <a href="beginners/inference.html" class="topic-link"
+                >Start Learning →</a
+              >
+            </div>
+          </div>
+
+          <div class="topic-intro" style="margin-top: 50px">
+            <h2>Ready for More?</h2>
+            <p>
+              Once you've completed the beginner course, challenge yourself with
+              our <strong>Intermediate Course</strong> to learn advanced
+              TypeScript features!
+            </p>
+            <a href="intermediate.html" class="back-to-course"
+              >View Intermediate Course →</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../styles/navigation.js"></script>
+  </body>
+</html>

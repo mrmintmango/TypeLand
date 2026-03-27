@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Type Inference & Basic Generics - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../../index.html">🏠 Home</a></li>
+          <li><a href="../adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="../quiz.html">📚 Quiz Kingdom</a></li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="../beginners.html">📗 Beginner Course</a></li>
+          <li><a href="../intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../beginners.html" class="back-to-course"
+            >← Back to Course</a
+          >
+
+          <h1>🔮 Type Inference & Basic Generics</h1>
+
+          <div class="topic-intro">
+            <p>
+              TypeScript is smart! It can often figure out types automatically
+              through type inference. Generics allow you to write flexible,
+              reusable code that works with multiple types while maintaining
+              type safety.
+            </p>
+          </div>
+
+          <h2>Type Inference</h2>
+
+          <p>
+            TypeScript automatically infers types based on values and context:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Automatic Type Inference</h4>
+            <pre><code>// TypeScript infers type from initial value
+let message = "Hello TypeLand";  // inferred as string
+let count = 42;                  // inferred as number
+let isActive = true;             // inferred as boolean
+
+// Type inference with arrays
+let numbers = [1, 2, 3];         // inferred as number[]
+let mixed = [1, "two", true];    // inferred as (string | number | boolean)[]
+
+// Type inference with objects
+let player = {
+  name: "Hero",
+  level: 5
+};  // inferred as { name: string; level: number; }
+
+// Function return type inference
+function add(a: number, b: number) {
+  return a + b;  // Return type inferred as number
+}
+
+const result = add(5, 3);  // result inferred as number</code></pre>
+          </div>
+
+          <h2>When to Add Explicit Types</h2>
+
+          <p>
+            While inference is powerful, explicit types improve readability and
+            catch errors earlier:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Explicit vs Inferred</h4>
+            <pre><code>// Good: Inferred type is obvious
+let age = 25;
+
+// Better: Explicit type for clarity and safety
+let userAge: number;  // Declared but not initialized
+userAge = 30;
+
+// Good: Function parameters MUST be annotated
+function greet(name: string) {
+  return `Hello, ${name}`;
+}
+
+// Better: Explicit return type for documentation
+function greet(name: string): string {
+  return `Hello, ${name}`;
+}
+
+// Variables that will change type context
+let data;  // type: any (no inference)
+data = "string";
+data = 123;  // No error with 'any'
+
+// Better: Specify expected type
+let data: string;
+data = "string";
+// data = 123;  // ✗ Error!</code></pre>
+          </div>
+
+          <h2>Introduction to Generics</h2>
+
+          <p>
+            Generics let you write code that works with multiple types while
+            preserving type information:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Basic Generic Function</h4>
+            <pre><code>// Generic function - works with any type
+function identity&lt;T&gt;(value: T): T {
+  return value;
+}
+
+// TypeScript infers the type parameter
+const num = identity(42);        // T is number
+const str = identity("hello");   // T is string
+const bool = identity(true);     // T is boolean
+
+// Or specify explicitly
+const result = identity&lt;string&gt;("TypeScript");
+
+// Without generics, you'd need:
+function identityNumber(value: number): number { return value; }
+function identityString(value: string): string { return value; }
+// ... repetitive!</code></pre>
+          </div>
+
+          <h2>Generic Arrays</h2>
+
+          <p>Arrays already use generics behind the scenes:</p>
+
+          <div class="code-example">
+            <h4>Example: Generic Array Functions</h4>
+            <pre><code>// Generic function that works with any array type
+function getFirstElement&lt;T&gt;(arr: T[]): T | undefined {
+  return arr[0];
+}
+
+const numbers = [1, 2, 3];
+const first = getFirstElement(numbers);  // type: number | undefined
+
+const names = ["Alice", "Bob"];
+const firstName = getFirstElement(names);  // type: string | undefined
+
+// Generic function to reverse an array
+function reverseArray&lt;T&gt;(arr: T[]): T[] {
+  return arr.slice().reverse();
+}
+
+const reversed = reverseArray([1, 2, 3]);  // [3, 2, 1], type: number[]</code></pre>
+          </div>
+
+          <h2>Generic Interfaces</h2>
+
+          <p>Interfaces can also be generic:</p>
+
+          <div class="code-example">
+            <h4>Example: Generic Interfaces</h4>
+            <pre><code>// Generic interface
+interface Box&lt;T&gt; {
+  value: T;
+}
+
+// Use with different types
+const numberBox: Box&lt;number&gt; = { value: 42 };
+const stringBox: Box&lt;string&gt; = { value: "hello" };
+const playerBox: Box&lt;{ name: string; level: number }&gt; = {
+  value: { name: "Hero", level: 5 }
+};
+
+// Generic interface with methods
+interface Container&lt;T&gt; {
+  items: T[];
+  add(item: T): void;
+  remove(item: T): boolean;
+  find(predicate: (item: T) => boolean): T | undefined;
+}
+
+// Implementing generic interface
+class Inventory&lt;T&gt; implements Container&lt;T&gt; {
+  items: T[] = [];
+  
+  add(item: T): void {
+    this.items.push(item);
+  }
+  
+  remove(item: T): boolean {
+    const index = this.items.indexOf(item);
+    if (index > -1) {
+      this.items.splice(index, 1);
+      return true;
+    }
+    return false;
+  }
+  
+  find(predicate: (item: T) => boolean): T | undefined {
+    return this.items.find(predicate);
+  }
+}
+
+const stringInventory = new Inventory&lt;string&gt;();
+stringInventory.add("sword");
+stringInventory.add("shield");</code></pre>
+          </div>
+
+          <h2>Practical Use Cases</h2>
+
+          <div class="code-example">
+            <h4>Example: Real-World Generics</h4>
+            <pre><code>// API response wrapper
+interface ApiResponse&lt;T&gt; {
+  data: T;
+  status: number;
+  message: string;
+}
+
+type User = { id: number; name: string; };
+type Product = { id: number; title: string; price: number; };
+
+function fetchData&lt;T&gt;(url: string): Promise&lt;ApiResponse&lt;T&gt;&gt; {
+  // Fetch implementation
+  return fetch(url).then(res => res.json());
+}
+
+// Type-safe API calls
+const userResponse = fetchData&lt;User&gt;("/api/user/1");
+const productResponse = fetchData&lt;Product&gt;("/api/product/5");
+
+// Key-value storage
+class Storage&lt;T&gt; {
+  private items = new Map&lt;string, T&gt;();
+  
+  set(key: string, value: T): void {
+    this.items.set(key, value);
+  }
+  
+  get(key: string): T | undefined {
+    return this.items.get(key);
+  }
+}
+
+const stringStorage = new Storage&lt;string&gt;();
+stringStorage.set("name", "Alice");
+const name = stringStorage.get("name");  // string | undefined</code></pre>
+          </div>
+
+          <div class="key-concepts">
+            <h3>🎯 Key Concepts</h3>
+            <ul>
+              <li>
+                Type inference automatically determines types from context
+              </li>
+              <li>
+                Always annotate function parameters - they cannot be inferred
+              </li>
+              <li>
+                Explicit types improve code documentation and catch errors
+                earlier
+              </li>
+              <li>Generics use <code>&lt;T&gt;</code> to work with any type</li>
+              <li>
+                Generics preserve type information through transformations
+              </li>
+              <li>Common naming: T (Type), K (Key), V (Value), E (Element)</li>
+              <li>
+                Array&lt;T&gt; and Promise&lt;T&gt; are built-in generic types
+              </li>
+            </ul>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/type-inference.html"
+                  target="_blank"
+                  >TypeScript Handbook: Type Inference</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/generics.html"
+                  target="_blank"
+                  >TypeScript Handbook: Generics</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-inference"
+                  target="_blank"
+                  >Everyday Types: Type Inference</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../beginners.html" class="back-to-course"
+            >← Back to Beginner Course</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>
