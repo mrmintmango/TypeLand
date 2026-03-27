@@ -237,6 +237,106 @@
   color: white;
 }
 
+/* Grades Page */
+.grades-board {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.grades-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.grades-toolbar h2 {
+  margin: 0;
+}
+
+.grades-table-wrap {
+  overflow-x: auto;
+}
+
+.grades-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.grades-table th,
+.grades-table td {
+  border-bottom: 1px solid #e6e8ef;
+  text-align: left;
+  padding: 12px;
+  vertical-align: middle;
+}
+
+.grades-table th {
+  background: #f8f9fa;
+  color: #3b4583;
+  font-weight: 700;
+}
+
+.type-badge,
+.status-badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.85em;
+  font-weight: 700;
+}
+
+.type-badge.assignment {
+  background: #e6f4ea;
+  color: #1b5e20;
+}
+
+.type-badge.quiz {
+  background: #e3f2fd;
+  color: #0d47a1;
+}
+
+.status-badge.graded {
+  background: #ede7f6;
+  color: #4527a0;
+}
+
+.status-badge.submitted {
+  background: #fff4e5;
+  color: #9c4a00;
+}
+
+.status-badge.assigned {
+  background: #eceff1;
+  color: #37474f;
+}
+
+.feedback-button {
+  display: inline-block;
+  text-decoration: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.feedback-button:hover {
+  filter: brightness(1.05);
+}
+
+.feedback-pending {
+  color: #6c757d;
+  font-size: 0.9em;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .topic-grid {
@@ -257,5 +357,9 @@
 
   .code-example pre {
     font-size: 0.85em;
+  }
+
+  .grades-table {
+    min-width: 640px;
   }
 }
