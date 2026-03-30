@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Log - TypeLand</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/navigation.css" />
+    <link rel="stylesheet" href="../styles/courses.css" />
+    <style>
+      .log-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+      }
+
+      .log-header h1 {
+        margin: 0 0 10px 0;
+      }
+
+      .log-header p {
+        margin: 0;
+        opacity: 0.9;
+      }
+
+      .week-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 20px 30px 20px;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .week-selector {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .week-selector label {
+        font-weight: 600;
+        color: #667eea;
+      }
+
+      .week-selector select {
+        padding: 10px 15px;
+        border: 2px solid #667eea;
+        border-radius: 8px;
+        font-size: 1em;
+        background: white;
+        cursor: pointer;
+        min-width: 200px;
+      }
+
+      .week-selector select:focus {
+        outline: none;
+        border-color: #764ba2;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .log-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 1em;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .btn-primary:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .btn-secondary {
+        background: #f5576c;
+        color: white;
+      }
+
+      .btn-secondary:hover {
+        background: #e04655;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+      }
+
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .info-banner {
+        background: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin: 0 20px 30px 20px;
+      }
+
+      .info-banner.current-week {
+        background: #e8f5e9;
+        border-left-color: #4caf50;
+      }
+
+      .info-banner.past-week {
+        background: #fff3e0;
+        border-left-color: #ff9800;
+      }
+
+      .week-calendar {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        margin: 0 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .day-entry {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 2px solid #f0f0f0;
+      }
+
+      .day-entry:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .day-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      .day-icon {
+        font-size: 1.5em;
+      }
+
+      .day-title {
+        font-size: 1.4em;
+        font-weight: 600;
+        color: #667eea;
+        margin: 0;
+      }
+
+      .day-date {
+        color: #999;
+        font-size: 0.9em;
+        margin-left: auto;
+      }
+
+      .day-content {
+        width: 100%;
+        min-height: 120px;
+        padding: 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 1em;
+        line-height: 1.6;
+        resize: vertical;
+        transition: border-color 0.3s;
+      }
+
+      .day-content:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .day-content:disabled {
+        background: #f5f5f5;
+        cursor: not-allowed;
+        color: #666;
+      }
+
+      .week-summary {
+        margin: 30px 20px 0 20px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+      }
+
+      .week-summary h3 {
+        margin-top: 0;
+        color: #667eea;
+      }
+
+      .character-count {
+        text-align: right;
+        color: #999;
+        font-size: 0.85em;
+        margin-top: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .week-controls {
+          flex-direction: column;
+          align-items: stretch;
+          margin: 0 10px 20px 10px;
+        }
+
+        .week-selector {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .log-actions {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .log-header,
+        .info-banner,
+        .week-calendar,
+        .week-summary {
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../index.html">🏠 Home</a></li>
+          <li><a href="adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="quiz.html">📚 Quiz Kingdom</a></li>
+          <li><a href="grades.html">📝 Grades</a></li>
+          <li>
+            <a href="gallery.html">🖼️ Submission Gallery</a>
+          </li>
+          <li>
+            <a href="learning-log.html" class="active">🪵 Learning Log</a>
+          </li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="beginners.html">📗 Beginner Course</a></li>
+          <li><a href="intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <button class="menu-toggle active" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="content-wrapper sidebar-open" id="contentWrapper">
+      <div class="container">
+        <div class="log-header">
+          <h1>🪵 Learning Log</h1>
+          <p>
+            Track your daily learning journey. Reflect on what you've learned
+            each day!
+          </p>
+        </div>
+
+        <div class="week-controls">
+          <div class="week-selector">
+            <label for="weekSelect">Select Week:</label>
+            <select id="weekSelect">
+              <!-- Options populated by JavaScript -->
+            </select>
+          </div>
+
+          <div class="log-actions">
+            <button id="saveBtn" class="btn btn-primary">
+              💾 Save to Browser
+            </button>
+            <button id="downloadBtn" class="btn btn-secondary">
+              📥 Download Log
+            </button>
+          </div>
+        </div>
+
+        <div id="weekStatus" class="info-banner">
+          <!-- Status message populated by JavaScript -->
+        </div>
+
+        <div class="week-calendar" id="weekCalendar">
+          <!-- Calendar entries populated by JavaScript -->
+        </div>
+
+        <div class="week-summary">
+          <h3>📊 Week Summary</h3>
+          <p id="summaryText">
+            Start logging your daily learnings to track your progress!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="../styles/navigation.js"></script>
+    <script>
+      // Learning Log functionality
+      const DAYS = [
+        { name: "MONDAY", icon: "📅" },
+        { name: "TUESDAY", icon: "📅" },
+        { name: "WEDNESDAY", icon: "📅" },
+        { name: "THURSDAY", icon: "📅" },
+        { name: "FRIDAY", icon: "📅" },
+      ];
+
+      let currentWeek = null;
+      let logs = {}; // Store logs in memory
+
+      // Get Monday of a given date's week
+      function getMonday(date) {
+        const d = new Date(date);
+        const day = d.getDay();
+        const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+        return new Date(d.setDate(diff));
+      }
+
+      // Get Friday of a given date's week
+      function getFriday(monday) {
+        const friday = new Date(monday);
+        friday.setDate(monday.getDate() + 4);
+        return friday;
+      }
+
+      // Format date as M/D/YY
+      function formatDate(date) {
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        const year = String(date.getFullYear()).slice(-2);
+        return `${month}/${day}/${year}`;
+      }
+
+      // Get week key (e.g., "3-30--4-3")
+      function getWeekKey(monday) {
+        const friday = getFriday(monday);
+        const mondayStr = `${monday.getMonth() + 1}-${monday.getDate()}`;
+        const fridayStr = `${friday.getMonth() + 1}-${friday.getDate()}`;
+        return `${mondayStr}--${fridayStr}`;
+      }
+
+      // Get week display string
+      function getWeekDisplay(monday) {
+        const friday = getFriday(monday);
+        return `Week: ${formatDate(monday)} - ${formatDate(friday)}`;
+      }
+
+      // Check if week is current week
+      function isCurrentWeek(monday) {
+        const today = new Date();
+        const currentMonday = getMonday(today);
+        return monday.toDateString() === currentMonday.toDateString();
+      }
+
+      // Initialize week selector
+      function initWeekSelector() {
+        const select = document.getElementById("weekSelect");
+        const today = new Date();
+        const currentMonday = getMonday(today);
+
+        // Generate 12 weeks (current week + 5 past + 6 future)
+        for (let i = -5; i <= 6; i++) {
+          const monday = new Date(currentMonday);
+          monday.setDate(currentMonday.getDate() + i * 7);
+
+          const option = document.createElement("option");
+          option.value = monday.toISOString();
+          option.textContent = getWeekDisplay(monday);
+
+          if (i === 0) {
+            option.textContent += " (Current Week)";
+            option.selected = true;
+          }
+
+          select.appendChild(option);
+        }
+
+        select.addEventListener("change", loadWeek);
+      }
+
+      // Load week data
+      function loadWeek() {
+        const select = document.getElementById("weekSelect");
+        const monday = new Date(select.value);
+        currentWeek = monday;
+
+        const weekKey = getWeekKey(monday);
+        const isCurrent = isCurrentWeek(monday);
+
+        // Update status banner
+        const status = document.getElementById("weekStatus");
+        if (isCurrent) {
+          status.className = "info-banner current-week";
+          status.innerHTML = `<strong>✅ Current Week</strong> - You can edit and save this week's log.`;
+        } else if (monday < getMonday(new Date())) {
+          status.className = "info-banner past-week";
+          status.innerHTML = `<strong>📚 Past Week</strong> - This week is view-only. Download to save a copy.`;
+        } else {
+          status.className = "info-banner";
+          status.innerHTML = `<strong>🔮 Future Week</strong> - You can prepare notes for this upcoming week.`;
+        }
+
+        // Load saved data from localStorage
+        const savedData = localStorage.getItem(`learningLog_${weekKey}`);
+        if (savedData) {
+          logs = JSON.parse(savedData);
+        } else {
+          logs = {};
+        }
+
+        renderCalendar(monday, isCurrent || monday > getMonday(new Date()));
+      }
+
+      // Render calendar
+      function renderCalendar(monday, editable) {
+        const calendar = document.getElementById("weekCalendar");
+        calendar.innerHTML = "";
+
+        DAYS.forEach((day, index) => {
+          const date = new Date(monday);
+          date.setDate(monday.getDate() + index);
+
+          const entry = document.createElement("div");
+          entry.className = "day-entry";
+
+          const header = document.createElement("div");
+          header.className = "day-header";
+
+          const icon = document.createElement("span");
+          icon.className = "day-icon";
+          icon.textContent = day.icon;
+
+          const title = document.createElement("h2");
+          title.className = "day-title";
+          title.textContent = day.name;
+
+          const dateSpan = document.createElement("span");
+          dateSpan.className = "day-date";
+          dateSpan.textContent = formatDate(date);
+
+          header.appendChild(icon);
+          header.appendChild(title);
+          header.appendChild(dateSpan);
+
+          const textarea = document.createElement("textarea");
+          textarea.className = "day-content";
+          textarea.placeholder = editable
+            ? `What did you learn on ${day.name.toLowerCase()}?`
+            : "No entries for this day.";
+          textarea.disabled = !editable;
+          textarea.dataset.day = day.name;
+          textarea.value = logs[day.name] || "";
+
+          textarea.addEventListener("input", (e) => {
+            logs[day.name] = e.target.value;
+            updateSummary();
+          });
+
+          entry.appendChild(header);
+          entry.appendChild(textarea);
+          calendar.appendChild(entry);
+        });
+
+        updateSummary();
+      }
+
+      // Update summary
+      function updateSummary() {
+        const totalChars = Object.values(logs).reduce(
+          (sum, text) => sum + (text?.length || 0),
+          0,
+        );
+        const filledDays = Object.values(logs).filter(
+          (text) => text && text.trim(),
+        ).length;
+
+        const summary = document.getElementById("summaryText");
+        if (filledDays === 0) {
+          summary.textContent =
+            "No entries yet. Start reflecting on your learning!";
+        } else {
+          summary.textContent = `You've logged ${filledDays} day(s) this week with ${totalChars} characters total. Keep up the great work! 🎉`;
+        }
+      }
+
+      // Save to localStorage
+      document.getElementById("saveBtn").addEventListener("click", () => {
+        const weekKey = getWeekKey(currentWeek);
+        localStorage.setItem(`learningLog_${weekKey}`, JSON.stringify(logs));
+        alert("✅ Log saved to browser successfully!");
+      });
+
+      // Download as text file
+      document.getElementById("downloadBtn").addEventListener("click", () => {
+        const weekKey = getWeekKey(currentWeek);
+        const weekDisplay = getWeekDisplay(currentWeek);
+
+        let content = `Week: ${weekDisplay.replace("Week: ", "")}\n\n`;
+
+        DAYS.forEach((day) => {
+          content += `======================================\n`;
+          content += `${day.name}\n`;
+          content += `======================================\n`;
+          content += (logs[day.name] || "") + "\n\n\n\n";
+        });
+
+        const blob = new Blob([content], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${weekKey}_Log.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      // Initialize
+      initWeekSelector();
+      loadWeek();
+    </script>
+  </body>
+</html>

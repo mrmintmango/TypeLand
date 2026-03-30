@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submission Gallery - TypeLand</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/navigation.css" />
+    <link rel="stylesheet" href="../styles/courses.css" />
+  </head>
+  <body>
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../index.html">🏠 Home</a></li>
+          <li><a href="adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="quiz.html">📚 Quiz Kingdom</a></li>
+          <li><a href="grades.html">📝 Grades</a></li>
+          <li>
+            <a href="gallery.html" class="active">🖼️ Submission Gallery</a>
+          </li>
+          <li>
+            <a href="learning-log.html">🪵 Learning Log</a>
+          </li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="beginners.html">📗 Beginner Course</a></li>
+          <li><a href="intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <button class="menu-toggle active" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="content-wrapper sidebar-open" id="contentWrapper">
+      <div class="container">
+        <div class="course-header">
+          <h1>🖼️ Submission Gallery</h1>
+          <p>
+            View and work on your TypeScript assignments. Click an assignment to
+            see your code.
+          </p>
+        </div>
+
+        <div class="course-content">
+          <div class="topic-intro">
+            <h2>Your Assignments</h2>
+            <p>
+              Select an assignment below to view and edit your TypeScript code.
+              Each assignment has its own .ts file in the gallery folder.
+            </p>
+          </div>
+
+          <section class="assignment-list">
+            <div class="assignment-card">
+              <div class="assignment-icon">📝</div>
+              <h3>Assignment 1: TypeScript Basics</h3>
+              <p>Practice variables, types, and basic TypeScript syntax.</p>
+              <a
+                href="gallery/AssignmentView.html?assignment=1"
+                class="feature-button"
+                >View Assignment</a
+              >
+            </div>
+
+            <!-- Add more assignments here as needed:
+            <div class="assignment-card">
+              <div class="assignment-icon">📝</div>
+              <h3>Assignment 2: Title Here</h3>
+              <p>Description here.</p>
+              <a href="gallery/AssignmentView.html?assignment=2" class="feature-button">View Assignment</a>
+            </div>
+            -->
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .assignment-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+      }
+
+      .assignment-card {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        text-align: center;
+        border: 3px solid transparent;
+      }
+
+      .assignment-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        border-color: #667eea;
+      }
+
+      .assignment-icon {
+        font-size: 3em;
+        margin-bottom: 15px;
+      }
+
+      .assignment-card h3 {
+        color: #667eea;
+        font-size: 1.5em;
+        margin-bottom: 12px;
+      }
+
+      .assignment-card p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .feature-button {
+        display: inline-block;
+        padding: 10px 25px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .feature-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      }
+    </style>
+
+    <script src="../styles/navigation.js"></script>
+  </body>
+</html>
