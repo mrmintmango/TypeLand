@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment View - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+    <style>
+      .assignment-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+      }
+
+      .assignment-header h1 {
+        margin: 0 0 10px 0;
+      }
+
+      .assignment-header p {
+        margin: 0;
+        opacity: 0.9;
+      }
+
+      .code-viewer {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-family: "Consolas", "Monaco", "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 20px;
+      }
+
+      .code-viewer pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 60px 30px;
+        color: #999;
+      }
+
+      .empty-state-icon {
+        font-size: 4em;
+        margin-bottom: 20px;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 15px;
+        margin: 20px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        display: inline-block;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        margin-left: 20px;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .btn-secondary {
+        background: #f0f0f0;
+        color: #333;
+        margin-left: 20px;
+      }
+
+      .btn-secondary:hover {
+        background: #e0e0e0;
+      }
+
+      .info-box {
+        background: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+
+      .info-box h3 {
+        margin-top: 0;
+        color: #1976d2;
+      }
+
+      .file-path {
+        background: #f5f5f5;
+        padding: 8px 15px;
+        border-radius: 6px;
+        font-family: monospace;
+        color: #666;
+        margin: 15px 0;
+      }
+
+      .your-code {
+        margin-left: 20px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../../index.html">🏠 Home</a></li>
+          <li><a href="../adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="../quiz.html">📚 Quiz Kingdom</a></li>
+          <li><a href="../grades.html">📝 Grades</a></li>
+          <li>
+            <a href="../gallery.html" class="active">🖼️ Submission Gallery</a>
+          </li>
+          <li>
+            <a href="../learning-log.html">🪵 Learning Log</a>
+          </li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="../beginners.html">📗 Beginner Course</a></li>
+          <li><a href="../intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <button class="menu-toggle active" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="content-wrapper sidebar-open" id="contentWrapper">
+      <div class="container">
+        <div class="assignment-header" id="assignmentHeader">
+          <h1 id="assignmentTitle">Loading Assignment...</h1>
+          <p id="assignmentDescription">Please wait while we load your code.</p>
+        </div>
+
+        <div class="action-buttons">
+          <a href="../gallery.html" class="btn btn-secondary"
+            >← Back to Gallery</a
+          >
+          <button onclick="location.reload()" class="btn btn-primary">
+            🔄 Refresh Code
+          </button>
+        </div>
+
+        <div class="info-box">
+          <h3>📝 How to Edit Your Assignment</h3>
+          <p>
+            To work on this assignment, open the following file in VS Code or
+            your text editor:
+          </p>
+          <div class="file-path" id="filePath">
+            pages/gallery/Assignment1.ts
+          </div>
+          <p>
+            Make your changes, save the file, and refresh this page to see your
+            updated code.
+          </p>
+        </div>
+
+        <div id="codeContainer">
+          <h2 class="your-code">Your Code:</h2>
+          <div class="code-viewer" id="codeViewer">
+            <div class="empty-state">
+              <div class="empty-state-icon">⏳</div>
+              <p>Loading your code...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+    <script>
+      // Get assignment number from URL parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const assignmentNum = urlParams.get("assignment") || "1";
+
+      // Assignment details
+      const assignments = {
+        1: {
+          title: "Assignment 1: TypeScript Basics",
+          description:
+            "Practice variables, types, and basic TypeScript syntax.",
+          file: "Assignment1.ts",
+        },
+        2: {
+          title: "Assignment 2: Functions and Arrays",
+          description: "Work with functions, arrays, and tuples.",
+          file: "Assignment2.ts",
+        },
+        3: {
+          title: "Assignment 3: Objects and Interfaces",
+          description: "Create interfaces and work with object types.",
+          file: "Assignment3.ts",
+        },
+        // Add more assignments as needed
+      };
+
+      // Load assignment details
+      const assignment = assignments[assignmentNum] || assignments["1"];
+      document.getElementById("assignmentTitle").textContent = assignment.title;
+      document.getElementById("assignmentDescription").textContent =
+        assignment.description;
+      document.getElementById("filePath").textContent =
+        `pages/gallery/${assignment.file}`;
+
+      // Load the TypeScript file
+      async function loadCode() {
+        try {
+          const response = await fetch(assignment.file);
+          const code = await response.text();
+
+          const codeViewer = document.getElementById("codeViewer");
+
+          if (code.trim() === "") {
+            codeViewer.innerHTML = `
+              <div class="empty-state">
+                <div class="empty-state-icon">📝</div>
+                <p>This assignment file is empty.</p>
+                <p>Start by opening <strong>${assignment.file}</strong> and writing your code!</p>
+              </div>
+            `;
+          } else {
+            codeViewer.innerHTML = `<pre>${escapeHtml(code)}</pre>`;
+          }
+        } catch (error) {
+          const codeViewer = document.getElementById("codeViewer");
+          codeViewer.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-state-icon">⚠️</div>
+              <p>Could not load assignment file.</p>
+              <p>Make sure <strong>${assignment.file}</strong> exists in the pages/gallery folder.</p>
+            </div>
+          `;
+        }
+      }
+
+      // Escape HTML to prevent XSS
+      function escapeHtml(text) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      // Load code when page loads
+      loadCode();
+    </script>
+  </body>
+</html>
