@@ -2,21 +2,45 @@
 // Creating weapon objects that implement the Weapon interface
 export const AVAILABLE_WEAPONS = [
     {
-    //create a weapon object for the Hero to use in the game.
+        name: "Wooden Staff",
+        damage: 5,
+        category: "melee",
+        rarity: "common",
+        emoji: "🪵",
+        description: "A simple wooden staff for beginners",
     },
     {
-    //create another weapon here
+        name: "Steel Sword",
+        damage: 15,
+        category: "melee",
+        rarity: "rare",
+        emoji: "⚔️",
+        description: "A finely crafted steel blade",
     },
     {
-    // and here
+        name: "Enchanted Bow",
+        damage: 20,
+        category: "ranged",
+        rarity: "rare",
+        emoji: "🏹",
+        description: "A bow imbued with magical power",
     },
     {
-    // here too
+        name: "Fire Wand",
+        damage: 25,
+        category: "magic",
+        rarity: "legendary",
+        emoji: "🔥",
+        description: "Channel the power of flames",
     },
     {
-    // after you make one here, you should have a total of 5 weapons in the game.
-    // Each weapon should have a unique value for each property, and the description should be fun and creative!
-    }
+        name: "Crystal Staff",
+        damage: 30,
+        category: "magic",
+        rarity: "legendary",
+        emoji: "✨",
+        description: "A legendary staff of pure crystal",
+    },
 ];
 export class Hero {
     constructor(startCoords) {
@@ -48,7 +72,7 @@ export class Hero {
     }
     // Count specific types using array filter
     countByKind(kind) {
-        return this.backpack.filter(item => item === kind).length;
+        return this.backpack.filter((item) => item === kind).length;
     }
     // ===== WEAPON METHODS =====
     // Get currently equipped weapon
@@ -76,9 +100,7 @@ export class Hero {
     // Equip previous weapon in inventory
     equipPreviousWeapon() {
         const currentIndex = this.weaponInventory.indexOf(this.currentWeapon);
-        const previousIndex = currentIndex === 0
-            ? this.weaponInventory.length - 1
-            : currentIndex - 1;
+        const previousIndex = currentIndex === 0 ? this.weaponInventory.length - 1 : currentIndex - 1;
         this.currentWeapon = this.weaponInventory[previousIndex];
     }
     // Calculate total weapon stats using Type Alias
@@ -86,7 +108,7 @@ export class Hero {
         const totalDamage = this.weaponInventory.reduce((sum, weapon) => sum + weapon.damage, 0);
         return {
             totalDamage,
-            weaponCount: this.weaponInventory.length
+            weaponCount: this.weaponInventory.length,
         };
     }
 }

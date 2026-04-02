@@ -1,42 +1,71 @@
-import { Coordinate, CollectibleKind, Weapon, WeaponStats } from './definitions.js';
+import {
+  Coordinate,
+  CollectibleKind,
+  Weapon,
+  WeaponStats,
+} from "./definitions.js";
 
 // ===== WEAPON OBJECTS =====
 // Creating weapon objects that implement the Weapon interface
 
 export const AVAILABLE_WEAPONS: Weapon[] = [
   {
-    //create a weapon object for the Hero to use in the game.
+    name: "Wooden Staff",
+    damage: 5,
+    category: "melee",
+    rarity: "common",
+    emoji: "🪵",
+    description: "A simple wooden staff for beginners",
   },
   {
-    //create another weapon here
+    name: "Steel Sword",
+    damage: 15,
+    category: "melee",
+    rarity: "rare",
+    emoji: "⚔️",
+    description: "A finely crafted steel blade",
   },
   {
-    // and here
+    name: "Enchanted Bow",
+    damage: 20,
+    category: "ranged",
+    rarity: "rare",
+    emoji: "🏹",
+    description: "A bow imbued with magical power",
   },
   {
-    // here too
+    name: "Fire Wand",
+    damage: 25,
+    category: "magic",
+    rarity: "legendary",
+    emoji: "🔥",
+    description: "Channel the power of flames",
   },
   {
-    // after you make one here, you should have a total of 5 weapons in the game.
-    // Each weapon should have a unique value for each property, and the description should be fun and creative!
-  }
+    name: "Crystal Staff",
+    damage: 30,
+    category: "magic",
+    rarity: "legendary",
+    emoji: "✨",
+    description: "A legendary staff of pure crystal",
+  },
 ];
 
 export class Hero {
   private coords: Coordinate;
   private backpack: CollectibleKind[];
   private stepsTaken: number;
-  private currentWeapon: Weapon;  // Hero's equipped weapon
-  private weaponInventory: Weapon[];  // All available weapons
+  private currentWeapon: Weapon; // Hero's equipped weapon
+  private weaponInventory: Weapon[]; // All available weapons
 
   constructor(startCoords: Coordinate) {
     this.coords = startCoords;
     this.backpack = [];
     this.stepsTaken = 0;
-    
+
     // Initialize weapon system
     this.weaponInventory = [...AVAILABLE_WEAPONS];
-    this.currentWeapon = this.weaponInventory[0];  // Start with first weapon
+    this.currentWeapon = this.weaponInventory[0]; // Start with first weapon
   }
 
   relocate(newCoords: Coordinate): void {
@@ -66,11 +95,11 @@ export class Hero {
 
   // Count specific types using array filter
   countByKind(kind: CollectibleKind): number {
-    return this.backpack.filter(item => item === kind).length;
+    return this.backpack.filter((item) => item === kind).length;
   }
 
   // ===== WEAPON METHODS =====
-  
+
   // Get currently equipped weapon
   getEquippedWeapon(): Weapon {
     return this.currentWeapon;
@@ -100,18 +129,20 @@ export class Hero {
   // Equip previous weapon in inventory
   equipPreviousWeapon(): void {
     const currentIndex = this.weaponInventory.indexOf(this.currentWeapon);
-    const previousIndex = currentIndex === 0 
-      ? this.weaponInventory.length - 1 
-      : currentIndex - 1;
+    const previousIndex =
+      currentIndex === 0 ? this.weaponInventory.length - 1 : currentIndex - 1;
     this.currentWeapon = this.weaponInventory[previousIndex];
   }
 
   // Calculate total weapon stats using Type Alias
   getWeaponStats(): WeaponStats {
-    const totalDamage = this.weaponInventory.reduce((sum, weapon) => sum + weapon.damage, 0);
+    const totalDamage = this.weaponInventory.reduce(
+      (sum, weapon) => sum + weapon.damage,
+      0,
+    );
     return {
       totalDamage,
-      weaponCount: this.weaponInventory.length
+      weaponCount: this.weaponInventory.length,
     };
   }
 }
