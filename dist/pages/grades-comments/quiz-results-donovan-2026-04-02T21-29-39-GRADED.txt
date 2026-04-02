@@ -1,0 +1,251 @@
+======================================================================
+TYPELAND QUIZ RESULTS
+======================================================================
+
+Student Name: Donovan
+Quiz Started: April 2, 2026 at 03:12:26 PM
+Quiz Completed: April 2, 2026 at 03:29:30 PM
+Duration: 17 minutes 3 seconds
+Total Questions: 20
+
+Grading Rubric: 
+multiple choice: 1 point
+short answer: 2 points
+code completion: 3 points
+code completion(hard): 4 points
+
+----------------------------------------------------------------------
+
+Question 1:
+Which of the following is NOT a primitive type in TypeScript?
+
+Answer:
+array
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 2:
+What is the correct syntax for declaring a variable with type annotation?
+
+Answer:
+let name: string = 'Alice';
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 3:
+Explain the difference between 'let' and 'const' in one sentence.
+
+Answer:
+Let allows you to redefine a variable later, whereas const locks the variable's definition and it cannot be changed later.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 4:
+What is type inference and when does TypeScript use it?
+
+Answer:
+Type inference is when a variable's type is not specified and typescript infers the type based on the definition.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 5:
+Add proper type annotations to make this code type-safe:
+
+Answer:
+let playerName: string = "Hero";
+let playerLevel: number = 1;
+let isActive: boolean = true;
+let score: number;
+
+score = 100;
+
+Points: 3/3
+
+----------------------------------------------------------------------
+
+Question 6:
+Which type should you avoid using when possible in TypeScript?
+
+Answer:
+any
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 7:
+What does the 'void' type represent in TypeScript?
+
+Answer:
+Nothing will be returned from a function. It is a return type.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 8:
+What is the correct syntax for a function parameter with a type annotation?
+
+Answer:
+function greet(name: string) {}
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 9:
+Write a function 'calculateArea' that takes width and height as numbers and returns a number:
+
+Answer:
+const calculateArea = (width: number, height: number): number => {
+     return width * height;
+};
+
+// I was looking for the use of the function key work here
+// but creating the function as a const still works so I'll give you full points
+
+Points: 3/3
+
+----------------------------------------------------------------------
+
+Question 10:
+What is the difference between a required parameter and an optional parameter in TypeScript functions?
+
+Answer:
+Optional parameters have a ? symbol between the parameter and the colon.
+
+// while this does explain correct syntax, it doesn't explain how
+// that parameter does not always need to be defined when calling the function
+
+Points: 1/2
+
+----------------------------------------------------------------------
+
+Question 11:
+Fix the type errors in this function:
+
+Answer:
+function greetUser(name: string, title?: string): string {
+  return `Hello, ${title} ${name}!`;
+}
+
+Points: 3/3
+
+----------------------------------------------------------------------
+
+Question 12:
+Which arrow function syntax is correct for a function that takes two numbers and returns a number?
+
+Answer:
+const add = (a: number, b: number): number => a + b;
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 13:
+What is the purpose of default parameters in functions?
+
+Answer:
+If a value is not passed in as a parameter, then the default parameter is set as the parameter. If something is passed in, then the default parameter is not used and the passed in value is instead.
+
+// this is a good definition of what default parameters do, 
+// but it doesn't describe the purpose of them, in other words, 
+// why default parameters are a thing in the first place. 
+
+Points: 1/2
+
+----------------------------------------------------------------------
+
+Question 14:
+Create a function 'formatName' that takes firstName (required), lastName (required), and middleName (optional) as strings, and returns a formatted full name:
+
+Answer:
+function formatName(firstName: string, lastName: string, middleName?: string): string = {
+     return `Full name: ${firstName} ${middleName ? middleName : ''} ${lastName}`;
+};
+
+// great function! Sadly, having that equals sign is a syntax error
+// You don't need that equal sign when creating functions, but still, good catch with the optional parameter
+
+Points: 3/4
+
+----------------------------------------------------------------------
+
+Question 15:
+Which of the following correctly declares an array of numbers?
+
+Answer:
+Both let nums: number[] = [1, 2, 3]; and let nums: Array<number> = [1, 2, 3];
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 16:
+What is the key difference between an array and a tuple in TypeScript?
+
+Answer:
+An array is any list of values, and a tuple is a also a list of values but with predefined types. Tuples must be the specified length, as defined by the number of defined types.
+
+// good job
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 17:
+Create a tuple type 'PlayerInfo' for [username: string, level: number, isOnline: boolean] and declare a variable of that type:
+
+Answer:
+type PlayerInfo = [username: string, level: number, isOnline: boolean]
+
+const player: PlayerInfo = ["chegworth", 3500, true]
+
+Points: 3/3
+
+----------------------------------------------------------------------
+
+Question 18:
+Which array method would you use to transform each element in an array to a new value while maintaining type safety?
+
+Answer:
+.map()
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 19:
+Write code that filters an array of numbers to only include even numbers:
+
+Answer:
+const numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// Your code here
+numbers.filter((num) => { return num % 2 === 0 });
+
+Points: 3/3
+
+----------------------------------------------------------------------
+
+Question 20:
+What type does the 'find' method return?
+
+Answer:
+A boolean
+
+// The find method actually returns the element type, or undefined if it couldn't find it. 
+
+Points: 0/1
+
+======================================================================
+END OF QUIZ RESULTS --> 36/40 --> 90%
+======================================================================
