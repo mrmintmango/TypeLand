@@ -178,7 +178,7 @@
           <a href="../gallery.html" class="btn btn-secondary"
             >← Back to Gallery</a
           >
-          <a href="Assignment1.html" class="btn btn-third"
+          <a href="#" id="actionButton" class="btn btn-third"
             >🎯 See Your Code in Action!</a
           >
           <button onclick="location.reload()" class="btn btn-primary">
@@ -232,20 +232,27 @@
       // Assignment details
       const assignments = {
         1: {
-          title: "Assignment 1: TypeScript Basics",
+          title: "Assignment 1: Restaurant Menu",
           description:
             "Practice variables, types, and basic TypeScript syntax.",
+          folder: "assignment1",
           file: "Assignment1.ts",
+          htmlFile: "Assignment1.html",
         },
         2: {
-          title: "Assignment 2: Functions and Arrays",
-          description: "Work with functions, arrays, and tuples.",
+          title: "Assignment 2: Royals and Robbers",
+          description:
+            "Practice interfaces, extending interfaces, and creating objects.",
+          folder: "assignment2",
           file: "Assignment2.ts",
+          htmlFile: "Assignment2.html",
         },
         3: {
           title: "Assignment 3: Objects and Interfaces",
           description: "Create interfaces and work with object types.",
+          folder: "assignment3",
           file: "Assignment3.ts",
+          htmlFile: "Assignment3.html",
         },
         // Add more assignments as needed
       };
@@ -256,12 +263,18 @@
       document.getElementById("assignmentDescription").textContent =
         assignment.description;
       document.getElementById("filePath").textContent =
-        `pages/gallery/${assignment.file}`;
+        `pages/gallery/${assignment.folder}/${assignment.file}`;
+
+      // Update action button link
+      const actionButton = document.getElementById("actionButton");
+      actionButton.href = `${assignment.folder}/${assignment.htmlFile}`;
 
       // Load the TypeScript file
       async function loadCode() {
         try {
-          const response = await fetch(assignment.file);
+          const response = await fetch(
+            `${assignment.folder}/${assignment.file}`,
+          );
           const code = await response.text();
 
           const codeViewer = document.getElementById("codeViewer");
@@ -283,7 +296,7 @@
             <div class="empty-state">
               <div class="empty-state-icon">⚠️</div>
               <p>Could not load assignment file.</p>
-              <p>Make sure <strong>${assignment.file}</strong> exists in the pages/gallery folder.</p>
+              <p>Make sure <strong>${assignment.file}</strong> exists in the pages/gallery/${assignment.folder}/ folder.</p>
             </div>
           `;
         }
