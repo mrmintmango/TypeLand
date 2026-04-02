@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Utility Types - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../../index.html">🏠 Home</a></li>
+          <li><a href="../adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="../quiz.html">📚 Quiz Kingdom</a></li>
+          <li><a href="../grades.html">📝 Grades</a></li>
+          <li>
+            <a href="../gallery.html">🖼️ Submission Gallery</a>
+          </li>
+          <li>
+            <a href="../learning-log.html">🪵 Learning Log</a>
+          </li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="../beginners.html">📗 Beginner Course</a></li>
+          <li><a href="../intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../intermediate.html" class="back-to-course"
+            >← Back to Course</a
+          >
+
+          <h1>🛠️ Utility Types</h1>
+
+          <div class="topic-intro">
+            <p>
+              TypeScript includes powerful built-in utility types that transform
+              existing types in useful ways. These utilities help you avoid
+              repetition and create flexible type definitions.
+            </p>
+          </div>
+
+          <h2>Partial&lt;T&gt;</h2>
+
+          <p>Makes all properties optional. Perfect for update functions:</p>
+
+          <div class="code-example">
+            <h4>Example: Partial</h4>
+            <pre><code>interface Player {
+  name: string;
+  health: number;
+  level: number;
+  experience: number;
+}
+
+// Update only some properties
+function updatePlayer(
+  player: Player,
+  updates: Partial&lt;Player&gt;
+): Player {
+  return { ...player, ...updates };
+}
+
+const hero: Player = {
+  name: "Hero",
+  health: 100,
+  level: 5,
+  experience: 1200
+};
+
+// Update only health and experience
+const updated = updatePlayer(hero, {
+  health: 80,
+  experience: 1350
+});</code></pre>
+          </div>
+
+          <h2>Required&lt;T&gt;</h2>
+
+          <p>Makes all properties required (opposite of Partial):</p>
+
+          <div class="code-example">
+            <h4>Example: Required</h4>
+            <pre><code>interface GameConfig {
+  difficulty?: string;
+  sound?: boolean;
+  graphics?: string;
+}
+
+// Function requires all config options
+function initializeGame(config: Required&lt;GameConfig&gt;): void {
+  console.log(`Difficulty: ${config.difficulty}`);
+  console.log(`Sound: ${config.sound}`);
+  console.log(`Graphics: ${config.graphics}`);
+}
+
+initializeGame({
+  difficulty: "normal",
+  sound: true,
+  graphics: "high"
+});  // All required!
+
+// initializeGame({ difficulty: "easy" });  // ✗ Error - missing properties</code></pre>
+          </div>
+
+          <h2>Readonly&lt;T&gt;</h2>
+
+          <p>Makes all properties readonly (immutable):</p>
+
+          <div class="code-example">
+            <h4>Example: Readonly</h4>
+            <pre><code>interface Point {
+  x: number;
+  y: number;
+}
+
+const mutablePoint: Point = { x: 10, y: 20 };
+mutablePoint.x = 15;  // ✓ OK
+
+const immutable Point: Readonly&lt;Point&gt; = { x: 10, y: 20 };
+// immutablePoint.x = 15;  // ✗ Error - readonly property
+
+// Useful for function parameters
+function calculateDistance(
+  p1: Readonly&lt;Point&gt;,
+  p2: Readonly&lt;Point&gt;
+): number {
+  const dx = p2.x - p1.x;
+  const dy = p2.y - p1.y;
+  return Math.sqrt(dx * dx + dy * dy);
+}</code></pre>
+          </div>
+
+          <h2>Pick&lt;T, K&gt;</h2>
+
+          <p>
+            Creates a type by picking specific properties from another type:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Pick</h4>
+            <pre><code>interface User {
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// Pick only public-facing properties
+type PublicUser = Pick&lt;User, "id" | "username" | "createdAt"&gt;;
+
+// Equivalent to:
+// type PublicUser = {
+//   id: number;
+//   username: string;
+//   createdAt: Date;
+// }
+
+function displayUser(user: PublicUser): void {
+  console.log(`${user.username} (ID: ${user.id})`);
+  // Cannot access user.email or user.password (not in type)
+}</code></pre>
+          </div>
+
+          <h2>Omit&lt;T, K&gt;</h2>
+
+          <p>
+            Creates a type by omitting specific properties (opposite of Pick):
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Omit</h4>
+            <pre><code>interface Product {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  stock: number;
+  internalNotes: string;
+}
+
+// Omit sensitive internal properties
+type PublicProduct = Omit&lt;Product, "internalNotes" | "stock"&gt;;
+
+// Equivalent to:
+// type PublicProduct = {
+//   id: number;
+//   name: string;
+//   price: number;
+//   description: string;
+// }
+
+function displayProduct(product: PublicProduct): void {
+  console.log(`${product.name}: $${product.price}`);
+}
+
+// Useful for creating types without certain properties
+type UserWithoutPassword = Omit&lt;User, "password"&gt;;</code></pre>
+          </div>
+
+          <h2>Record&lt;K, T&gt;</h2>
+
+          <p>Creates an object type with specific keys and value types:</p>
+
+          <div class="code-example">
+            <h4>Example: Record</h4>
+            <pre><code>// Map string keys to numbers
+type Scores = Record&lt;string, number&gt;;
+
+const gameScores: Scores = {
+  "player1": 1500,
+  "player2": 2300,
+  "player3": 1800
+};
+
+// Map specific keys to a type
+type PageInfo = {
+  title: string;
+  description: string;
+};
+
+type SitePages = Record&lt;"home" | "about" | "contact", PageInfo&gt;;
+
+const pages: SitePages = {
+  home: { title: "Home", description: "Welcome page" },
+  about: { title: "About", description: "About us" },
+  contact: { title: "Contact", description: "Get in touch" }
+};
+
+// Useful for creating lookup objects
+type HttpStatus = Record&lt;number, string&gt;;
+
+const statusMessages: HttpStatus = {
+  200: "OK",
+  404: "Not Found",
+  500: "Server Error"
+};</code></pre>
+          </div>
+
+          <h2>Exclude&lt;T, U&gt; and Extract&lt;T, U&gt;</h2>
+
+          <p>Work with union types to include or exclude members:</p>
+
+          <div class="code-example">
+            <h4>Example: Exclude and Extract</h4>
+            <pre><code>type AllEvents = "click" | "scroll" | "mousemove" | "keypress";
+
+// Exclude specific members
+type UIEvents = Exclude&lt;AllEvents, "scroll" | "mousemove"&gt;;
+// Result: "click" | "keypress"
+
+// Extract specific members
+type MouseEvents = Extract&lt;AllEvents, "click" | "mousemove"&gt;;
+// Result: "click" | "mousemove"
+
+// Exclude null and undefined
+type NoNullable&lt;T&gt; = Exclude&lt;T, null | undefined&gt;;
+
+type MaybeString = string | null | undefined;
+type DefiniteString = NoNullable&lt;MaybeString&gt;;  // string</code></pre>
+          </div>
+
+          <h2>ReturnType&lt;T&gt; and Parameters&lt;T&gt;</h2>
+
+          <p>Extract types from function signatures:</p>
+
+          <div class="code-example">
+            <h4>Example: ReturnType and Parameters</h4>
+            <pre><code>// Get the return type of a function
+function createPlayer(name: string, level: number) {
+  return {
+    name,
+    level,
+    health: 100,
+    isAlive: true
+  };
+}
+
+type Player = ReturnType&lt;typeof createPlayer&gt;;
+// Player = { name: string; level: number; health: number; isAlive: boolean; }
+
+// Get parameter types of a function
+type CreatePlayerParams = Parameters&lt;typeof createPlayer&gt;;
+// CreatePlayerParams = [name: string, level: number]
+
+function callWithArgs(
+  fn: typeof createPlayer,
+  ...args: Parameters&lt;typeof createPlayer&gt;
+) {
+  return fn(...args);
+}
+
+const player = callWithArgs(createPlayer, "Hero", 5);</code></pre>
+          </div>
+
+          <h2>Combining Utility Types</h2>
+
+          <div class="code-example">
+            <h4>Example: Advanced Combinations</h4>
+            <pre><code>interface CompleteUser {
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+  profile: {
+    age?: number;
+    bio?: string;
+  };
+  settings: {
+    theme: string;
+    notifications: boolean;
+  };
+}
+
+// Partial user for updates, but ID is required
+type UserUpdate = Partial&lt;Omit&lt;CompleteUser, "id"&gt;&gt; & Pick&lt;CompleteUser, "id"&gt;;
+
+// Public user: omit password, make everything readonly
+type PublicUser = Readonly&lt;Omit&lt;CompleteUser, "password"&gt;&gt;;
+
+// New user registration (no ID yet, password required)
+type UserRegistration = Omit&lt;CompleteUser, "id"&gt; & {
+  passwordConfirm: string;
+};</code></pre>
+          </div>
+
+          <div class="key-concepts">
+            <h3>🎯 Key Concepts</h3>
+            <ul>
+              <li><code>Partial&lt;T&gt;</code> - all properties optional</li>
+              <li><code>Required&lt;T&gt;</code> - all properties required</li>
+              <li><code>Readonly&lt;T&gt;</code> - all properties immutable</li>
+              <li>
+                <code>Pick&lt;T, K&gt;</code> - select specific properties
+              </li>
+              <li>
+                <code>Omit&lt;T, K&gt;</code> - remove specific properties
+              </li>
+              <li>
+                <code>Record&lt;K, T&gt;</code> - object type with specific keys
+              </li>
+              <li>Utility types can be combined for complex transformations</li>
+            </ul>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/utility-types.html"
+                  target="_blank"
+                  >TypeScript Handbook: Utility Types</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/mapped-types.html"
+                  target="_blank"
+                  >TypeScript: Mapped Types</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../intermediate.html" class="back-to-course"
+            >← Back to Intermediate Course</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

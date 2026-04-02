@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Variables & Basic Types - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../../index.html">🏠 Home</a></li>
+          <li><a href="../adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="../quiz.html">📚 Quiz Kingdom</a></li>
+          <li><a href="../grades.html">📝 Grades</a></li>
+          <li>
+            <a href="../gallery.html">🖼️ Submission Gallery</a>
+          </li>
+          <li>
+            <a href="../learning-log.html">🪵 Learning Log</a>
+          </li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="../beginners.html">📗 Beginner Course</a></li>
+          <li><a href="../intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../beginners.html" class="back-to-course"
+            >← Back to Course</a
+          >
+
+          <h1>📝 Variables & Basic Types</h1>
+
+          <div class="topic-intro">
+            <p>
+              TypeScript extends JavaScript by adding static types. This means
+              you can catch errors during development instead of at runtime.
+              Let's start with the basics: variables and fundamental types.
+            </p>
+          </div>
+
+          <h2>Basic Types in TypeScript</h2>
+
+          <p>
+            TypeScript provides several basic types that form the foundation of
+            type-safe code:
+          </p>
+
+          <ul>
+            <li>
+              <strong>string</strong> - Text values like "hello" or 'TypeScript'
+            </li>
+            <li>
+              <strong>number</strong> - Numeric values (integers and floats)
+            </li>
+            <li><strong>boolean</strong> - true or false values</li>
+            <li>
+              <strong>any</strong> - Opt-out of type checking (use sparingly!)
+            </li>
+            <li>
+              <strong>void</strong> - Absence of a value (typically for
+              functions that don't return)
+            </li>
+            <li><strong>null</strong> and <strong>undefined</strong></li>
+          </ul>
+
+          <div class="code-example">
+            <h4>Example: Type Annotations</h4>
+            <pre><code>// String type
+let playerName: string = "Wizard";
+let greeting: string = 'Welcome to TypeLand!';
+
+// Number type
+let score: number = 100;
+let health: number = 75.5;
+
+// Boolean type
+let isPlaying: boolean = true;
+let hasWon: boolean = false;
+
+// Any type (avoid when possible)
+let flexibleValue: any = "could be anything";
+flexibleValue = 42;  // No error!</code></pre>
+          </div>
+
+          <h2>Variable Declarations: let vs const</h2>
+
+          <p>
+            TypeScript uses <code>let</code> and <code>const</code> from modern
+            JavaScript (avoid <code>var</code> in TypeScript):
+          </p>
+
+          <div class="code-example">
+            <h4>Example: let and const</h4>
+            <pre><code>// let - for variables that can be reassigned
+let currentLevel: number = 1;
+currentLevel = 2;  // ✓ OK
+
+// const - for constants that cannot be reassigned
+const maxLives: number = 3;
+// maxLives = 5;  // ✗ Error: Cannot assign to const
+
+// const with objects (object properties can still change)
+const player = {
+  name: "Hero",
+  health: 100
+};
+
+player.health = 80;  // ✓ OK - modifying property
+// player = {};  // ✗ Error: Cannot reassign const variable</code></pre>
+          </div>
+
+          <h3>Type Inference</h3>
+
+          <p>
+            TypeScript can often infer types automatically, so you don't always
+            need to write explicit type annotations:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Type Inference</h4>
+            <pre><code>// TypeScript infers the type from the initial value
+let message = "Hello";  // inferred as string
+let count = 10;         // inferred as number
+let active = true;      // inferred as boolean
+
+// message = 42;  // ✗ Error: Type 'number' is not assignable to type 'string'
+
+// Explicit annotation is better for clarity sometimes
+let unknownValue;  // type: any (no inference possible)
+let explicitValue: string;  // Better: specify the type</code></pre>
+          </div>
+
+          <div class="key-concepts">
+            <h3>🎯 Key Concepts</h3>
+            <ul>
+              <li>
+                Use <code>let</code> for variables that will change,
+                <code>const</code> for constants
+              </li>
+              <li>
+                Type annotations come after the variable name with a colon:
+                <code>name: string</code>
+              </li>
+              <li>
+                TypeScript can infer types, but explicit annotations improve
+                readability
+              </li>
+              <li>
+                Avoid <code>any</code> type when possible - it defeats the
+                purpose of TypeScript
+              </li>
+              <li>Use meaningful variable names that describe their purpose</li>
+            </ul>
+          </div>
+
+          <h2>Practical Example</h2>
+
+          <div class="code-example">
+            <h4>Example: Game Character Stats</h4>
+            <pre><code>// Define character stats with proper types
+const characterName: string = "Aragon";
+let characterLevel: number = 5;
+let characterHealth: number = 100;
+let isAlive: boolean = true;
+
+// Function to take damage
+function takeDamage(damage: number): void {
+  characterHealth -= damage;
+  
+  if (characterHealth <= 0) {
+    characterHealth = 0;
+    isAlive = false;
+    console.log(`${characterName} has been defeated!`);
+  } else {
+    console.log(`${characterName} has ${characterHealth} health remaining.`);
+  }
+}
+
+// Function to heal
+function heal(amount: number): void {
+  if (isAlive) {
+    characterHealth += amount;
+    console.log(`${characterName} restored ${amount} health.`);
+  }
+}
+
+// Usage
+takeDamage(30);  // "Aragon has 70 health remaining."
+heal(15);        // "Aragon restored 15 health."</code></pre>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
+                  target="_blank"
+                  >TypeScript Handbook: Everyday Types</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/variable-declarations.html"
+                  target="_blank"
+                  >TypeScript Handbook: Variable Declarations</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let"
+                  target="_blank"
+                  >MDN: let statement</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const"
+                  target="_blank"
+                  >MDN: const statement</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../beginners.html" class="back-to-course"
+            >← Back to Beginner Course</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

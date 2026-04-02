@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays & Tuples - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../../index.html">🏠 Home</a></li>
+          <li><a href="../adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="../quiz.html">📚 Quiz Kingdom</a></li>
+          <li><a href="../grades.html">📝 Grades</a></li>
+          <li>
+            <a href="../gallery.html">🖼️ Submission Gallery</a>
+          </li>
+          <li>
+            <a href="../learning-log.html">🪵 Learning Log</a>
+          </li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="../beginners.html">📗 Beginner Course</a></li>
+          <li><a href="../intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../beginners.html" class="back-to-course"
+            >← Back to Course</a
+          >
+
+          <h1>🎯 Arrays & Tuples</h1>
+
+          <div class="topic-intro">
+            <p>
+              Arrays and tuples are essential for storing collections of data.
+              TypeScript provides strong typing for arrays, ensuring all
+              elements match expected types. This topic is demonstrated
+              extensively in the TypeLand Adventure Game!
+            </p>
+          </div>
+
+          <h2>Array Types</h2>
+
+          <p>
+            TypeScript offers two syntaxes for array types. Both are equivalent:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Array Type Syntax</h4>
+            <pre><code>// Syntax 1: Type followed by []
+let numbers: number[] = [1, 2, 3, 4, 5];
+let names: string[] = ["Alice", "Bob", "Charlie"];
+let flags: boolean[] = [true, false, true];
+
+// Syntax 2: Array&lt;Type&gt; (generic syntax)
+let scores: Array&lt;number&gt; = [100, 95, 87];
+let colors: Array&lt;string&gt; = ["red", "green", "blue"];
+
+// Both syntaxes work the same way
+numbers.push(6);        // ✓ OK
+// numbers.push("7");   // ✗ Error: Argument of type 'string' is not assignable</code></pre>
+          </div>
+
+          <h2>Array Methods with Types</h2>
+
+          <p>
+            TypeScript understands array methods and maintains type safety
+            throughout:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Type-Safe Array Methods</h4>
+            <pre><code>const numbers: number[] = [1, 2, 3, 4, 5];
+
+// map - transforms each element
+const doubled: number[] = numbers.map(n => n * 2);
+// [2, 4, 6, 8, 10]
+
+// filter - keeps elements matching condition
+const evens: number[] = numbers.filter(n => n % 2 === 0);
+// [2, 4]
+
+// find - returns first matching element (or undefined)
+const firstBig: number | undefined = numbers.find(n => n > 3);
+// 4
+
+// reduce - reduces array to single value
+const sum: number = numbers.reduce((total, n) => total + n, 0);
+// 15
+
+// forEach - iterate with side effects
+numbers.forEach(n => console.log(n));
+
+// some - test if at least one element matches
+const hasLarge: boolean = numbers.some(n => n > 4);
+// true</code></pre>
+          </div>
+
+          <h2>Tuples</h2>
+
+          <p>
+            Tuples are fixed-length arrays where each position has a specific
+            type. Perfect for coordinates, key-value pairs, and structured data!
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Tuple Types</h4>
+            <pre><code>// Tuple type: [type1, type2, ...]
+type Coordinate = [number, number];
+
+// TypeLand Adventure Game uses coordinates!
+const playerPosition: Coordinate = [5, 10];  // [row, column]
+const treasureLocation: Coordinate = [8, 3];
+
+// Access tuple elements by index
+const row: number = playerPosition[0];     // 5
+const col: number = playerPosition[1];     // 10
+
+// Tuple with mixed types
+type User = [string, number, boolean];
+const newUser: User = ["Alice", 25, true];
+const [username, age, isActive] = newUser;  // Array destructuring
+
+// Named tuple elements (TypeScript 4.0+)
+type Point3D = [x: number, y: number, z: number];
+const point: Point3D = [10, 20, 30];</code></pre>
+          </div>
+
+          <h2>Real Example from TypeLand</h2>
+
+          <p>
+            Here's how arrays and tuples are used in the TypeLand Adventure
+            Game:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Game Code (Simplified)</h4>
+            <pre><code>// Coordinate tuple type
+type Coordinate = [number, number];
+
+// Collectible entry: position + item type
+type CollectibleEntry = [Coordinate, string];
+
+// Array of collectibles on the map
+const collectibles: CollectibleEntry[] = [
+  [[2, 3], "TREASURE_CHEST"],
+  [[5, 8], "MAGIC_ORB"],
+  [[10, 12], "ANCIENT_SCROLL"]
+];
+
+// Hero's backpack (array of collected items)
+class Hero {
+  private backpack: string[] = [];
+  
+  collectItem(item: string): void {
+    this.backpack.push(item);
+  }
+  
+  getItemCount(itemType: string): number {
+    return this.backpack.filter(item => item === itemType).length;
+  }
+}
+
+// Check if position has a collectible
+function findCollectible(pos: Coordinate): CollectibleEntry | undefined {
+  return collectibles.find(([coord, _]) => 
+    coord[0] === pos[0] && coord[1] === pos[1]
+  );
+}</code></pre>
+          </div>
+
+          <h2>Multi-Dimensional Arrays</h2>
+
+          <p>
+            Arrays can contain other arrays, creating 2D grids perfect for game
+            maps:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: 2D Arrays</h4>
+            <pre><code>// 2D array type
+type Grid = number[][];
+
+// Creating a 3x3 game board
+const gameBoard: Grid = [
+  [0, 1, 0],
+  [1, 0, 1],
+  [0, 1, 0]
+];
+
+// Access elements: board[row][column]
+const centerCell = gameBoard[1][1];  // 0
+
+// TypeLand uses 2D arrays for terrain
+type TerrainGrid = string[][];
+const terrain: TerrainGrid = [
+  ["MEADOW", "MEADOW", "LAKE"],
+  ["SAND", "STONE", "LAKE"],
+  ["MEADOW", "SAND", "SAND"]
+];</code></pre>
+          </div>
+
+          <div class="key-concepts">
+            <h3>🎯 Key Concepts</h3>
+            <ul>
+              <li>
+                Arrays hold multiple values of the <strong>same type</strong>
+              </li>
+              <li>
+                Use <code>type[]</code> or <code>Array&lt;type&gt;</code> syntax
+              </li>
+              <li>
+                Tuples have fixed length and can have
+                <strong>different types per position</strong>
+              </li>
+              <li>Tuples are great for coordinates: <code>[x, y]</code></li>
+              <li>Array methods like map, filter, find maintain type safety</li>
+              <li>2D arrays are arrays of arrays: <code>type[][]</code></li>
+              <li>
+                The TypeLand game uses both extensively for map data and
+                collectibles!
+              </li>
+            </ul>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#arrays"
+                  target="_blank"
+                  >TypeScript Handbook: Arrays</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/objects.html#tuple-types"
+                  target="_blank"
+                  >TypeScript Handbook: Tuple Types</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
+                  target="_blank"
+                  >MDN: Array Methods</a
+                >
+              </li>
+              <li>
+                <strong>Try it yourself:</strong>
+                <a href="../adventure.html">Play the Adventure Game</a> to see
+                arrays and tuples in action!
+              </li>
+            </ul>
+          </div>
+
+          <a href="../beginners.html" class="back-to-course"
+            >← Back to Beginner Course</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

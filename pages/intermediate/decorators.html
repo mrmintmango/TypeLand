@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decorators & Metadata - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../../index.html">🏠 Home</a></li>
+          <li><a href="../adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="../quiz.html">📚 Quiz Kingdom</a></li>
+          <li><a href="../grades.html">📝 Grades</a></li>
+          <li>
+            <a href="../gallery.html">🖼️ Submission Gallery</a>
+          </li>
+          <li>
+            <a href="../learning-log.html">🪵 Learning Log</a>
+          </li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="../beginners.html">📗 Beginner Course</a></li>
+          <li><a href="../intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../intermediate.html" class="back-to-course"
+            >← Back to Course</a
+          >
+
+          <h1>✨ Decorators & Metadata</h1>
+
+          <div class="topic-intro">
+            <p>
+              Decorators are an experimental TypeScript feature that allows you
+              to add metadata and modify classes, methods, properties, and
+              parameters. They're heavily used in frameworks like Angular,
+              NestJS, and TypeORM.
+            </p>
+            <p>
+              <strong>Note:</strong> Decorators are experimental. You must
+              enable them in <code>tsconfig.json</code> with
+              <code>"experimentalDecorators": true</code>
+            </p>
+          </div>
+
+          <h2>Enabling Decorators</h2>
+
+          <div class="code-example">
+            <h4>tsconfig.json Configuration</h4>
+            <pre><code>{
+  "compilerOptions": {
+    "target": "ES2020",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true  // For metadata reflection
+  }
+}</code></pre>
+          </div>
+
+          <h2>Class Decorators</h2>
+
+          <p>Class decorators are applied to the class constructor:</p>
+
+          <div class="code-example">
+            <h4>Example: Class Decorator</h4>
+            <pre><code>// Decorator factory function
+function Component(config: { selector: string; template: string }) {
+  return function (constructor: Function) {
+    console.log(`Registering component: ${config.selector}`);
+    // Add metadata or modify the class
+    (constructor as any).metadata = config;
+  };
+}
+
+// Using the decorator
+@Component({
+  selector: 'app-hero',
+  template: '&lt;div&gt;Hero Component&lt;/div&gt;'
+})
+class HeroComponent {
+  name: string = "Hero";
+}
+
+// Decorator to make class immutable
+function Frozen(constructor: Function) {
+  Object.freeze(constructor);
+  Object.freeze(constructor.prototype);
+}
+
+@Frozen
+class ImmutableClass {
+  value: number = 42;
+}</code></pre>
+          </div>
+
+          <h2>Method Decorators</h2>
+
+          <p>Method decorators can modify or observe method behavior:</p>
+
+          <div class="code-example">
+            <h4>Example: Method Decorator</h4>
+            <pre><code>// Log method calls
+function Log(
+  target: any,
+  propertyKey: string,
+  descriptor: PropertyDescriptor
+) {
+  const originalMethod = descriptor.value;
+  
+  descriptor.value = function (...args: any[]) {
+    console.log(`Calling ${propertyKey} with args:`, args);
+    const result = originalMethod.apply(this, args);
+    console.log(`${propertyKey} returned:`, result);
+    return result;
+  };
+  
+  return descriptor;
+}
+
+class Calculator {
+  @Log
+  add(a: number, b: number): number {
+    return a + b;
+  }
+  
+  @Log
+  multiply(a: number, b: number): number {
+    return a * b;
+  }
+}
+
+const calc = new Calculator();
+calc.add(5, 3);
+// Logs: "Calling add with args: [5, 3]"
+// Logs: "add returned: 8"</code></pre>
+          </div>
+
+          <h2>Property Decorators</h2>
+
+          <p>Property decorators add metadata to class properties:</p>
+
+          <div class="code-example">
+            <h4>Example: Property Decorator</h4>
+            <pre><code>// Mark property as required
+function Required(target: any, propertyKey: string) {
+  let value: any;
+  
+  const getter = () => {
+    return value;
+  };
+  
+  const setter = (newValue: any) => {
+    if (newValue === null || newValue === undefined) {
+      throw new Error(`${propertyKey} is required!`);
+    }
+    value = newValue;
+  };
+  
+  Object.defineProperty(target, propertyKey, {
+    get: getter,
+    set: setter,
+    enumerable: true,
+    configurable: true
+  });
+}
+
+class User {
+  @Required
+  username: string;
+  
+  constructor(username: string) {
+    this.username = username;
+  }
+}
+
+// const user = new User(null);  // Error: username is required!</code></pre>
+          </div>
+
+          <h2>Parameter Decorators</h2>
+
+          <p>Parameter decorators mark function parameters:</p>
+
+          <div class="code-example">
+            <h4>Example: Parameter Decorator</h4>
+            <pre><code>// Validate parameter
+function Validate(
+  target: any,
+  propertyKey: string,
+  parameterIndex: number
+) {
+  const existingParams = Reflect.getMetadata("validate", target, propertyKey) || [];
+  existingParams.push(parameterIndex);
+  Reflect.defineMetadata("validate", existingParams, target, propertyKey);
+}
+
+class GameService {
+  createGame(
+    @Validate name: string,
+    @Validate maxPlayers: number
+  ) {
+    // Validation happens before method executes
+    return { name, maxPlayers };
+  }
+}</code></pre>
+          </div>
+
+          <h2>Decorator Factories</h2>
+
+          <p>Decorator factories allow customization:</p>
+
+          <div class="code-example">
+            <h4>Example: Decorator Factory</h4>
+            <pre><code>// Decorator factory with options
+function Throttle(milliseconds: number) {
+  return function (
+    target: any,
+    propertyKey: string,
+    descriptor: PropertyDescriptor
+  ) {
+    const original Method = descriptor.value;
+    let timeout: NodeJS.Timeout | null = null;
+    
+    descriptor.value = function (...args: any[]) {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+      
+      timeout = setTimeout(() => {
+        originalMethod.apply(this, args);
+      }, milliseconds);
+    };
+    
+    return descriptor;
+  };
+}
+
+class SearchBox {
+  @Throttle(300)  // Wait 300ms before executing
+  onSearch(query: string): void {
+    console.log(`Searching for: ${query}`);
+  }
+}
+
+// Advanced decorator factory
+function Cache(duration: number = 60000) {
+  const cache = new Map&lt;string, { value: any; expires: number }&gt;();
+  
+  return function (
+    target: any,
+    propertyKey: string,
+    descriptor: PropertyDescriptor
+  ) {
+    const originalMethod = descriptor.value;
+    
+    descriptor.value = function (...args: any[]) {
+      const key = JSON.stringify(args);
+      const cached = cache.get(key);
+      
+      if (cached && cached.expires > Date.now()) {
+        console.log(`Cache hit for ${propertyKey}`);
+        return cached.value;
+      }
+      
+      const result = originalMethod.apply(this, args);
+      cache.set(key, {
+        value: result,
+        expires: Date.now() + duration
+      });
+      
+      return result;
+    };
+    
+    return descriptor;
+  };
+}
+
+class DataService {
+  @Cache(5000)  // Cache for 5 seconds
+  fetchData(id: number): any {
+    console.log(`Fetching data for ID: ${id}`);
+    return { id, data: "Some data..." };
+  }
+}</code></pre>
+          </div>
+
+          <h2>Real-World Use Cases</h2>
+
+          <div class="code-example">
+            <h4>Example: Practical Decorators</h4>
+            <pre><code>// Dependency Injection (like Angular)
+function Injectable() {
+  return function (constructor: Function) {
+    // Register service in DI container
+    console.log(`Registering ${constructor.name} as injectable`);
+  };
+}
+
+@Injectable()
+class GameService {
+  getPlayers() {
+    return ["Player1", "Player2"];
+  }
+}
+
+// Route decorators (like NestJS)
+function Controller(route: string) {
+  return function (constructor: Function) {
+    (constructor as any).route = route;
+  };
+}
+
+function Get(path: string) {
+  return function (
+    target: any,
+    propertyKey: string,
+    descriptor: PropertyDescriptor
+  ) {
+    (descriptor.value as any).route = path;
+    (descriptor.value as any).method = "GET";
+  };
+}
+
+@Controller('/api/players')
+class PlayerController {
+  @Get('/')
+  getAll() {
+    return { players: [] };
+  }
+  
+  @Get('/:id')
+  getOne(id: string) {
+    return { id, name: "Player" };
+  }
+}
+
+// Entity decorators (like TypeORM)
+function Entity(tableName: string) {
+  return function (constructor: Function) {
+    (constructor as any).tableName = tableName;
+  };
+}
+
+function Column(options: { type: string; nullable?: boolean }) {
+  return function (target: any, propertyKey: string) {
+    // Store column metadata
+  };
+}
+
+@Entity('users')
+class UserEntity {
+  @Column({ type: 'int' })
+  id: number;
+  
+  @Column({ type: 'varchar', nullable: false })
+  username: string;
+  
+  @Column({ type: 'varchar', nullable: false })
+  email: string;
+}</code></pre>
+          </div>
+
+          <h2>Decorator Composition</h2>
+
+          <div class="code-example">
+            <h4>Example: Multiple Decorators</h4>
+            <pre><code>// Multiple decorators on same target
+function First() {
+  console.log("First(): factory");
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    console.log("First(): called");
+  };
+}
+
+function Second() {
+  console.log("Second(): factory");
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    console.log("Second(): called");
+  };
+}
+
+class Example {
+  @First()
+  @Second()
+  method() {}
+}
+
+// Output:
+// First(): factory
+// Second(): factory
+// Second(): called  (executed bottom-to-top)
+// First(): called</code></pre>
+          </div>
+
+          <div class="key-concepts">
+            <h3>🎯 Key Concepts</h3>
+            <ul>
+              <li>Decorators are experimental - enable in tsconfig.json</li>
+              <li>
+                Use <code>@DecoratorName</code> syntax before declarations
+              </li>
+              <li>Class decorators modify or observe class constructors</li>
+              <li>Method decorators wrap or modify method behavior</li>
+              <li>Property decorators add metadata to properties</li>
+              <li>Decorator factories return decorator functions</li>
+              <li>Multiple decorators execute bottom-to-top</li>
+              <li>Heavily used in Angular, NestJS, TypeORM</li>
+            </ul>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/decorators.html"
+                  target="_blank"
+                  >TypeScript Handbook: Decorators</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/tc39/proposal-decorators"
+                  target="_blank"
+                  >TC39 Decorators Proposal</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/decorators.html#decorator-factories"
+                  target="_blank"
+                  >Decorator Factories</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../intermediate.html" class="back-to-course"
+            >← Back to Intermediate Course</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

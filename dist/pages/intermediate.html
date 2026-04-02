@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intermediate TypeScript Course - TypeLand</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/navigation.css" />
+    <link rel="stylesheet" href="../styles/courses.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../index.html">🏠 Home</a></li>
+          <li><a href="adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="quiz.html">📚 Quiz Kingdom</a></li>
+          <li><a href="grades.html">📝 Grades</a></li>
+          <li>
+            <a href="gallery.html">🖼️ Submission Gallery</a>
+          </li>
+          <li>
+            <a href="learning-log.html">🪵 Learning Log</a>
+          </li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="beginners.html">📗 Beginner Course</a></li>
+          <li>
+            <a href="intermediate.html" class="active"
+              >📘 Intermediate Course</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container">
+        <div class="course-header">
+          <h1>📘 Intermediate TypeScript Course</h1>
+          <p>
+            Take your TypeScript skills to the next level with advanced features
+            and patterns used in production applications.
+          </p>
+        </div>
+
+        <div class="course-content">
+          <div class="topic-intro">
+            <h2>Level Up Your TypeScript!</h2>
+            <p>
+              This intermediate course covers more advanced TypeScript concepts
+              that will help you write more efficient, maintainable, and
+              type-safe code. These topics are essential for working on larger
+              projects and professional codebases.
+            </p>
+            <p>
+              <strong>Prerequisites:</strong> We recommend completing the
+              Beginner Course first, or having equivalent TypeScript experience.
+            </p>
+          </div>
+
+          <h2>Course Topics</h2>
+
+          <div class="topic-grid">
+            <div class="topic-card">
+              <h3>
+                🔷 Advanced Generics
+                <span class="difficulty-badge intermediate">Intermediate</span>
+              </h3>
+              <p>
+                Master generic constraints, multiple type parameters, and
+                generic utility functions. Learn how to create flexible,
+                reusable components that work with any type.
+              </p>
+              <a href="intermediate/generics.html" class="topic-link"
+                >Start Learning →</a
+              >
+            </div>
+
+            <div class="topic-card">
+              <h3>
+                🎨 Enums & Literal Types
+                <span class="difficulty-badge intermediate">Intermediate</span>
+              </h3>
+              <p>
+                Explore enums, const enums, and string literal types. See how
+                enums are used in the TypeLand Adventure Game for movement and
+                terrain types!
+              </p>
+              <a href="intermediate/enums.html" class="topic-link"
+                >Start Learning →</a
+              >
+            </div>
+
+            <div class="topic-card">
+              <h3>
+                🛠️ Utility Types
+                <span class="difficulty-badge intermediate">Intermediate</span>
+              </h3>
+              <p>
+                Discover TypeScript's built-in utility types like Partial, Pick,
+                Omit, Record, Required, and Readonly. Learn when and how to use
+                them effectively.
+              </p>
+              <a href="intermediate/utility-types.html" class="topic-link"
+                >Start Learning →</a
+              >
+            </div>
+
+            <div class="topic-card">
+              <h3>
+                📦 Modules & Namespaces
+                <span class="difficulty-badge intermediate">Intermediate</span>
+              </h3>
+              <p>
+                Learn about ES6 modules, import/export syntax, default exports,
+                and how to organize your TypeScript code across multiple files
+                and folders.
+              </p>
+              <a href="intermediate/modules.html" class="topic-link"
+                >Start Learning →</a
+              >
+            </div>
+
+            <div class="topic-card">
+              <h3>
+                ✨ Decorators & Metadata
+                <span class="difficulty-badge intermediate">Intermediate</span>
+              </h3>
+              <p>
+                Explore TypeScript's experimental decorator feature. Understand
+                class decorators, method decorators, and how they're used in
+                frameworks like Angular and NestJS.
+              </p>
+              <a href="intermediate/decorators.html" class="topic-link"
+                >Start Learning →</a
+              >
+            </div>
+          </div>
+
+          <div class="topic-intro" style="margin-top: 50px">
+            <h2>Practice What You've Learned!</h2>
+            <p>
+              Test your knowledge with the <strong>Quiz Kingdom</strong> or
+              explore the code in the <strong>Adventure Game</strong> to see
+              these concepts in action!
+            </p>
+            <div style="display: flex; gap: 15px; margin-top: 20px">
+              <a href="quiz.html" class="back-to-course">Take the Quiz →</a>
+              <a href="adventure.html" class="back-to-course"
+                >Play the Game →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".topic-card").forEach((card) => {
+        const topicLink = card.querySelector(".topic-link");
+        if (!topicLink) {
+          return;
+        }
+
+        card.setAttribute("role", "link");
+        card.setAttribute("tabindex", "0");
+
+        card.addEventListener("click", (event) => {
+          if (event.target.closest("a")) {
+            return;
+          }
+          window.location.href = topicLink.href;
+        });
+
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            window.location.href = topicLink.href;
+          }
+        });
+      });
+    </script>
+    <script src="../styles/navigation.js"></script>
+  </body>
+</html>

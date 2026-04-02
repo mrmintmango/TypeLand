@@ -1,0 +1,47 @@
+🎓 ASSIGNMENT 1 QUICK START
+================================
+
+📝 Your Task:
+Complete the TypeScript functions in Assignment1.ts to create a working restaurant menu!
+
+✅ What You Need to Do:
+1. Set RestaurantName = "TypeLand Diner"
+2. Set NumberOfTables = 20
+3. Set IsOpen = true
+4. Write the greetCustomer function
+5. Write the calculateTotal function  
+6. Write the isRestaurantOpen function
+7. Create the MenuItem interface
+8. Create a menu array with 3+ items
+
+💻 Commands to Run:
+```
+npm run build
+```
+
+🎯 How to See Your Work:
+1. Complete the TODOs in Assignment1.ts
+2. Save the file
+3. Run: npm run build
+4. Open AssignmentView.html in browser
+5. Click "See Your Code in Action!"
+6. Interact with your restaurant menu!
+
+🎨 What You'll See:
+- Your restaurant name in the header
+- Open/closed status
+- Interactive customer greeting
+- Your menu items displayed as cards
+- Working order calculator
+
+💡 Tips:
+- The greetCustomer function should return: "Welcome to TypeLand Diner, [name]!"
+- The calculateTotal function should multiply price × quantity
+- The isRestaurantOpen function should return open/closed message
+- Menu items need: name, price, and isVegetarian properties
+
+🆘 Having Issues?
+- Make sure you saved Assignment1.ts
+- Make sure you ran "npm run build"
+- Check the browser console (F12) for errors
+- The HTML page will show error messages if something is missing

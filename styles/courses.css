@@ -1,0 +1,365 @@
+/* Course Listing and Topic Page Styles */
+
+.course-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.course-header h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.course-header p {
+  font-size: 1.2em;
+  opacity: 0.95;
+}
+
+.course-content {
+  padding: 40px 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.topic-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.topic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+.topic-card h3 {
+  color: #667eea;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topic-card p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.topic-card .topic-link {
+  display: inline-block;
+  color: #f5576c;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.topic-card .topic-link:hover {
+  color: #764ba2;
+}
+
+/* Topic Page Styles */
+.topic-page {
+  padding: 40px 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.topic-page h1 {
+  color: #667eea;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  border-bottom: 4px solid #667eea;
+  padding-bottom: 15px;
+}
+
+.topic-page h2 {
+  color: #764ba2;
+  font-size: 1.8em;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.topic-page h3 {
+  color: #667eea;
+  font-size: 1.4em;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.topic-page p {
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.topic-page ul,
+.topic-page ol {
+  margin: 20px 0;
+  padding-left: 30px;
+}
+
+.topic-page li {
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.topic-intro {
+  background: linear-gradient(135deg, #f093fb15 0%, #f5576c15 100%);
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  border-left: 5px solid #f5576c;
+}
+
+.code-example {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 4px solid #667eea;
+  overflow-x: auto;
+}
+
+.code-example h4 {
+  color: #667eea;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+
+.code-example pre {
+  background: #282c34;
+  color: #abb2bf;
+  padding: 20px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.code-example code {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.key-concepts {
+  background: #fff9e6;
+  padding: 25px;
+  border-radius: 12px;
+  margin: 30px 0;
+  border-left: 5px solid #ffc107;
+}
+
+.key-concepts h3 {
+  color: #f57c00;
+  margin-top: 0;
+}
+
+.helpful-links {
+  background: #e3f2fd;
+  padding: 25px;
+  border-radius: 12px;
+  margin: 30px 0;
+  border-left: 5px solid #2196f3;
+}
+
+.helpful-links h3 {
+  color: #1976d2;
+  margin-top: 0;
+}
+
+.helpful-links ul {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.helpful-links a {
+  color: #1976d2;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.helpful-links a:hover {
+  color: #0d47a1;
+  text-decoration: underline;
+}
+
+.back-to-course {
+  display: inline-block;
+  margin: 30px 0;
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.back-to-course:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Badge for difficulty level */
+.difficulty-badge {
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.difficulty-badge.beginner {
+  background: #4caf50;
+  color: white;
+}
+
+.difficulty-badge.intermediate {
+  background: #ff9800;
+  color: white;
+}
+
+/* Grades Page */
+.grades-board {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.grades-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.grades-toolbar h2 {
+  margin: 0;
+}
+
+.grades-table-wrap {
+  overflow-x: auto;
+}
+
+.grades-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.grades-table th,
+.grades-table td {
+  border-bottom: 1px solid #e6e8ef;
+  text-align: left;
+  padding: 12px;
+  vertical-align: middle;
+}
+
+.grades-table th {
+  background: #f8f9fa;
+  color: #3b4583;
+  font-weight: 700;
+}
+
+.type-badge,
+.status-badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.85em;
+  font-weight: 700;
+}
+
+.type-badge.assignment {
+  background: #e6f4ea;
+  color: #1b5e20;
+}
+
+.type-badge.quiz {
+  background: #e3f2fd;
+  color: #0d47a1;
+}
+
+.status-badge.graded {
+  background: #ede7f6;
+  color: #4527a0;
+}
+
+.status-badge.submitted {
+  background: #fff4e5;
+  color: #9c4a00;
+}
+
+.status-badge.assigned {
+  background: #eceff1;
+  color: #37474f;
+}
+
+.feedback-button {
+  display: inline-block;
+  text-decoration: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.feedback-button:hover {
+  filter: brightness(1.05);
+}
+
+.feedback-pending {
+  color: #6c757d;
+  font-size: 0.9em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .topic-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .course-header h1 {
+    font-size: 1.8em;
+  }
+
+  .topic-page h1 {
+    font-size: 2em;
+  }
+
+  .topic-page h2 {
+    font-size: 1.5em;
+  }
+
+  .code-example pre {
+    font-size: 0.85em;
+  }
+
+  .grades-table {
+    min-width: 640px;
+  }
+}

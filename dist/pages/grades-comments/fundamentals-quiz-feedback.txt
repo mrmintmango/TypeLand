@@ -1,0 +1,15 @@
+Quiz Kingdom - Fundamentals - Teacher Feedback
+
+Overall Grade: 88%
+
+Strengths:
+- Excellent answers on arrays, tuples, and interfaces.
+- Good understanding of union types.
+
+Needs attention:
+- Missed 2 questions on type narrowing and inference edge cases.
+- Review optional chaining and null checks.
+
+Suggestions:
+- Revisit beginner topics 4 and 5.
+- Try rewriting your missed answers with short code examples.

@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functions & Type Annotations - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../../index.html">🏠 Home</a></li>
+          <li><a href="../adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="../quiz.html">📚 Quiz Kingdom</a></li>
+          <li><a href="../grades.html">📝 Grades</a></li>
+          <li>
+            <a href="../gallery.html">🖼️ Submission Gallery</a>
+          </li>
+          <li>
+            <a href="../learning-log.html">🪵 Learning Log</a>
+          </li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="../beginners.html">📗 Beginner Course</a></li>
+          <li><a href="../intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../beginners.html" class="back-to-course"
+            >← Back to Course</a
+          >
+
+          <h1>⚡ Functions & Type Annotations</h1>
+
+          <div class="topic-intro">
+            <p>
+              Functions are the building blocks of any application. In
+              TypeScript, you can add type annotations to function parameters
+              and return values, making your code more predictable and catching
+              errors early.
+            </p>
+          </div>
+
+          <h2>Function Type Annotations</h2>
+
+          <p>
+            TypeScript allows you to specify types for both parameters and
+            return values:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Basic Function Types</h4>
+            <pre><code>// Function with typed parameters and return type
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+// Function with no return value (void)
+function greet(name: string): void {
+  console.log(`Hello, ${name}!`);
+}
+
+// Function that returns a boolean
+function isEven(num: number): boolean {
+  return num % 2 === 0;
+}
+
+// Usage
+const sum = add(5, 3);        // 8
+greet("TypeLand");            // "Hello, TypeLand!"
+const result = isEven(4);     // true</code></pre>
+          </div>
+
+          <h2>Arrow Functions</h2>
+
+          <p>
+            Arrow functions provide a concise syntax and work seamlessly with
+            TypeScript's type system:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Arrow Functions</h4>
+            <pre><code>// Arrow function with explicit types
+const multiply = (x: number, y: number): number => {
+  return x * y;
+};
+
+// Concise arrow function (implicit return)
+const square = (n: number): number => n * n;
+
+// Arrow function with no parameters
+const getRandomNumber = (): number => {
+  return Math.random();
+};
+
+// Usage
+console.log(multiply(4, 5));   // 20
+console.log(square(6));        // 36
+console.log(getRandomNumber()); // random number</code></pre>
+          </div>
+
+          <h2>Optional and Default Parameters</h2>
+
+          <p>
+            TypeScript supports optional parameters (using <code>?</code>) and
+            default values:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Optional and Default Parameters</h4>
+            <pre><code>// Optional parameter (might be undefined)
+function buildGreeting(name: string, title?: string): string {
+  if (title) {
+    return `Hello, ${title} ${name}!`;
+  }
+  return `Hello, ${name}!`;
+}
+
+console.log(buildGreeting("Alice"));              // "Hello, Alice!"
+console.log(buildGreeting("Bob", "Dr."));         // "Hello, Dr. Bob!"
+
+// Default parameter value
+function calculatePrice(price: number, taxRate: number = 0.1): number {
+  return price + (price * taxRate);
+}
+
+console.log(calculatePrice(100));      // 110 (default 10% tax)
+console.log(calculatePrice(100, 0.2)); // 120 (20% tax)
+
+// Multiple optional/default parameters
+function createUser(
+  username: string,
+  email?: string,
+  age: number = 18
+): object {
+  return { username, email, age };
+}</code></pre>
+          </div>
+
+          <h2>Function Type Expressions</h2>
+
+          <p>
+            You can also define function types as variables or use them in type
+            aliases:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Function Types</h4>
+            <pre><code>// Function type alias
+type MathOperation = (a: number, b: number) => number;
+
+// Use the function type
+const subtract: MathOperation = (x, y) => x - y;
+const divide: MathOperation = (x, y) => x / y;
+
+console.log(subtract(10, 3));  // 7
+console.log(divide(20, 4));    // 5
+
+// Callback function type
+function processNumbers(
+  nums: number[],
+  callback: (n: number) => number
+): number[] {
+  return nums.map(callback);
+}
+
+const doubled = processNumbers([1, 2, 3], n => n * 2);
+console.log(doubled);  // [2, 4, 6]</code></pre>
+          </div>
+
+          <h2>Rest Parameters</h2>
+
+          <p>
+            Rest parameters allow functions to accept any number of arguments:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Rest Parameters</h4>
+            <pre><code>// Rest parameters collect remaining arguments into an array
+function sum(...numbers: number[]): number {
+  return numbers.reduce((total, n) => total + n, 0);
+}
+
+console.log(sum(1, 2, 3));           // 6
+console.log(sum(10, 20, 30, 40));    // 100
+
+// Combine regular and rest parameters
+function makeList(title: string, ...items: string[]): string {
+  return `${title}: ${items.join(', ')}`;
+}
+
+console.log(makeList("Fruits", "Apple", "Banana", "Orange"));
+// "Fruits: Apple, Banana, Orange"</code></pre>
+          </div>
+
+          <div class="key-concepts">
+            <h3>🎯 Key Concepts</h3>
+            <ul>
+              <li>
+                Always annotate function parameters - TypeScript cannot infer
+                them
+              </li>
+              <li>
+                Return type annotations are optional but recommended for clarity
+              </li>
+              <li>
+                Use <code>void</code> for functions that don't return a value
+              </li>
+              <li>
+                Optional parameters use <code>?</code> and must come after
+                required parameters
+              </li>
+              <li>
+                Default parameters provide fallback values when arguments are
+                omitted
+              </li>
+              <li>
+                Arrow functions are great for callbacks and concise operations
+              </li>
+            </ul>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/functions.html"
+                  target="_blank"
+                  >TypeScript Handbook: More on Functions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions"
+                  target="_blank"
+                  >MDN: Arrow Functions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#functions"
+                  target="_blank"
+                  >TypeScript: Function Types</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../beginners.html" class="back-to-course"
+            >← Back to Beginner Course</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

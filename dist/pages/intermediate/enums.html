@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enums & Literal Types - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../../index.html">🏠 Home</a></li>
+          <li><a href="../adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="../quiz.html">📚 Quiz Kingdom</a></li>
+          <li><a href="../grades.html">📝 Grades</a></li>
+          <li>
+            <a href="../gallery.html">🖼️ Submission Gallery</a>
+          </li>
+          <li>
+            <a href="../learning-log.html">🪵 Learning Log</a>
+          </li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="../beginners.html">📗 Beginner Course</a></li>
+          <li><a href="../intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../intermediate.html" class="back-to-course"
+            >← Back to Course</a
+          >
+
+          <h1>🎨 Enums & Literal Types</h1>
+
+          <div class="topic-intro">
+            <p>
+              Enums and literal types help you define sets of named constants
+              and specific allowed values. The TypeLand Adventure Game uses
+              enums extensively for movement directions, terrain types, and
+              collectible kinds! Let's explore how they work.
+            </p>
+          </div>
+
+          <h2>Numeric Enums</h2>
+
+          <p>
+            Numeric enums auto-increment from an initial value (default: 0):
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Numeric Enums</h4>
+            <pre><code>// Basic numeric enum (starts at 0)
+enum Direction {
+  North,    // 0
+  East,     // 1
+  South,    // 2
+  West      // 3
+}
+
+const facingDirection: Direction = Direction.North;
+console.log(facingDirection);  // 0
+
+// Custom starting value
+enum StatusCode {
+  OK = 200,
+  BadRequest = 400,
+  Unauthorized = 401,
+  NotFound = 404,
+  ServerError = 500
+}
+
+function handleResponse(code: StatusCode): string {
+  switch (code) {
+    case StatusCode.OK:
+      return "Success!";
+    case StatusCode.NotFound:
+      return "Resource not found";
+    default:
+      return "Error occurred";
+  }
+}</code></pre>
+          </div>
+
+          <h2>String Enums</h2>
+
+          <p>String enums provide more readable values and better debugging:</p>
+
+          <div class="code-example">
+            <h4>Example: String Enums</h4>
+            <pre><code>// String enum (TypeLand uses these!)
+enum MovementKey {
+  NORTH = "NORTH",
+  SOUTH = "SOUTH",
+  EAST = "EAST",
+  WEST = "WEST"
+}
+
+enum GroundMaterial {
+  MEADOW = "MEADOW",
+  STONE = "STONE",
+  LAKE = "LAKE",
+  SAND = "SAND"
+}
+
+enum CollectibleKind {
+  TREASURE_CHEST = "TREASURE_CHEST",
+  MAGIC_ORB = "MAGIC_ORB",
+  ANCIENT_SCROLL = "ANCIENT_SCROLL",
+  CRYSTAL_GEM = "CRYSTAL_GEM"
+}
+
+// Using string enums
+function canWalkOn(terrain: GroundMaterial): boolean {
+  return terrain === GroundMaterial.MEADOW || 
+         terrain === GroundMaterial.SAND;
+}
+
+console.log(canWalkOn(GroundMaterial.MEADOW));  // true
+console.log(canWalkOn(GroundMaterial.LAKE));    // false</code></pre>
+          </div>
+
+          <h2>Const Enums</h2>
+
+          <p>
+            Const enums are removed during compilation for better performance:
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Const Enums</h4>
+            <pre><code>// Const enum - inlined at compile time
+const enum Color {
+  Red = "#FF0000",
+  Green = "#00FF00",
+  Blue = "#0000FF"
+}
+
+// This code:
+const bgColor = Color.Red;
+const textColor = Color.Blue;
+
+// Compiles to (no enum object created):
+const bgColor = "#FF0000";
+const textColor = "#0000FF";
+
+// Const enums reduce bundle size
+const enum LogLevel {
+  Debug,
+  Info,
+  Warning,
+  Error
+}</code></pre>
+          </div>
+
+          <h2>String Literal Types</h2>
+
+          <p>String literal types define exact values a variable can have:</p>
+
+          <div class="code-example">
+            <h4>Example: String Literal Types</h4>
+            <pre><code>// Union of string literals
+type Difficulty = "easy" | "normal" | "hard" | "expert";
+
+function setGameDifficulty(level: Difficulty): void {
+  console.log(`Difficulty set to: ${level}`);
+}
+
+setGameDifficulty("normal");  // ✓ OK
+// setGameDifficulty("medium");  // ✗ Error - not in the union
+
+// Combine with type aliases
+type Alignment = "left" | "center" | "right";
+type VerticalAlign = "top" | "middle" | "bottom";
+
+function positionElement(
+  horizontal: Alignment,
+  vertical: VerticalAlign
+): void {
+  // Position logic
+}
+
+positionElement("center", "middle");</code></pre>
+          </div>
+
+          <h2>Numeric Literal Types</h2>
+
+          <p>Literal types also work with numbers and booleans:</p>
+
+          <div class="code-example">
+            <h4>Example: Numeric Literal Types</h4>
+            <pre><code>// Specific number values
+type DiceRoll = 1 | 2 | 3 | 4 | 5 | 6;
+type BinaryDigit = 0 | 1;
+
+function rollDice(): DiceRoll {
+  return (Math.floor(Math.random() * 6) + 1) as DiceRoll;
+}
+
+// Boolean literals
+type Yes = true;
+type No = false;
+
+// Mixed literal type
+type Port = 3000 | 4000 | 8080 | "auto";
+
+function startServer(port: Port): void {
+  console.log(`Server starting on port: ${port}`);
+}
+
+startServer(3000);    // ✓ OK
+startServer("auto");  // ✓ OK
+// startServer(5000);  // ✗ Error</code></pre>
+          </div>
+
+          <h2>Enums vs Literal Types</h2>
+
+          <p>When should you use each?</p>
+
+          <div class="code-example">
+            <h4>Comparison: Enums vs Literals</h4>
+            <pre><code>// Enum approach
+enum HttpMethod {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE"
+}
+
+function request(method: HttpMethod, url: string): void {
+  // Implementation
+}
+
+request(HttpMethod.GET, "/api/users");
+
+// Literal type approach
+type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
+
+function request(method: HttpMethod, url: string): void {
+  // Implementation
+}
+
+request("GET", "/api/users");
+
+// When to use enums:
+// - Need reverse mapping (value to name)
+// - Want a runtime object with all values
+// - Building a library/framework
+// - Want auto-completion without quotes
+
+// When to use literal types:
+// - Simpler, more lightweight
+// - Better tree-shaking
+// - More flexible (can be extended easily)
+// - Modern TypeScript recommendation</code></pre>
+          </div>
+
+          <h2>Real Example from TypeLand</h2>
+
+          <div class="code-example">
+            <h4>Example: TypeLand Adventure Game</h4>
+            <pre><code>// From TypeLand's definitions.ts
+
+// Movement directions enum
+enum MovementKey {
+  NORTH = "NORTH",
+  SOUTH = "SOUTH",
+  EAST = "EAST",
+  WEST = "WEST"
+}
+
+// Terrain types enum
+enum GroundMaterial {
+  MEADOW = "MEADOW",
+  STONE = "STONE",
+  LAKE = "LAKE",
+  SAND = "SAND"
+}
+
+// Collectible types enum
+enum CollectibleKind {
+  TREASURE_CHEST = "TREASURE_CHEST",
+  MAGIC_ORB = "MAGIC_ORB",
+  ANCIENT_SCROLL = "ANCIENT_SCROLL",
+  CRYSTAL_GEM = "CRYSTAL_GEM"
+}
+
+// Using enums in the game engine
+class AdventureEngine {
+  private movementDeltas = new Map&lt;MovementKey, [number, number]&gt;([
+    [MovementKey.NORTH, [-1, 0]],
+    [MovementKey.SOUTH, [1, 0]],
+    [MovementKey.EAST, [0, 1]],
+    [MovementKey.WEST, [0, -1]]
+  ]);
+  
+  canMove(terrain: GroundMaterial): boolean {
+    return terrain === GroundMaterial.MEADOW || 
+           terrain === GroundMaterial.SAND;
+  }
+}</code></pre>
+          </div>
+
+          <div class="key-concepts">
+            <h3>🎯 Key Concepts</h3>
+            <ul>
+              <li>Enums create named constants with better type safety</li>
+              <li>String enums are more readable and easier to debug</li>
+              <li>Const enums are inlined for better performance</li>
+              <li>Literal types define exact allowed values</li>
+              <li>Union of literals: <code>"a" | "b" | "c"</code></li>
+              <li>
+                Modern TypeScript favors literal types over enums for simplicity
+              </li>
+              <li>TypeLand Adventure uses enums for game constants!</li>
+            </ul>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/enums.html"
+                  target="_blank"
+                  >TypeScript Handbook: Enums</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types"
+                  target="_blank"
+                  >TypeScript: Literal Types</a
+                >
+              </li>
+              <li>
+                <strong>See it in action:</strong>
+                <a href="../adventure.html">Play the Adventure Game</a> which
+                uses enums for movement and terrain!
+              </li>
+            </ul>
+          </div>
+
+          <a href="../intermediate.html" class="back-to-course"
+            >← Back to Intermediate Course</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

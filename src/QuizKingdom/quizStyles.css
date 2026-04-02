@@ -1,0 +1,384 @@
+/**
+ * Quiz-specific styles for the QuizKingdom page
+ * Extends the base styles.css from TypeLand
+ */
+
+/* Quiz Container Specific Overrides */
+.quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Section Visibility */
+.quiz-section {
+  display: none;
+}
+
+/* Name Entry Section */
+.name-entry {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.name-entry h2 {
+  color: #667eea;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.name-entry p {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 1.1em;
+}
+
+.name-input-group {
+  max-width: 400px;
+  margin: 0 auto 20px;
+}
+
+.name-input-group input {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1em;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+.name-input-group input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.error-message {
+  display: none;
+  color: #f5576c;
+  background: #ffebee;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin: 15px auto;
+  max-width: 400px;
+  font-size: 0.95em;
+}
+
+.start-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  font-weight: bold;
+}
+
+.start-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.start-button:active {
+  transform: translateY(0);
+}
+
+/* Quiz Question Section */
+.quiz-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 25px;
+  font-size: 1.05em;
+}
+
+.question-container {
+  margin-bottom: 30px;
+}
+
+.question-text {
+  font-size: 1.3em;
+  color: #333;
+  margin-bottom: 25px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.hint-text {
+  display: none;
+  background: #fff9c4;
+  border-left: 4px solid #fbc02d;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-size: 0.95em;
+  color: #555;
+}
+
+/* Answer Inputs */
+.answer-container {
+  margin-bottom: 30px;
+}
+
+.answer-option {
+  display: block;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: #f8f9fa;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1.05em;
+}
+
+.answer-option:hover {
+  background: #e8f0fe;
+  border-color: #667eea;
+}
+
+.answer-option input[type="radio"] {
+  margin-right: 12px;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.answer-option input[type="radio"]:checked {
+  accent-color: #667eea;
+}
+
+.answer-option:has(input[type="radio"]:checked) {
+  background: #e8f0fe;
+  border-color: #667eea;
+  font-weight: 500;
+}
+
+.text-answer {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.05em;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.text-answer:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.code-answer {
+  width: 100%;
+  padding: 15px;
+  font-size: 1em;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  resize: vertical;
+}
+
+.code-answer:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Example Code Display */
+.question-example-code {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  white-space: pre;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-size: 0.95em;
+  line-height: 1.5;
+  color: #333;
+}
+
+.question-example-code code {
+  white-space: pre;
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.nav-button {
+  padding: 12px 25px;
+  font-size: 1em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.nav-button.previous {
+  background: #e0e0e0;
+  color: #555;
+}
+
+.nav-button.previous:hover:not(:disabled) {
+  background: #d0d0d0;
+}
+
+.nav-button.next {
+  background: #667eea;
+  color: white;
+}
+
+.nav-button.next:hover:not(:disabled) {
+  background: #5568d3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.nav-button.submit {
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  color: white;
+  flex: 1;
+}
+
+.nav-button.submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.nav-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nav-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Completion Section */
+.completion-content {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.completion-content h2 {
+  color: #4caf50;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+}
+
+.completion-message {
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 1.15em;
+  line-height: 1.8;
+}
+
+.completion-message strong {
+  color: #667eea;
+}
+
+.completion-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.download-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 35px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: bold;
+}
+
+.download-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.retake-button {
+  background: #e0e0e0;
+  color: #555;
+  border: none;
+  padding: 15px 35px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: bold;
+}
+
+.retake-button:hover {
+  background: #d0d0d0;
+}
+
+/* Back to Adventure Link */
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #667eea;
+  text-decoration: none;
+  font-size: 1em;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .name-entry h2 {
+    font-size: 1.5em;
+  }
+
+  .question-text {
+    font-size: 1.1em;
+  }
+
+  .navigation-buttons {
+    flex-direction: column;
+  }
+
+  .nav-button {
+    width: 100%;
+  }
+
+  .completion-buttons {
+    flex-direction: column;
+  }
+
+  .download-button,
+  .retake-button {
+    width: 100%;
+  }
+}

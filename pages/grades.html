@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grades - TypeLand</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/navigation.css" />
+    <link rel="stylesheet" href="../styles/courses.css" />
+  </head>
+  <body>
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🏰 TypeLand</h2>
+      </div>
+      <div class="sidebar-nav">
+        <ul>
+          <li><a href="../index.html">🏠 Home</a></li>
+          <li><a href="adventure.html">🎮 Adventure Game</a></li>
+          <li><a href="quiz.html">📚 Quiz Kingdom</a></li>
+          <li><a href="grades.html" class="active">📝 Grades</a></li>
+          <li>
+            <a href="gallery.html">🖼️ Submission Gallery</a>
+          </li>
+          <li>
+            <a href="learning-log.html">🪵 Learning Log</a>
+          </li>
+          <li class="nav-section">
+            <div class="nav-section-title">Courses</div>
+          </li>
+          <li><a href="beginners.html">📗 Beginner Course</a></li>
+          <li><a href="intermediate.html">📘 Intermediate Course</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container">
+        <div class="course-header">
+          <h1>📝 Student Grades</h1>
+          <p>Assignment and quiz results with downloadable teacher feedback.</p>
+        </div>
+
+        <div class="course-content">
+          <!-- <div class="topic-intro">
+            <h2>How This Page Works</h2>
+            <p>
+              Add assignments and quizzes below as you create them. When the
+              student completes one, update the status, add the grade, and
+              attach a TXT feedback file for detailed comments.
+            </p>
+            <p>
+              Download links in the Feedback column let the student read your
+              comments for each submission.
+            </p>
+          </div> -->
+
+          <section class="grades-board" aria-label="Grades Table">
+            <div class="grades-toolbar">
+              <h2>Gradebook</h2>
+              <p>Current student: <strong>Student 1</strong></p>
+            </div>
+
+            <div class="grades-table-wrap">
+              <table class="grades-table">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Title</th>
+                    <th>Assigned</th>
+                    <th>Status</th>
+                    <th>Grade</th>
+                    <th>Feedback</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="type-badge quiz">Quiz</span></td>
+                    <td>Quiz Kingdom - Fundamentals</td>
+                    <td>2026-03-20</td>
+                    <td><span class="status-badge graded">Graded</span></td>
+                    <td><strong>62%</strong></td>
+                    <td>
+                      <a
+                        class="feedback-button"
+                        href="grades-comments/quiz-results-donovan-tong-2026-03-19-2026-GRADED.txt"
+                        download
+                        >Download Comments</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="type-badge assignment">Assignment</span>
+                    </td>
+                    <td>Arrays Assignment</td>
+                    <td>2026-03-31</td>
+                    <td><span class="status-badge graded">Graded</span></td>
+                    <td><strong>80%</strong></td>
+                    <td>
+                      <a
+                        class="feedback-button"
+                        href="grades-comments/arrays-assignment-Graded.txt"
+                        download
+                        >Download Comments</a
+                      >
+                    </td>
+                  </tr>
+                  <!-- <tr>
+                    <td>
+                      <span class="type-badge assignment">Assignment</span>
+                    </td>
+                    <td>Array and Tuple Game Challenge</td>
+                    <td>2026-03-24</td>
+                    <td>
+                      <span class="status-badge submitted">Submitted</span>
+                    </td>
+                    <td><strong>Pending</strong></td>
+                    <td>
+                      <span class="feedback-pending"
+                        >Available after grading</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="type-badge quiz">Quiz</span></td>
+                    <td>Intermediate Concepts Checkpoint</td>
+                    <td>2026-03-27</td>
+                    <td><span class="status-badge assigned">Assigned</span></td>
+                    <td><strong>-</strong></td>
+                    <td>
+                      <span class="feedback-pending">Not submitted yet</span>
+                    </td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- <div class="topic-intro" style="margin-top: 30px">
+            <h2>Managing Updates</h2>
+            <p>
+              To add a new graded item: duplicate a table row, set status to
+              <strong>Graded</strong>, enter the score, and link a TXT file from
+              <strong>pages/grades-comments</strong>.
+            </p>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <script src="../styles/navigation.js"></script>
+  </body>
+</html>
