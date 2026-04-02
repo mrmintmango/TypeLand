@@ -10,7 +10,8 @@ import {
   QuizSession,
   ValidationResult,
 } from "./quizDefinitions.js";
-import { quizQuestions } from "./quizQuestions.js";
+//import { quizQuestions } from "./firstQuizQuestions.js";
+import { beginnerQuiz1Questions } from "./beginnerQuiz1Questions.js";
 
 export class QuizEngine {
   private session: QuizSession | null = null;
@@ -28,7 +29,7 @@ export class QuizEngine {
    * TypeScript Learning Quiz - Variables, Types, Functions, Classes & Interfaces
    */
   private initializeQuestions(): void {
-    this.questions = [...quizQuestions];
+    this.questions = [...beginnerQuiz1Questions];
   }
 
   /**
