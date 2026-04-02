@@ -1,0 +1,139 @@
+🤴 ROYALS AND ROBBERS 🥷
+================================
+
+📝 Your Task:
+Implement a series of interfaces and classes to fill TypeLand Castle with the royal family
+and a band of robbers trying to overtake the land.
+
+This assignment focuses on:
+- Creating interfaces to define object shapes
+- Extending interfaces to create hierarchies
+- Implementing optional and readonly properties
+- Creating objects that follow interface contracts
+- Adding methods to interfaces
+
+✅ What You Need to Do:
+
+PART 1: BASE INTERFACES (Create the foundation)
+------------------------------------------------
+TODO 1: Create a base "Person" interface with these properties:
+   - name: string
+   - age: number
+   - introduce: method that returns a string
+
+TODO 2: Create a "Royal" interface that EXTENDS Person and adds:
+   - title: string (e.g., "King", "Queen", "Prince")
+   - readonly kingdom: string (cannot be changed after creation)
+   - wealth: number
+   - decree: method that takes a message string and returns a string
+
+TODO 3: Create a "Criminal" interface that EXTENDS Person and adds:
+   - alias: string (their criminal nickname)
+   - crimesCommitted: number
+   - isWanted: boolean
+   - steal: method that takes a target string and returns a string
+
+PART 2: THE ROYAL FAMILY (Create royal characters)
+---------------------------------------------------
+TODO 4: Create a King object that implements the Royal interface:
+   - name: "King Theodore"
+   - age: 52
+   - title: "King"
+   - kingdom: "TypeLand"
+   - wealth: 1000000
+   - Implement the introduce() method
+   - Implement the decree() method
+
+TODO 5: Create a Queen object that implements the Royal interface:
+   - name: "Queen Isabella"
+   - age: 48
+   - title: "Queen"
+   - kingdom: "TypeLand"
+   - wealth: 950000
+   - Implement the introduce() and decree() methods
+
+TODO 6: Create a Prince object that implements the Royal interface:
+   - name: "Prince Alexander"
+   - age: 22
+   - title: "Prince"
+   - kingdom: "TypeLand"
+   - wealth: 500000
+   - Implement the introduce() and decree() methods
+
+TODO 7: Create a Princess object that implements the Royal interface:
+   - name: "Princess Elena"
+   - age: 19
+   - title: "Princess"
+   - kingdom: "TypeLand"
+   - wealth: 480000
+   - Implement the introduce() and decree() methods
+
+TODO 8: Create an array called "royalFamily" containing all four royals
+
+PART 3: THE ROBBER BAND (Create criminal characters)
+-----------------------------------------------------
+TODO 9: Create a RobberLeader object that implements the Criminal interface:
+   - name: "Marcus Shadowblade"
+   - age: 35
+   - alias: "The Shadow King"
+   - crimesCommitted: 47
+   - isWanted: true
+   - Implement the introduce() and steal() methods
+
+TODO 10: Create a Thief object that implements the Criminal interface:
+   - name: "Lily Quickfingers"
+   - age: 28
+   - alias: "The Silent Fox"
+   - crimesCommitted: 31
+   - isWanted: true
+   - Implement the introduce() and steal() methods
+
+TODO 11: Create a Bandit object that implements the Criminal interface:
+   - name: "Cole Ironfist"
+   - age: 42
+   - alias: "The Iron Bandit"
+   - crimesCommitted: 53
+   - isWanted: true
+   - Implement the introduce() and steal() methods
+
+TODO 12: Create an array called "robberBand" containing all three criminals
+
+PART 4: UTILITY FUNCTIONS (Helper functions)
+---------------------------------------------
+TODO 13: Create a function "calculateTotalWealth" that:
+   - Takes an array of Royal objects
+   - Returns the total combined wealth as a number
+
+TODO 14: Create a function "getMostWantedCriminal" that:
+   - Takes an array of Criminal objects
+   - Returns the criminal with the most crimes committed
+
+TODO 15: Create a function "simulateHeist" that:
+   - Takes a Criminal and a Royal
+   - Returns a string describing the heist attempt
+   - Example: "The Shadow King attempted to steal from King Theodore!"
+
+🎯 Expected Output:
+When your code is complete and compiled, the Assignment2.html page will display:
+- A royal family tree with all members
+- A wanted poster for each robber
+- The total kingdom wealth
+- The most wanted criminal
+- An interactive heist simulator
+
+💡 Tips:
+- Make sure your introduce() methods return creative, character-specific messages
+- The decree() method should return the royal's proclamation
+- The steal() method should return a theft description
+- Use proper TypeScript types for all parameters and return values
+- Remember that "readonly" properties cannot be reassigned after creation
+
+🚀 To Test Your Work:
+1. Complete all TODOs in Assignment2.ts
+2. Run: npm run build
+3. Open Assignment2.html in your browser
+4. Check that all characters display correctly
+
+Good luck, brave coder! 🏰⚔️
+
+
