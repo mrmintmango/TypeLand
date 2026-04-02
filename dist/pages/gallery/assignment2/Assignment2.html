@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Royals and Robbers - Assignment 2</title>
+    <link rel="stylesheet" href="../../../styles/main.css" />
+    <link rel="stylesheet" href="../../../styles/navigation.css" />
+    <style>
+      body {
+        background: linear-gradient(
+          135deg,
+          #1e3c72 0%,
+          #2a5298 50%,
+          #7e22ce 100%
+        );
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .castle-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.98);
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+        border-bottom: 4px solid #7e22ce;
+      }
+
+      .header h1 {
+        font-size: 3em;
+        background: linear-gradient(135deg, #1e3c72, #7e22ce);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0 0 10px 0;
+      }
+
+      .header p {
+        color: #666;
+        font-size: 1.1em;
+      }
+
+      .section {
+        margin: 40px 0;
+      }
+
+      .section-title {
+        font-size: 2em;
+        color: #1e3c72;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      /* Royal Family Styles */
+      .royal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+      }
+
+      .royal-card {
+        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+        border: 3px solid #d4af37;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .royal-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5);
+      }
+
+      .royal-card h3 {
+        color: #1e3c72;
+        font-size: 1.5em;
+        margin: 0 0 10px 0;
+      }
+
+      .royal-badge {
+        display: inline-block;
+        background: #1e3c72;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.85em;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      .royal-info {
+        margin: 10px 0;
+        color: #2c3e50;
+      }
+
+      .royal-quote {
+        margin-top: 15px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 8px;
+        font-style: italic;
+        color: #1e3c72;
+        border-left: 4px solid #1e3c72;
+      }
+
+      /* Robber Styles */
+      .robber-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+      }
+
+      .wanted-poster {
+        background: #2c1810;
+        border: 5px solid #4a2c1a;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        color: #f5e6d3;
+        transition: transform 0.3s;
+        position: relative;
+      }
+
+      .wanted-poster:hover {
+        transform: rotate(-2deg) scale(1.02);
+      }
+
+      .wanted-header {
+        text-align: center;
+        background: #8b0000;
+        color: white;
+        padding: 10px;
+        margin: -25px -25px 20px -25px;
+        font-size: 1.5em;
+        font-weight: 900;
+        letter-spacing: 2px;
+        border-radius: 5px 5px 0 0;
+      }
+
+      .wanted-poster h3 {
+        color: #ff6b6b;
+        text-align: center;
+        font-size: 1.4em;
+        margin: 10px 0;
+      }
+
+      .alias {
+        text-align: center;
+        color: #ffd700;
+        font-style: italic;
+        font-size: 1.1em;
+        margin-bottom: 15px;
+      }
+
+      .crime-info {
+        margin: 8px 0;
+        padding: 5px 0;
+        border-bottom: 1px dashed #4a2c1a;
+      }
+
+      .wanted-status {
+        background: #8b0000;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        margin: 15px -25px -25px -25px;
+        font-weight: 700;
+        font-size: 1.1em;
+        border-radius: 0 0 5px 5px;
+      }
+
+      .robber-quote {
+        margin-top: 15px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        font-style: italic;
+        font-size: 0.95em;
+      }
+
+      /* Stats Box */
+      .stats-box {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+      }
+
+      .stat-item {
+        margin: 20px 0;
+      }
+
+      .stat-label {
+        font-size: 1.1em;
+        color: #1e3c72;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .stat-value {
+        font-size: 2em;
+        color: white;
+        font-weight: 900;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Heist Simulator */
+      .heist-simulator {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+      }
+
+      .heist-simulator h2 {
+        color: white;
+        margin-top: 0;
+        font-size: 2em;
+      }
+
+      .heist-controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr auto;
+        gap: 15px;
+        margin: 20px 0;
+        align-items: end;
+      }
+
+      .heist-controls select {
+        padding: 12px;
+        border: 3px solid white;
+        border-radius: 8px;
+        font-size: 1em;
+        background: white;
+        color: #333;
+        font-weight: 600;
+      }
+
+      .heist-controls button {
+        padding: 12px 30px;
+        background: #2c1810;
+        color: #ffd700;
+        border: 3px solid #ffd700;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .heist-controls button:hover {
+        background: #ffd700;
+        color: #2c1810;
+        transform: scale(1.05);
+      }
+
+      .heist-result {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+        font-size: 1.2em;
+        color: #2c1810;
+        font-weight: 600;
+        text-align: center;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Error Styles */
+      .error-message {
+        background: #fff3cd;
+        border: 3px solid #ffc107;
+        color: #856404;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 30px 0;
+        text-align: center;
+      }
+
+      .error-message h3 {
+        margin-top: 0;
+        color: #856404;
+        font-size: 1.8em;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 15px 30px;
+        background: #f0f0f0;
+        color: #333;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .back-link:hover {
+        background: #e0e0e0;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        .castle-container {
+          padding: 20px;
+          margin: 10px;
+        }
+
+        .header h1 {
+          font-size: 2em;
+        }
+
+        .royal-grid,
+        .robber-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .heist-controls {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="castle-container">
+      <div class="header">
+        <h1>🤴 Royals and Robbers 🥷</h1>
+        <p>Assignment 2: Objects & Interfaces</p>
+      </div>
+
+      <!-- Royal Family Section -->
+      <div class="section">
+        <h2 class="section-title">
+          <span>👑</span>
+          <span>The Royal Family of TypeLand</span>
+        </h2>
+        <div id="royalGrid" class="royal-grid">
+          <!-- Royal cards will be inserted here -->
+        </div>
+      </div>
+
+      <!-- Kingdom Stats -->
+      <div class="stats-box">
+        <div class="stat-item">
+          <div class="stat-label">💰 Total Kingdom Wealth</div>
+          <div class="stat-value" id="totalWealth">$0</div>
+        </div>
+      </div>
+
+      <!-- Robber Band Section -->
+      <div class="section">
+        <h2 class="section-title">
+          <span>🥷</span>
+          <span>WANTED: The Robber Band</span>
+        </h2>
+        <div id="robberGrid" class="robber-grid">
+          <!-- Wanted posters will be inserted here -->
+        </div>
+      </div>
+
+      <!-- Most Wanted -->
+      <div
+        class="stats-box"
+        style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)"
+      >
+        <div class="stat-item">
+          <div class="stat-label" style="color: white">
+            ⚠️ Most Wanted Criminal
+          </div>
+          <div class="stat-value" id="mostWanted">Unknown</div>
+          <div
+            style="color: white; margin-top: 10px; font-size: 1.1em"
+            id="mostWantedCrimes"
+          >
+            Crimes: 0
+          </div>
+        </div>
+      </div>
+
+      <!-- Heist Simulator -->
+      <div class="heist-simulator">
+        <h2>⚔️ Heist Simulator</h2>
+        <p style="color: white; font-size: 1.1em">
+          Select a criminal and a royal target to simulate a daring heist!
+        </p>
+        <div class="heist-controls">
+          <div>
+            <label
+              style="
+                color: white;
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 600;
+              "
+            >
+              Choose Criminal:
+            </label>
+            <select id="criminalSelect">
+              <option value="">-- Select Criminal --</option>
+            </select>
+          </div>
+          <div>
+            <label
+              style="
+                color: white;
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 600;
+              "
+            >
+              Choose Target:
+            </label>
+            <select id="royalSelect">
+              <option value="">-- Select Royal --</option>
+            </select>
+          </div>
+          <button onclick="runHeist()">Execute Heist!</button>
+        </div>
+        <div class="heist-result" id="heistResult">
+          Select a criminal and target, then click "Execute Heist!"
+        </div>
+      </div>
+
+      <div style="text-align: center">
+        <a href="../AssignmentView.html?assignment=2" class="back-link">
+          ← Back to Assignment View
+        </a>
+      </div>
+    </div>
+
+    <script type="module">
+      let studentCode = null;
+
+      try {
+        studentCode = await import("./Assignment2.js");
+        initializePage();
+      } catch (error) {
+        console.error("Error loading student code:", error);
+        showError();
+      }
+
+      function initializePage() {
+        displayRoyalFamily();
+        displayRobberBand();
+        calculateAndDisplayWealth();
+        displayMostWanted();
+        populateSelectors();
+      }
+
+      function displayRoyalFamily() {
+        const grid = document.getElementById("royalGrid");
+
+        if (
+          !studentCode.royalFamily ||
+          !Array.isArray(studentCode.royalFamily)
+        ) {
+          grid.innerHTML =
+            '<div class="error-message"><p>Royal family array not found or incomplete.</p></div>';
+          return;
+        }
+
+        if (studentCode.royalFamily.length === 0) {
+          grid.innerHTML =
+            '<div class="error-message"><p>The royal family is empty. Add the King, Queen, Prince, and Princess!</p></div>';
+          return;
+        }
+
+        grid.innerHTML = "";
+        studentCode.royalFamily.forEach((royal) => {
+          const card = document.createElement("div");
+          card.className = "royal-card";
+
+          const introduction = royal.introduce
+            ? royal.introduce()
+            : "No introduction available";
+          const sampleDecree = royal.decree
+            ? royal.decree("Peace to all of TypeLand!")
+            : "No decree available";
+
+          card.innerHTML = `
+            <h3>${royal.name || "Unknown Royal"}</h3>
+            <div class="royal-badge">${royal.title || "Noble"}</div>
+            <div class="royal-info">👤 Age: ${royal.age || "Unknown"}</div>
+            <div class="royal-info">🏰 Kingdom: ${royal.kingdom || "Unknown"}</div>
+            <div class="royal-info">💰 Wealth: $${(royal.wealth || 0).toLocaleString()}</div>
+            <div class="royal-quote">
+              "${introduction}"
+            </div>
+            <div class="royal-quote" style="margin-top: 10px; border-left-color: #7e22ce;">
+              <strong>Decree:</strong> "${sampleDecree}"
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      }
+
+      function displayRobberBand() {
+        const grid = document.getElementById("robberGrid");
+
+        if (!studentCode.robberBand || !Array.isArray(studentCode.robberBand)) {
+          grid.innerHTML =
+            '<div class="error-message"><p>Robber band array not found or incomplete.</p></div>';
+          return;
+        }
+
+        if (studentCode.robberBand.length === 0) {
+          grid.innerHTML =
+            '<div class="error-message"><p>The robber band is empty. Add the criminals!</p></div>';
+          return;
+        }
+
+        grid.innerHTML = "";
+        studentCode.robberBand.forEach((criminal) => {
+          const poster = document.createElement("div");
+          poster.className = "wanted-poster";
+
+          const introduction = criminal.introduce
+            ? criminal.introduce()
+            : "No introduction available";
+          const stealExample = criminal.steal
+            ? criminal.steal("the royal treasury")
+            : "No theft description available";
+
+          poster.innerHTML = `
+            <div class="wanted-header">⚠️ WANTED ⚠️</div>
+            <h3>${criminal.name || "Unknown Criminal"}</h3>
+            <div class="alias">"${criminal.alias || "No Alias"}"</div>
+            <div class="crime-info">👤 Age: ${criminal.age || "Unknown"}</div>
+            <div class="crime-info">🔪 Crimes Committed: ${criminal.crimesCommitted || 0}</div>
+            <div class="crime-info">⚖️ Wanted Status: ${criminal.isWanted ? "YES" : "NO"}</div>
+            <div class="robber-quote">
+              "${introduction}"
+            </div>
+            <div class="robber-quote" style="margin-top: 10px;">
+              <strong>Known for:</strong> "${stealExample}"
+            </div>
+            <div class="wanted-status">
+              ${criminal.isWanted ? "🚨 WANTED DEAD OR ALIVE 🚨" : "Currently Free"}
+            </div>
+          `;
+          grid.appendChild(poster);
+        });
+      }
+
+      function calculateAndDisplayWealth() {
+        const wealthElement = document.getElementById("totalWealth");
+
+        if (
+          !studentCode.calculateTotalWealth ||
+          typeof studentCode.calculateTotalWealth !== "function"
+        ) {
+          wealthElement.textContent = "Function not implemented";
+          return;
+        }
+
+        if (!studentCode.royalFamily || studentCode.royalFamily.length === 0) {
+          wealthElement.textContent = "$0";
+          return;
+        }
+
+        const total = studentCode.calculateTotalWealth(studentCode.royalFamily);
+        wealthElement.textContent = `$${total.toLocaleString()}`;
+      }
+
+      function displayMostWanted() {
+        const nameElement = document.getElementById("mostWanted");
+        const crimesElement = document.getElementById("mostWantedCrimes");
+
+        if (
+          !studentCode.getMostWantedCriminal ||
+          typeof studentCode.getMostWantedCriminal !== "function"
+        ) {
+          nameElement.textContent = "Function not implemented";
+          crimesElement.textContent = "";
+          return;
+        }
+
+        if (!studentCode.robberBand || studentCode.robberBand.length === 0) {
+          nameElement.textContent = "No criminals found";
+          crimesElement.textContent = "";
+          return;
+        }
+
+        const mostWanted = studentCode.getMostWantedCriminal(
+          studentCode.robberBand,
+        );
+
+        if (mostWanted) {
+          nameElement.textContent = `${mostWanted.alias || mostWanted.name}`;
+          crimesElement.textContent = `Crimes: ${mostWanted.crimesCommitted || 0}`;
+        } else {
+          nameElement.textContent = "No data available";
+          crimesElement.textContent = "";
+        }
+      }
+
+      function populateSelectors() {
+        const criminalSelect = document.getElementById("criminalSelect");
+        const royalSelect = document.getElementById("royalSelect");
+
+        if (studentCode.robberBand && Array.isArray(studentCode.robberBand)) {
+          studentCode.robberBand.forEach((criminal, index) => {
+            const option = document.createElement("option");
+            option.value = index;
+            option.textContent =
+              criminal.alias || criminal.name || "Unknown Criminal";
+            criminalSelect.appendChild(option);
+          });
+        }
+
+        if (studentCode.royalFamily && Array.isArray(studentCode.royalFamily)) {
+          studentCode.royalFamily.forEach((royal, index) => {
+            const option = document.createElement("option");
+            option.value = index;
+            option.textContent =
+              `${royal.title || ""} ${royal.name || "Unknown"}`.trim();
+            royalSelect.appendChild(option);
+          });
+        }
+      }
+
+      window.runHeist = function () {
+        const resultElement = document.getElementById("heistResult");
+        const criminalIndex = document.getElementById("criminalSelect").value;
+        const royalIndex = document.getElementById("royalSelect").value;
+
+        if (criminalIndex === "" || royalIndex === "") {
+          resultElement.textContent =
+            "⚠️ Please select both a criminal and a target!";
+          return;
+        }
+
+        if (
+          !studentCode.simulateHeist ||
+          typeof studentCode.simulateHeist !== "function"
+        ) {
+          resultElement.textContent =
+            "❌ simulateHeist function not implemented yet!";
+          return;
+        }
+
+        const criminal = studentCode.robberBand[parseInt(criminalIndex)];
+        const royal = studentCode.royalFamily[parseInt(royalIndex)];
+
+        const result = studentCode.simulateHeist(criminal, royal);
+        resultElement.textContent = result || "The heist occurred...";
+      };
+
+      function showError() {
+        document.body.innerHTML = `
+          <div class="castle-container">
+            <div class="error-message">
+              <h3>⚠️ Assignment Not Compiled Yet</h3>
+              <p>To see your Royals and Robbers in action, you need to:</p>
+              <ol style="text-align: left; display: inline-block; font-size: 1.1em;">
+                <li>Complete all TODOs in <strong>Assignment2.ts</strong></li>
+                <li>Run <code>npm run build</code> in your terminal</li>
+                <li>Refresh this page</li>
+              </ol>
+              <p style="margin-top: 20px;">
+                <strong>📖 Instructions:</strong> See Assignment2_Instructions.txt for full details!
+              </p>
+              <p style="margin-top: 20px;">
+                <a href="../AssignmentView.html?assignment=2" class="back-link">
+                  ← Back to Assignment View
+                </a>
+              </p>
+            </div>
+          </div>
+        `;
+      }
+    </script>
+  </body>
+</html>

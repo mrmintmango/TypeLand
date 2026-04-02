@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cd dist && python3 -m http.server 4200",
     "build": "tsc && npm run build-assignments && npm run copy-files",
-    "build-assignments": "tsc pages/gallery/*.ts --outDir pages/gallery --target ES2020 --module ES2020 --lib ES2020,DOM --esModuleInterop --skipLibCheck",
+    "build-assignments": "tsc pages/gallery/**/*.ts --outDir pages/gallery --target ES2020 --module ES2020 --lib ES2020,DOM --esModuleInterop --skipLibCheck",
     "copy-files": "cp index.html dist/ && cp -r pages dist/ && cp -r styles dist/ && cp src/QuizKingdom/quizStyles.css dist/QuizKingdom/",
     "watch": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
