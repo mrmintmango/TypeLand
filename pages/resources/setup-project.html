@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Setup TypeScript Project - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <!-- Navigation will be loaded here automatically -->
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../resources.html" class="back-to-course"
+            >← Back to Resources</a
+          >
+
+          <h1>⚙️ Standalone TypeScript Project Setup</h1>
+
+          <div class="topic-intro">
+            <p>
+              For a standalone TypeScript project (one that will simply be
+              executed from the command-line), you can simplify the project
+              setup steps and run your TypeScript code using
+              <code>ts-node</code> (instead of <code>node</code>) without
+              transpiling your code to JavaScript.
+            </p>
+          </div>
+
+          <h2>Prerequisites</h2>
+
+          <div class="key-concepts">
+            <ul>
+              <li>
+                <strong>npm</strong> is already installed on your computer
+              </li>
+            </ul>
+          </div>
+
+          <h2>Setup Steps</h2>
+
+          <p>Follow these steps to set up a new TypeScript project:</p>
+
+          <ol>
+            <li>Create a directory for your project</li>
+            <li>CD into the new directory</li>
+            <li>
+              Run <code>npm init -y</code> to initialize a new Node.js project
+            </li>
+            <li>
+              Run <code>npm install typescript --save-dev</code> to install
+              TypeScript
+            </li>
+            <li>
+              Run <code>npm install @types/node --save</code> to install Node
+              type definitions
+            </li>
+            <li>
+              Run <code>npm install ts-node --save-dev</code> to install ts-node
+            </li>
+            <li>Create an <code>src</code> directory</li>
+            <li>
+              Create a TypeScript file in your <code>src</code> directory and
+              write your TypeScript code
+            </li>
+            <li>
+              Run <code>npx tsc --init</code> to create a tsconfig.json file
+            </li>
+            <li>
+              Edit <code>compilerOptions</code> in <code>tsconfig.json</code> to
+              contain the following settings:
+            </li>
+          </ol>
+
+          <div class="code-example">
+            <h4>Example: tsconfig.json Configuration</h4>
+            <pre><code>{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "sourceMap": true,
+    "outDir": "dist"
+  }
+}</code></pre>
+          </div>
+
+          <ol start="11">
+            <li>Add other <code>compilerOptions</code> settings as desired</li>
+          </ol>
+
+          <div class="key-concepts">
+            <h3>💡 Note</h3>
+            <p>
+              If you do not include these configuration steps, ts-node will use
+              reasonable defaults when running your code.
+            </p>
+          </div>
+
+          <h2>Running Your TypeScript Code</h2>
+
+          <p>
+            Once your project is set up, you can run your TypeScript files
+            directly using ts-node:
+          </p>
+
+          <div class="code-example">
+            <h4>Command to Run TypeScript Files</h4>
+            <pre><code>npx ts-node src/&lt;Your Typescript File.ts&gt;</code></pre>
+          </div>
+
+          <h2>Debugging in VS Code</h2>
+
+          <p>
+            You can set up a standalone TypeScript program for debugging in VS
+            Code by following these steps:
+          </p>
+
+          <ol>
+            <li>Select <strong>Run → Start Debugging</strong></li>
+            <li>
+              Under "Run and Debug", click
+              <strong>"create a launch.json file"</strong>
+            </li>
+            <li>
+              Replace the contents of the <code>launch.json</code> file with the
+              following:
+            </li>
+          </ol>
+
+          <div class="code-example">
+            <h4>Example: launch.json Configuration</h4>
+            <pre><code>{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug &lt;Name of Program&gt;",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "args": ["${workspaceFolder}/src/&lt;File to Execute&gt;.ts"],
+      "sourceMaps": true
+    }
+  ]
+}</code></pre>
+          </div>
+
+          <div class="key-concepts">
+            <h3>💡 Configuration Notes</h3>
+            <ul>
+              <li>
+                Change the <code>name</code> attribute value to a name that
+                describes your program
+              </li>
+              <li>
+                Change <code>&lt;File to Execute&gt;</code> inside the
+                <code>args</code> attribute value with the name of the file you
+                want to debug
+              </li>
+              <li>
+                You can have multiple configurations inside the
+                <code>configurations</code> attribute array value. This is
+                useful if your project contains multiple TypeScript programs.
+              </li>
+            </ul>
+          </div>
+
+          <h2>Quick Reference</h2>
+
+          <div class="code-example">
+            <h4>All Setup Commands in Order</h4>
+            <pre><code># Create and navigate to project directory
+mkdir my-typescript-project
+cd my-typescript-project
+
+# Initialize npm and install dependencies
+npm init -y
+npm install typescript --save-dev
+npm install @types/node --save
+npm install ts-node --save-dev
+
+# Create source directory and initialize TypeScript
+mkdir src
+npx tsc --init
+
+# Run a TypeScript file
+npx ts-node src/index.ts</code></pre>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html"
+                  target="_blank"
+                  >TypeScript Handbook: tsconfig.json</a
+                >
+              </li>
+              <li>
+                <a href="https://typestrong.org/ts-node/" target="_blank"
+                  >ts-node Documentation</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://code.visualstudio.com/docs/typescript/typescript-debugging"
+                  target="_blank"
+                  >VS Code: Debugging TypeScript</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/@types/node"
+                  target="_blank"
+                  >@types/node on npm</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../resources.html" class="back-to-course"
+            >← Back to Resources</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

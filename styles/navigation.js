@@ -1,6 +1,31 @@
 // Navigation sidebar functionality
 
-document.addEventListener("DOMContentLoaded", () => {
+// Load navigation component
+async function loadNavigation() {
+  const body = document.body;
+  const basePath = body.getAttribute("data-nav-base") || "../";
+
+  try {
+    // Fetch the navigation template
+    const response = await fetch(`${basePath}styles/navigation-template.html`);
+    const html = await response.text();
+
+    // Replace {base} placeholders with the base path
+    const processedHtml = html.replace(/{base}/g, basePath);
+
+    // Insert navigation at the beginning of body
+    body.insertAdjacentHTML("afterbegin", processedHtml);
+  } catch (error) {
+    console.error("Failed to load navigation:", error);
+  }
+}
+
+// Initialize navigation on page load
+document.addEventListener("DOMContentLoaded", async () => {
+  // Load the navigation component first
+  await loadNavigation();
+
+  // Then initialize navigation functionality
   const menuToggle = document.getElementById("menuToggle");
   const sidebar = document.getElementById("sidebar");
   const sidebarOverlay = document.getElementById("sidebarOverlay");
