@@ -492,7 +492,7 @@
           card.className = "royal-card";
 
           const introduction = royal.introduce
-            ? royal.introduce()
+            ? royal.introduce(royal.name)
             : "No introduction available";
           const sampleDecree = royal.decree
             ? royal.decree("Peace to all of TypeLand!")
