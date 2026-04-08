@@ -314,7 +314,9 @@
           }
 
           const archiveIndex = await response.json();
-          return new Set(Array.isArray(archiveIndex.weeks) ? archiveIndex.weeks : []);
+          return new Set(
+            Array.isArray(archiveIndex.weeks) ? archiveIndex.weeks : [],
+          );
         } catch (error) {
           console.warn("Could not load archive index:", error);
           return new Set();
