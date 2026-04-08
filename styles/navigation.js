@@ -1,13 +1,34 @@
 // Navigation sidebar functionality
 
+function getNavigationTemplateUrl() {
+  const script = document.querySelector('script[src*="styles/navigation.js"]');
+
+  if (script instanceof HTMLScriptElement && script.src) {
+    return new URL("navigation-template.html", script.src).toString();
+  }
+
+  const body = document.body;
+  const basePath = body.getAttribute("data-nav-base") || "../";
+  return new URL(
+    `${basePath}styles/navigation-template.html`,
+    window.location.href,
+  ).toString();
+}
+
 // Load navigation component
 async function loadNavigation() {
   const body = document.body;
   const basePath = body.getAttribute("data-nav-base") || "../";
+  const templateUrl = getNavigationTemplateUrl();
 
   try {
     // Fetch the navigation template
-    const response = await fetch(`${basePath}styles/navigation-template.html`);
+    const response = await fetch(templateUrl);
+
+    if (!response.ok) {
+      throw new Error(`Navigation template request failed: ${response.status}`);
+    }
+
     const html = await response.text();
 
     // Replace {base} placeholders with the base path
@@ -16,7 +37,7 @@ async function loadNavigation() {
     // Insert navigation at the beginning of body
     body.insertAdjacentHTML("afterbegin", processedHtml);
   } catch (error) {
-    console.error("Failed to load navigation:", error);
+    console.error("Failed to load navigation:", error, templateUrl);
   }
 }
 
