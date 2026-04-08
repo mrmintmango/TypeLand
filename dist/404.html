@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found - TypeLand</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/navigation.css" />
+    <style>
+      .not-found-shell {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+
+      .not-found-card {
+        max-width: 720px;
+        width: 100%;
+        background: white;
+        border-radius: 18px;
+        padding: 40px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+        text-align: center;
+      }
+
+      .not-found-code {
+        font-size: 5rem;
+        line-height: 1;
+        margin: 0 0 16px;
+        color: #667eea;
+      }
+
+      .not-found-card h1 {
+        margin: 0 0 16px;
+        color: #2d3748;
+      }
+
+      .not-found-card p {
+        margin: 0 auto 24px;
+        max-width: 56ch;
+        color: #4a5568;
+        line-height: 1.7;
+      }
+
+      .not-found-actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .not-found-link {
+        display: inline-block;
+        padding: 12px 22px;
+        border-radius: 10px;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .not-found-link.primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .not-found-link.secondary {
+        background: #edf2f7;
+        color: #2d3748;
+      }
+
+      .not-found-note {
+        margin-top: 24px;
+        padding-top: 20px;
+        border-top: 1px solid #e2e8f0;
+        font-size: 0.95rem;
+      }
+    </style>
+  </head>
+  <body data-nav-base="">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="not-found-shell">
+        <div class="not-found-card">
+          <div class="not-found-code">404</div>
+          <h1>That page does not exist in TypeLand.</h1>
+          <p>
+            The link may be outdated, the page may have been moved, or the URL may
+            be incomplete. Use one of the links below to get back to a valid page.
+          </p>
+          <div class="not-found-actions">
+            <a class="not-found-link primary" href="index.html">Go Home</a>
+            <a class="not-found-link secondary" href="pages/learning-log.html">
+              Open Learning Log
+            </a>
+          </div>
+          <p class="not-found-note">
+            If you reached this page from a bookmark or shared link, verify the
+            path starts with <strong>/TypeLand/</strong> on GitHub Pages.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="styles/navigation.js"></script>
+  </body>
+</html>

@@ -297,8 +297,29 @@
         { name: "FRIDAY", icon: "📅" },
       ];
 
+      const ARCHIVE_INDEX_PATH = "./learning-logs/archive-index.json";
+
       let currentWeek = null;
       let logs = {}; // Store logs in memory
+      let archivedWeekKeys = new Set();
+
+      async function loadArchiveIndex() {
+        try {
+          const response = await fetch(ARCHIVE_INDEX_PATH, {
+            cache: "no-cache",
+          });
+
+          if (!response.ok) {
+            return new Set();
+          }
+
+          const archiveIndex = await response.json();
+          return new Set(Array.isArray(archiveIndex.weeks) ? archiveIndex.weeks : []);
+        } catch (error) {
+          console.warn("Could not load archive index:", error);
+          return new Set();
+        }
+      }
 
       function normalizeLineEndings(text) {
         return text.replace(/\r\n/g, "\n").trim();
@@ -324,6 +345,10 @@
       }
 
       async function loadArchivedWeek(weekKey) {
+        if (!archivedWeekKeys.has(weekKey)) {
+          return null;
+        }
+
         const response = await fetch(`./learning-logs/${weekKey}_Log.txt`, {
           cache: "no-cache",
         });
@@ -548,8 +573,13 @@
       });
 
       // Initialize
-      initWeekSelector();
-      loadWeek();
+      async function initializeLearningLog() {
+        archivedWeekKeys = await loadArchiveIndex();
+        initWeekSelector();
+        await loadWeek();
+      }
+
+      initializeLearningLog();
     </script>
   </body>
 </html>
