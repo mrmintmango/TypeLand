@@ -1,0 +1,332 @@
+======================================================================
+TYPELAND BEGINNER COURSE CAPSTONE ASSIGNMENT
+QUEST TRACKER CLI
+======================================================================
+
+OVERVIEW
+----------------------------------------------------------------------
+For this end-of-course project, you will create your own standalone
+TypeScript project from scratch. Your program will run in the terminal
+and simulate a simple quest tracking system for a fantasy world.
+
+Your goal is to show that you understand the beginner TypeScript topics
+from this course by building a complete project that uses:
+
+- variables and basic types
+- arrays and tuples
+- functions and type annotations
+- objects and interfaces
+- type inference and a basic generic
+- TypeScript project setup from scratch
+
+This is not just a single file exercise. You are expected to create and
+organize a small project like a real developer.
+
+
+PROJECT TITLE
+----------------------------------------------------------------------
+TypeLand Quest Tracker CLI
+
+
+PROJECT GOAL
+----------------------------------------------------------------------
+Build a terminal-based TypeScript application that manages a list of
+heroes, quests, rewards, and progress.
+
+Your program should demonstrate that you can:
+
+- create a TypeScript project yourself
+- define data using interfaces and object types
+- store and manipulate data in arrays
+- write multiple typed functions
+- use at least one tuple
+- use at least one generic in a meaningful way
+- print organized output to the terminal
+
+
+WHAT YOUR PROGRAM SHOULD DO
+----------------------------------------------------------------------
+Your Quest Tracker should model a small fantasy world where heroes can
+accept and complete quests.
+
+At a minimum, your program must allow you to do all of the following:
+
+1. Store a list of heroes.
+2. Store a list of quests.
+3. Store reward information for quests.
+4. Mark quests as complete or incomplete.
+5. Show summaries of quests and hero progress.
+6. Calculate totals such as gold earned or quests completed.
+7. Display your results clearly in the terminal.
+
+You may design the theme, character names, quest titles, and world style
+however you want, as long as the program stays appropriate and complete.
+
+
+SETUP REQUIREMENTS
+----------------------------------------------------------------------
+You must create the project from scratch yourself.
+
+Your setup must include:
+
+1. A new project folder.
+2. A package.json created with npm.
+3. TypeScript installed in the project.
+4. ts-node installed in the project.
+5. A tsconfig.json file.
+6. A src folder containing your TypeScript source files.
+7. A program that can be run from the terminal.
+
+Your project must run successfully using ts-node.
+
+
+STARTER FOLDER STRUCTURE
+----------------------------------------------------------------------
+You must organize your project using this structure or something very
+close to it:
+
+my-quest-tracker/
+  package.json
+  tsconfig.json
+  README.md
+  src/
+	 index.ts
+	 data.ts
+	 types.ts
+	 helpers.ts
+
+Requirements for this structure:
+
+- index.ts should be the main file that runs your program.
+- types.ts should contain your interfaces, type aliases, tuple types,
+  or generic interface definitions.
+- data.ts should contain your starting heroes, quests, rewards, or other
+  sample data.
+- helpers.ts should contain reusable functions.
+- README.md should explain how to install and run your project.
+
+You may add more files if you want, but the project must stay organized.
+
+
+REQUIRED DATA MODELS
+----------------------------------------------------------------------
+Your program must include at least these kinds of data:
+
+1. Hero data
+	Each hero should have information such as name, class or role, level,
+	health, and whether they are active.
+
+2. Quest data
+	Each quest should have information such as title, difficulty,
+	completion status, gold reward, and the hero assigned to it.
+
+3. Reward data
+	Each reward should describe what the hero earns, such as gold, item
+	name, rarity, or another useful detail.
+
+You may add more properties if they make sense.
+
+
+REQUIRED TYPESCRIPT FEATURES
+----------------------------------------------------------------------
+Your project must include all of the following:
+
+VARIABLES AND BASIC TYPES
+- Use string, number, and boolean values in meaningful ways.
+- Use both let and const correctly.
+- Avoid using any unless you have a very strong reason.
+
+ARRAYS
+- Use at least two arrays of objects.
+- Use at least three array methods from this list:
+  map, filter, find, reduce, forEach, some.
+
+TUPLES
+- Use at least one tuple type.
+- A good example would be a quest location such as [x, y] or a reward
+  pair such as [itemName, value].
+
+FUNCTIONS
+- Write at least eight functions in total.
+- Every function must use proper parameter types.
+- Most functions should also have explicit return types.
+- Include at least one arrow function.
+- Include at least one function with an optional parameter or a default
+  parameter.
+- Include at least one function that accepts a callback.
+
+OBJECTS AND INTERFACES
+- Create at least three interfaces.
+- At least one interface must include a method signature.
+- At least one interface must use an optional property.
+- At least one interface must use a readonly property.
+
+INFERENCE AND GENERICS
+- Use type inference where it makes sense.
+- Also show that you know when to write explicit types.
+- Include at least one generic function or one generic interface.
+- The generic must be meaningful, not added just to satisfy the rule.
+
+
+REQUIRED PROGRAM FEATURES
+----------------------------------------------------------------------
+Your program must include the following functionality:
+
+1. Print a title or welcome message for the Quest Tracker.
+2. Display all heroes.
+3. Display all quests.
+4. Display only completed quests.
+5. Display only incomplete quests.
+6. Assign or show which hero is connected to each quest.
+7. Mark at least one quest as completed.
+8. Calculate the total gold earned from completed quests.
+9. Identify one special result, such as:
+	- highest reward quest
+	- most experienced hero
+	- hardest incomplete quest
+10. Print a final summary of the current state of the world.
+
+Your program does not need user input from the keyboard unless you want
+to add it. It is acceptable to demonstrate the features by calling your
+functions in order from index.ts and printing the results.
+
+
+PROGRAM OUTPUT EXPECTATIONS
+----------------------------------------------------------------------
+When your program runs, it should produce organized terminal output that
+shows your features working.
+
+Your output should be easy to read. For example, it should clearly show:
+
+- heroes
+- quests
+- completed quests
+- incomplete quests
+- totals or summary statistics
+- at least one final recap section
+
+The output does not need to match a specific design, but it should look
+intentional and readable.
+
+
+PROJECT RULES
+----------------------------------------------------------------------
+You must follow these rules:
+
+1. Write the project in TypeScript.
+2. Set the project up yourself.
+3. Do not submit an empty or nearly empty project.
+4. Do not put everything in one giant file.
+5. Do not submit code that only defines data without using it.
+6. Do not submit code with major TypeScript errors.
+7. Do not copy code from AI tools, classmates, or websites.
+8. Do not include advanced concepts that you cannot explain.
+
+If you add extra features, make sure you still fully complete the core
+requirements first.
+
+
+DELIVERABLES
+----------------------------------------------------------------------
+You must submit all of the following:
+
+1. package.json
+2. tsconfig.json
+3. all TypeScript source files in src/
+4. README.md
+5. a short sample of terminal output, either as a screenshot or pasted
+	into a text file if your teacher requests it
+
+
+README REQUIREMENTS
+----------------------------------------------------------------------
+Your README.md must include:
+
+1. Project title
+2. One short paragraph explaining what the program does
+3. Setup steps
+4. Command to run the program
+5. Short list of the main features
+
+
+SUGGESTED WORK PLAN
+----------------------------------------------------------------------
+Follow this order so your project stays manageable:
+
+1. Set up the project folder, npm, TypeScript, ts-node, and tsconfig.
+2. Create your folder structure and empty files.
+3. Design your interfaces and types.
+4. Add starter data for heroes, quests, and rewards.
+5. Write helper functions.
+6. Build the main program flow in index.ts.
+7. Run the project and fix TypeScript errors.
+8. Improve output readability.
+9. Write the README.
+
+
+GRADING RUBRIC (40 POINTS)
+----------------------------------------------------------------------
+1. Project Setup and Organization - 8 points
+	- 2 points: package.json, tsconfig.json, and src/ are present
+	- 2 points: project runs successfully with ts-node
+	- 2 points: files are organized clearly across multiple source files
+	- 2 points: README is complete and usable
+
+2. Variables, Basic Types, and Type Safety - 6 points
+	- 2 points: correct use of string, number, and boolean
+	- 2 points: correct use of let and const
+	- 2 points: good type safety with little or no unnecessary any usage
+
+3. Arrays, Tuples, and Array Methods - 8 points
+	- 2 points: at least two arrays of objects are used correctly
+	- 2 points: tuple is used correctly and meaningfully
+	- 2 points: at least three array methods are used correctly
+	- 2 points: array logic supports the program features clearly
+
+4. Functions and Program Logic - 8 points
+	- 2 points: at least eight functions are included
+	- 2 points: parameters and return types are typed correctly
+	- 2 points: includes required arrow function, optional/default
+	  parameter, and callback usage
+	- 2 points: functions are reusable and logically designed
+
+5. Objects, Interfaces, and Data Modeling - 6 points
+	- 2 points: at least three interfaces are present
+	- 2 points: optional, readonly, and method signature requirements are
+	  satisfied
+	- 2 points: data model is clear and appropriate for the project
+
+6. Inference, Generics, and Overall Quality - 4 points
+	- 2 points: inference and explicit typing are both used appropriately
+	- 2 points: generic function or interface is meaningful and correct
+
+BONUS EXPECTATION
+----------------------------------------------------------------------
+There are no bonus points above 40, but strong projects usually include:
+
+- especially clean terminal output
+- thoughtful function names
+- clear separation of responsibilities across files
+- data that feels realistic and complete
+- a project that the student can confidently explain
+
+
+HOW THIS PROJECT WILL BE EVALUATED
+----------------------------------------------------------------------
+Your teacher will look for:
+
+- correctness
+- completeness
+- organization
+- effort
+- whether your code matches the beginner TypeScript topics from class
+
+Finishing every required feature correctly is more important than adding
+extra features.
+
+
+FINAL REMINDER
+----------------------------------------------------------------------
+This project is meant to show what you can do on your own with beginner
+TypeScript skills. Keep your design manageable, stay organized, and make
+sure every required topic appears in your final project.

@@ -300,6 +300,42 @@
       let currentWeek = null;
       let logs = {}; // Store logs in memory
 
+      function normalizeLineEndings(text) {
+        return text.replace(/\r\n/g, "\n").trim();
+      }
+
+      function parseArchivedLog(text) {
+        const parsedLogs = {};
+        const normalizedText = normalizeLineEndings(text);
+
+        DAYS.forEach((day, index) => {
+          const nextDay = DAYS[index + 1]?.name;
+          const sectionPattern = nextDay
+            ? new RegExp(
+                `=+\\n${day.name}\\n=+\\n([\\s\\S]*?)(?=\\n=+\\n${nextDay}\\n=+)`,
+              )
+            : new RegExp(`=+\\n${day.name}\\n=+\\n([\\s\\S]*)$`);
+
+          const match = normalizedText.match(sectionPattern);
+          parsedLogs[day.name] = match ? match[1].trim() : "";
+        });
+
+        return parsedLogs;
+      }
+
+      async function loadArchivedWeek(weekKey) {
+        const response = await fetch(`./learning-logs/${weekKey}_Log.txt`, {
+          cache: "no-cache",
+        });
+
+        if (!response.ok) {
+          return null;
+        }
+
+        const text = await response.text();
+        return parseArchivedLog(text);
+      }
+
       // Get Monday of a given date's week
       function getMonday(date) {
         const d = new Date(date);
@@ -371,31 +407,37 @@
       }
 
       // Load week data
-      function loadWeek() {
+      async function loadWeek() {
         const select = document.getElementById("weekSelect");
         const monday = new Date(select.value);
         currentWeek = monday;
 
         const weekKey = getWeekKey(monday);
         const isCurrent = isCurrentWeek(monday);
+        const isPastWeek = monday < getMonday(new Date());
 
         // Update status banner
         const status = document.getElementById("weekStatus");
         if (isCurrent) {
           status.className = "info-banner current-week";
           status.innerHTML = `<strong>✅ Current Week</strong> - You can edit and save this week's log.`;
-        } else if (monday < getMonday(new Date())) {
+        } else if (isPastWeek) {
           status.className = "info-banner past-week";
-          status.innerHTML = `<strong>📚 Past Week</strong> - This week is view-only. Download to save a copy.`;
+          status.innerHTML = `<strong>📚 Past Week</strong> - This week is view-only. Saved browser data is loaded first, then archived files from GitHub Pages if available.`;
         } else {
           status.className = "info-banner";
           status.innerHTML = `<strong>🔮 Future Week</strong> - You can prepare notes for this upcoming week.`;
         }
 
+        document.getElementById("saveBtn").disabled = !isCurrent;
+
         // Load saved data from localStorage
         const savedData = localStorage.getItem(`learningLog_${weekKey}`);
         if (savedData) {
           logs = JSON.parse(savedData);
+        } else if (isPastWeek) {
+          const archivedLogs = await loadArchivedWeek(weekKey);
+          logs = archivedLogs || {};
         } else {
           logs = {};
         }

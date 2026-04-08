@@ -1,0 +1,10 @@
+======================================================================
+ASSIGNMENT 1 GRADED
+======================================================================
+
+You did a good job with completing the actual assignment,
+but you weren't able to explain how the code worked with each other very fluently. 
+You did okay for the most part but I had to help explain some key features,
+so I'll dock a couple of points for that, but overall good job!
+
+POINTS: 18/20

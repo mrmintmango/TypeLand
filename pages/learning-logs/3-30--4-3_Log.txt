@@ -3,29 +3,26 @@ Week: 3/30/26 - 4/3/26
 ======================================
 MONDAY
 ======================================
-
-
+I took a deep dive into .map() which takes in an array and returns a new array of the same length. The values are not changed themselves, but they are transformed and returned in the new array. I also dove into how to use callback functions inside of a .map() since I was pretty confused on those. I also learned about the 3 parameters that can be passed in (value, index, array) even though we typically only use index. I did some drills to practice using .map() and callback functions.
 
 
 
 ======================================
 TUESDAY
 ======================================
-
-
+Today I learned about functions and what happens when a function is inside a function. I also learned about return and different cases of return and callback/inner functions. If nothing is returned, then the value from the function is undefined. I also learned that in nested functions there must be a return in each function in order for the value to be returned outside of each function. Return only works on one level at a time. 
 
 
 ======================================
 WEDNESDAY
 ======================================
-
-
+Today I attempted to learn about the DOM more conceptually. I still have a lot to learn/master. But I learned that the DOM represents html as objects. Also started learning about .textContent property a little bit. Still have some gaps in understanding the DOM and why we need it for javascript code, but will continue to study it tomorrow. Touched on try catch when importing but still have some gaps there as well
 
 
 ======================================
 THURSDAY
 ======================================
-
+Today I learned more about and practiced other array methods like using the .find(), .map(), .reduce(), and the difference between .find() and .some(). I am still a little confused on those but spent a good amount of time trying to hammer it down.
 
 
 
