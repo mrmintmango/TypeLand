@@ -4,7 +4,7 @@
  */
 import { QuizState, } from "./quizDefinitions.js";
 //import { quizQuestions } from "./firstQuizQuestions.js";
-import { beginnerQuiz1Questions } from "./beginnerQuiz1Questions.js";
+import { beginnerQuiz2Questions } from "./beginnerQuiz2Questions.js";
 export class QuizEngine {
     constructor() {
         this.session = null;
@@ -19,7 +19,7 @@ export class QuizEngine {
      * TypeScript Learning Quiz - Variables, Types, Functions, Classes & Interfaces
      */
     initializeQuestions() {
-        this.questions = [...beginnerQuiz1Questions];
+        this.questions = [...beginnerQuiz2Questions];
     }
     /**
      * Start a new quiz session with student name
