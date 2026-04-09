@@ -9,7 +9,10 @@ function getNavigationTemplateUrl() {
 
   const body = document.body;
   const basePath = body.getAttribute("data-nav-base") || "../";
-  return new URL(`${basePath}styles/navigation-template.html`, window.location.href).toString();
+  return new URL(
+    `${basePath}styles/navigation-template.html`,
+    window.location.href,
+  ).toString();
 }
 
 // Load navigation component
