@@ -1,0 +1,266 @@
+======================================================================
+TYPELAND QUIZ RESULTS
+======================================================================
+
+Student Name: Donovan
+Quiz Started: April 9, 2026 at 02:33:11 PM
+Quiz Completed: April 9, 2026 at 03:11:56 PM
+Duration: 38 minutes 44 seconds
+Total Questions: 20
+
+----------------------------------------------------------------------
+
+Question 1:
+What is the correct syntax for an optional property in an interface?
+
+Answer:
+propertyName?: type;
+
+Answered at: April 9, 2026 at 02:33:29 PM
+
+----------------------------------------------------------------------
+
+Question 2:
+Which keyword prevents a property from being modified after initialization?
+
+Answer:
+readonly
+
+Answered at: April 9, 2026 at 02:33:46 PM
+
+----------------------------------------------------------------------
+
+Question 3:
+What is the main difference between an interface and a type alias for defining object shapes?
+
+Answer:
+An interface defines a shape or structure for objects which helps to keep object initialization organized, whereas a type alias simulates a specific type with a different assigned name to help with readability and also organization.
+
+Answered at: April 9, 2026 at 02:37:41 PM
+
+----------------------------------------------------------------------
+
+Question 4:
+What does it mean when an interface extends another interface?
+
+Answer:
+The extended interface always implements all of the properties and methods from the initial interface, but also includes either new properties, methods, or both.
+
+Answered at: April 9, 2026 at 02:39:01 PM
+
+----------------------------------------------------------------------
+
+Question 5:
+Complete this interface definition with proper type annotations:
+
+Answer:
+interface GameCharacter {
+  name: string,
+  health: number, 
+  level: number,
+  isActive: boolean,
+  inventory: string[],
+}
+
+const player: GameCharacter = {
+  name: "Hero",
+  health: 100,
+  level: 5,
+  isActive: true,
+  inventory: ["sword", "shield"]
+};
+
+Answered at: April 9, 2026 at 02:44:11 PM
+
+----------------------------------------------------------------------
+
+Question 6:
+How do you define a method signature in an interface?
+
+Answer:
+methodName(param: type): returnType;
+
+Answered at: April 9, 2026 at 02:44:12 PM
+
+----------------------------------------------------------------------
+
+Question 7:
+What happens when you try to assign a value to a readonly property after object creation?
+
+Answer:
+You will have an error. Typescript will prevent this since a readonly property can only be assigned on definition within the object.
+
+Answered at: April 9, 2026 at 02:44:13 PM
+
+----------------------------------------------------------------------
+
+Question 8:
+Which syntax is used to extend an interface from another interface?
+
+Answer:
+interface Child extends Parent {}
+
+Answered at: April 9, 2026 at 02:44:14 PM
+
+----------------------------------------------------------------------
+
+Question 9:
+Create an interface 'Vehicle' with properties: brand (string), year (number), isElectric (optional boolean). Then create an interface 'Car' that extends Vehicle and adds 'doors' (number):
+
+Answer:
+interface Vehicle {
+  brand: string,
+  year: number,
+  isElectric?: boolean,
+}
+
+interface Car extends Vehicle {
+  doors: number, 
+}
+
+Answered at: April 9, 2026 at 02:45:03 PM
+
+----------------------------------------------------------------------
+
+Question 10:
+When should you use an interface versus a type alias in TypeScript?
+
+Answer:
+You would use an interface when you want to keep your data/objects structured in a specific way that you define. You would use a type alias when you need to create a "new" type that has a specific name that you define that is a different name for one specified type.
+
+Answered at: April 9, 2026 at 02:47:02 PM
+
+----------------------------------------------------------------------
+
+Question 11:
+What type does TypeScript infer for: let count = 42;
+
+Answer:
+number
+
+Answered at: April 9, 2026 at 02:47:13 PM
+
+----------------------------------------------------------------------
+
+Question 12:
+What is the syntax for defining a generic function parameter?
+
+Answer:
+function name<T>(param: T): T {}
+
+Answered at: April 9, 2026 at 02:47:22 PM
+
+----------------------------------------------------------------------
+
+Question 13:
+Why should function parameters always have explicit type annotations even when TypeScript has inference?
+
+Answer:
+To ensure that functions are type safe and that the function's parameters stay consistent type-wise as they are utilized.
+
+Answered at: April 9, 2026 at 02:49:36 PM
+
+----------------------------------------------------------------------
+
+Question 14:
+What problem do generics solve in TypeScript?
+
+Answer:
+They allow functions to use any type while preserving type safety and to allow typescript to do its thing even with a type that is not yet explicitly declared.
+
+Answered at: April 9, 2026 at 02:51:03 PM
+
+----------------------------------------------------------------------
+
+Question 15:
+Write a generic function 'wrapInArray' that takes a value of any type and returns an array containing that value:
+
+Answer:
+function wrapInArray<T>(value: T): T[] {
+  const arr = []
+  return arr.push(value);
+}
+
+Answered at: April 9, 2026 at 02:54:44 PM
+
+----------------------------------------------------------------------
+
+Question 16:
+Create a generic class 'DataStore<T>' with private property 'items' (array of T), and methods: 'add(item: T): void', 'getAll(): T[]', and 'findById(id: number): T | undefined'. The items should have an 'id' property:
+
+Answer:
+class DataStore<T> {
+  private items: T[],
+
+  public add(item: T):void {
+    this.items.push(item);
+  }
+
+  public getAll(): T[] {
+    return this.items;
+  } 
+
+  public findById(id: number): T | undefined {
+    const index = this.items.findBy(id);
+    return this.items[index];
+  }
+}
+
+Answered at: April 9, 2026 at 03:04:13 PM
+
+----------------------------------------------------------------------
+
+Question 17:
+Create a generic interface 'Result<T>' with properties: success (boolean), data (T), and message (string). Then create a variable of type Result<number>:
+
+Answer:
+interface Result<T> {
+  success: boolean,
+  data: T,
+  message: string,
+}
+
+const num: Result<number> = {
+  success: True,
+  data: 1300,
+  message: "Action was successful",
+}
+
+Answered at: April 9, 2026 at 03:07:01 PM
+
+----------------------------------------------------------------------
+
+Question 18:
+What is the conventional naming for generic type parameters and why?
+
+Answer:
+T because it stands for type, which can be any type when it is used.
+
+Answered at: April 9, 2026 at 03:08:09 PM
+
+----------------------------------------------------------------------
+
+Question 19:
+Write a generic function 'getLastElement' that takes an array of any type and returns the last element (or undefined if empty):
+
+Answer:
+function getLastElement<T>(arr: T[]): T | undefined {
+  const last = arr.length() - 1;
+  return arr[last];
+}
+
+Answered at: April 9, 2026 at 03:10:59 PM
+
+----------------------------------------------------------------------
+
+Question 20:
+Which built-in TypeScript types use generics?
+
+Answer:
+string, number, boolean
+
+Answered at: April 9, 2026 at 03:11:56 PM
+
+======================================================================
+END OF QUIZ RESULTS
+======================================================================
