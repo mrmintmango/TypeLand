@@ -1,0 +1,290 @@
+======================================================================
+TYPELAND QUIZ RESULTS
+======================================================================
+
+Student Name: Donovan
+Quiz Started: April 9, 2026 at 02:33:11 PM
+Quiz Completed: April 9, 2026 at 03:11:56 PM
+Duration: 38 minutes 44 seconds
+Total Questions: 20
+
+----------------------------------------------------------------------
+
+Question 1:
+What is the correct syntax for an optional property in an interface?
+
+Answer:
+propertyName?: type;
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 2:
+Which keyword prevents a property from being modified after initialization?
+
+Answer:
+readonly
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 3:
+What is the main difference between an interface and a type alias for defining object shapes?
+
+Answer:
+An interface defines a shape or structure for objects which helps to keep object 
+initialization organized, whereas a type alias simulates a specific type 
+with a different assigned name to help with readability and also organization.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 4:
+What does it mean when an interface extends another interface?
+
+Answer:
+The extended interface always implements all of the properties
+ and methods from the initial interface, but also includes 
+ either new properties, methods, or both.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 5:
+Complete this interface definition with proper type annotations:
+
+Answer:
+interface GameCharacter {
+  name: string,
+  health: number, 
+  level: number,
+  isActive: boolean,
+  inventory: string[],
+}
+
+const player: GameCharacter = {
+  name: "Hero",
+  health: 100,
+  level: 5,
+  isActive: true,
+  inventory: ["sword", "shield"]
+};
+
+Points: 3/3
+
+----------------------------------------------------------------------
+
+Question 6:
+How do you define a method signature in an interface?
+
+Answer:
+methodName(param: type): returnType;
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 7:
+What happens when you try to assign a value to a readonly property after object creation?
+
+Answer:
+You will have an error. Typescript will prevent this since a readonly property can only be assigned on definition within the object.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 8:
+Which syntax is used to extend an interface from another interface?
+
+Answer:
+interface Child extends Parent {}
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 9:
+Create an interface 'Vehicle' with properties: brand (string), year (number), isElectric (optional boolean). Then create an interface 'Car' that extends Vehicle and adds 'doors' (number):
+
+Answer:
+interface Vehicle {
+  brand: string,
+  year: number,
+  isElectric?: boolean,
+}
+
+interface Car extends Vehicle {
+  doors: number, 
+}
+
+Points: 3/3
+
+----------------------------------------------------------------------
+
+Question 10:
+When should you use an interface versus a type alias in TypeScript?
+
+Answer:
+You would use an interface when you want to keep your data/objects structured in a specific way that you define. You would use a type alias when you need to create a "new" type that has a specific name that you define that is a different name for one specified type.
+
+// Close, you're correct for interfaces, but you kind of just described what a type alias is.
+// remember we want to prefer interfaces for object types, type aliases for unions/intersections
+
+Points: 1/2
+
+----------------------------------------------------------------------
+
+Question 11:
+What type does TypeScript infer for: let count = 42;
+
+Answer:
+number
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 12:
+What is the syntax for defining a generic function parameter?
+
+Answer:
+function name<T>(param: T): T {}
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 13:
+Why should function parameters always have explicit type annotations even when TypeScript has inference?
+
+Answer:
+To ensure that functions are type safe and that the function's parameters stay 
+consistent type-wise as they are utilized.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 14:
+What problem do generics solve in TypeScript?
+
+Answer:
+They allow functions to use any type while preserving type safety and to allow typescript to do its thing even with a type that is not yet explicitly declared.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 15:
+Write a generic function 'wrapInArray' that takes a value of any type and returns an array containing that value:
+
+Answer:
+function wrapInArray<T>(value: T): T[] {
+  const arr = []
+  return arr.push(value);
+}
+
+// Close, but since you didn't explicitly declare the type of arr, TypeScript will assume it's of type any
+// You should have said const arr: T[] = []
+
+Points: 1/3
+
+----------------------------------------------------------------------
+
+Question 16:
+Create a generic class 'DataStore<T>' with private property 'items' (array of T), and methods: 'add(item: T): void', 'getAll(): T[]', and 'findById(id: number): T | undefined'. The items should have an 'id' property:
+
+Answer:
+class DataStore<T> {
+  private items: T[],
+
+  public add(item: T):void {
+    this.items.push(item);
+  }
+
+  public getAll(): T[] {
+    return this.items;
+  } 
+
+  public findById(id: number): T | undefined {
+    const index = this.items.findBy(id);
+    return this.items[index];
+  }
+}
+
+// You did good but you forgot some key things, for example, this class has no constructor
+// usually you would initiate the items array in the constructor, but you could also do it when you declare the items array
+// but you did neither, so the items array is never really there to add or get items from
+// Also TypeScript doesn't have a built in findBy(id) array method, it does have a find() method which would work here
+// That being said, either method would return the item at the given index, not the index of the item. 
+// Other than that, good job on using generics
+
+Points: 2/4
+
+----------------------------------------------------------------------
+
+Question 17:
+Create a generic interface 'Result<T>' with properties: success (boolean), data (T), and message (string). Then create a variable of type Result<number>:
+
+Answer:
+interface Result<T> {
+  success: boolean,
+  data: T,
+  message: string,
+}
+
+const num: Result<number> = {
+  success: True,
+  data: 1300,
+  message: "Action was successful",
+}
+
+Points: 3/3
+
+----------------------------------------------------------------------
+
+Question 18:
+What is the conventional naming for generic type parameters and why?
+
+Answer:
+T because it stands for type, which can be any type when it is used.
+
+// I'll give you full points on this one because you're correct
+// but don't forget the other commonly used ones (K, V, E)
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 19:
+Write a generic function 'getLastElement' that takes an array of any type and returns the last element (or undefined if empty):
+
+Answer:
+function getLastElement<T>(arr: T[]): T | undefined {
+  const last = arr.length() - 1;
+  return arr[last];
+}
+
+Points: 3/3
+
+----------------------------------------------------------------------
+
+Question 20:
+Which built-in TypeScript types use generics?
+
+Answer:
+string, number, boolean
+
+// These primitive types do not use generics
+// Array<T>, Promise<T>, and Map<K, V> was the correct answer
+
+Points: 0/1
+
+======================================================================
+END OF QUIZ RESULTS --> 35/40 --> 87%
+======================================================================
