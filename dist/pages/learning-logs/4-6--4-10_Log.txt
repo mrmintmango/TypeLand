@@ -3,29 +3,28 @@ Week: 4/6/26 - 4/10/26
 ======================================
 MONDAY
 ======================================
-
-
+I learned about objects and went a little deeper to solidify some of the fundamentals. I learned about what problem is solved (unpredictable data structures) by objects and how they are stored as key value pairs. 
 
 
 
 ======================================
 TUESDAY
 ======================================
-
+Today I focused on generics since I was curious of real world scenarios of using generics. I am still a little confused and should touch on this later, but I did learn that it is used a lot in api responses and in promises. I did some drills on the basics of generics as well. 
 
 
 
 ======================================
 WEDNESDAY
 ======================================
-
+I learned about reading and understanding code across different files but especially with types and interfaces. I learned about why interfaces are imported and also how objects are passed. I also learned about the reason for the interface being used with a component in a file. I also learned that you can import type aliases. I realize that I had seen this before but I did not understand that it was not limited to scope or one specific file.
 
 
 
 ======================================
 THURSDAY
 ======================================
-
+I focused on interfaces, objects, and classes and understanding the flow of data between each. I learned that shape can change as data is transformed throughout the use of interfaces. I also learned that interfaces act as the structure and classes implement the structure. I also learned that objects can have extra properties as long as the required fields of the original shape are present. Touched a little on types being inferred vs explicit when objects are returned and changed.
 
 
 
