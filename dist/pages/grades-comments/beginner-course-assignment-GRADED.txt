@@ -1,0 +1,43 @@
+======================================================================
+TYPELAND BEGINNER COURSE CAPSTONE ASSIGNMENT
+QUEST TRACKER CLI - GRADED
+======================================================================
+
+GRADING RUBRIC (40 POINTS)
+----------------------------------------------------------------------
+1. Project Setup and Organization - 8/8 points
+	- 2 points: package.json, tsconfig.json, and src/ are present
+	- 2 points: project runs successfully with ts-node
+	- 2 points: files are organized clearly across multiple source files
+	- 2 points: README is complete and usable
+
+2. Variables, Basic Types, and Type Safety - 5/6 points
+	- 2 points: correct use of string, number, and boolean
+	- 1/2 points: correct use of let and const --> You mainly used let, but should rely on using const more than let.
+	- 2 points: good type safety with little or no unnecessary any usage
+
+3. Arrays, Tuples, and Array Methods - 8/8 points
+	- 2 points: at least two arrays of objects are used correctly
+	- 2 points: tuple is used correctly and meaningfully
+	- 2 points: at least three array methods are used correctly
+	- 2 points: array logic supports the program features clearly
+
+4. Functions and Program Logic - 8/8 points
+	- 2 points: at least eight functions are included
+	- 2 points: parameters and return types are typed correctly
+	- 2 points: includes required arrow function, optional/default
+	  parameter, and callback usage
+	- 2 points: functions are reusable and logically designed
+
+5. Objects, Interfaces, and Data Modeling - 6/6 points
+	- 2 points: at least three interfaces are present
+	- 2 points: optional, readonly, and method signature requirements are
+	  satisfied
+	- 2 points: data model is clear and appropriate for the project
+
+6. Inference, Generics, and Overall Quality - 2/4 points
+	- 2 points: inference and explicit typing are both used appropriately
+	- 0/2 points: generic function or interface is meaningful and correct --> you never used a generic
+
+
+POINTS: 37/40 --> 92.5%
