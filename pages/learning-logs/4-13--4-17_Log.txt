@@ -1,38 +1,37 @@
-Week: 4/6/26 - 4/10/26
+Week: 4/13/26 - 4/17/26
 
 ======================================
 MONDAY
 ======================================
-
-
+Learned about generic functions and some different cases when a variable might be inferred as any and also how to avoid that. Also practiced using .push() and learned the things it does: pushes the parameter/input to the end of the given array and returns a number which is the length of the new array. 
 
 
 
 ======================================
 TUESDAY
 ======================================
-
+Learned about writing functions from scratch to get better at that process in my mind. First I practiced breaking a function down into its individual parts (parameters, outputs, steps). I asked chatGPT to give me some situation with vague requirements and I did my best to write a function from that. Will need to revisit this.  
 
 
 
 ======================================
 WEDNESDAY
 ======================================
-
+Today I wanted to learn about distinguishing between when to use interfaces and type aliases since it was something I struggled with it on the quiz. Did some drills to find the reason for type aliases is for unions and intersections. Interfaces are for defining shape/structure. Also learned about combining types/interfaces (vs extending) which I didn't know about, and that you'd use a type alias for it ideally. 
 
 
 
 ======================================
 THURSDAY
 ======================================
-
+I learned more about using generics, since I wanted to learn scenarios where I might actually use them. I learned that generics are most useful when a function needs to work with multiple types but be consistent between input and output. I also learned that sometimes generics need constraints when using things like .length or other type-specific operators within the function.
 
 
 
 ======================================
 FRIDAY
 ======================================
-
+Today I focused on the individual steps it takes to effectively solve leetCode problems. I learned about slowing down my thought process when I am overwhelmed with the final product. I learned about recognizing patterns of when to use array functions like .map, .filter, etc. vs loops and nested loops. I also practiced breaking problems into steps through chatGPT drills. I need to practice this more. 
 
 
 
