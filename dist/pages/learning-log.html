@@ -394,6 +394,31 @@
         return `${mondayStr}--${fridayStr}`;
       }
 
+      function getMondayFromWeekKey(weekKey) {
+        const [mondayPart] = weekKey.split("--");
+
+        if (!mondayPart) {
+          return null;
+        }
+
+        const [monthText, dayText] = mondayPart.split("-");
+        const month = Number(monthText);
+        const day = Number(dayText);
+
+        if (
+          Number.isNaN(month) ||
+          Number.isNaN(day) ||
+          month < 1 ||
+          month > 12 ||
+          day < 1 ||
+          day > 31
+        ) {
+          return null;
+        }
+
+        return new Date(new Date().getFullYear(), month - 1, day);
+      }
+
       // Get week display string
       function getWeekDisplay(monday) {
         const friday = getFriday(monday);
@@ -413,8 +438,21 @@
         const today = new Date();
         const currentMonday = getMonday(today);
 
-        // Generate 12 weeks (current week + 5 past + 6 future)
-        for (let i = -5; i <= 6; i++) {
+        select.innerHTML = "";
+
+        const archivedMondays = Array.from(archivedWeekKeys)
+          .map((weekKey) => getMondayFromWeekKey(weekKey))
+          .filter((monday) => monday && monday < currentMonday)
+          .sort((first, second) => first - second);
+
+        archivedMondays.forEach((monday) => {
+          const option = document.createElement("option");
+          option.value = monday.toISOString();
+          option.textContent = getWeekDisplay(monday);
+          select.appendChild(option);
+        });
+
+        for (let i = 0; i <= 6; i++) {
           const monday = new Date(currentMonday);
           monday.setDate(currentMonday.getDate() + i * 7);
 
