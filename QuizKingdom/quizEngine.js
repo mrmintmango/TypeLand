@@ -3,8 +3,7 @@
  * Similar to AdventureEngine pattern in adventure.ts
  */
 import { QuizState, } from "./quizDefinitions.js";
-//import { quizQuestions } from "./firstQuizQuestions.js";
-import { beginnerQuiz2Questions } from "./beginnerQuiz2Questions.js";
+import { beginnerFinalQuizQuestions } from "./beginnerFinalQuizQuestions.js";
 export class QuizEngine {
     constructor() {
         this.session = null;
@@ -19,7 +18,7 @@ export class QuizEngine {
      * TypeScript Learning Quiz - Variables, Types, Functions, Classes & Interfaces
      */
     initializeQuestions() {
-        this.questions = [...beginnerQuiz2Questions];
+        this.questions = [...beginnerFinalQuizQuestions];
     }
     /**
      * Start a new quiz session with student name
