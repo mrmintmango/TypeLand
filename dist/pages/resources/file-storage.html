@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text and JSON File Storage in TypeScript - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../resources.html" class="back-to-course"
+            >← Back to Resources</a
+          >
+
+          <h1>🗂️ Text and JSON File Storage in TypeScript</h1>
+
+          <div class="topic-intro">
+            <p>
+              Small TypeScript projects often do not need a full database. A
+              text file or JSON file can be enough for local storage, basic
+              persistence, prototypes, classroom projects, or command-line
+              tools. The main idea is simple: read the file into memory, update
+              the data, and write the file back out.
+            </p>
+          </div>
+
+          <h2>When This Approach Makes Sense</h2>
+
+          <div class="key-concepts">
+            <ul>
+              <li>Small projects with a limited amount of data</li>
+              <li>Practice projects and classroom assignments</li>
+              <li>Local tools used by one person at a time</li>
+              <li>Simple prototypes before moving to a real database</li>
+            </ul>
+          </div>
+
+          <p>
+            If many users need to access the same data at the same time, or if
+            the data becomes large and complex, a real database is usually the
+            better tool.
+          </p>
+
+          <h2>Use the fs Module</h2>
+
+          <p>
+            Node.js includes the <code>fs</code> module for reading and writing
+            files. In modern TypeScript projects, the promise-based API is the
+            easiest option because it works cleanly with <code>async</code> and
+            <code>await</code>.
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Import Promise-Based File Tools</h4>
+            <pre><code>import { readFile, writeFile } from "node:fs/promises";</code></pre>
+          </div>
+
+          <h2>Reading and Writing a Text File</h2>
+
+          <p>
+            A plain text file works well when you just need to store notes,
+            logs, or a list of strings.
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Save and Load Text Data</h4>
+            <pre><code>import { readFile, writeFile } from "node:fs/promises";
+
+async function saveNote(note: string): Promise&lt;void&gt; {
+  await writeFile("notes.txt", note, "utf-8");
+}
+
+async function loadNote(): Promise&lt;string&gt; {
+  return readFile("notes.txt", "utf-8");
+}</code></pre>
+          </div>
+
+          <p>
+            In this example, the file acts like a storage container. You write
+            data into it, and later read that data back into your program.
+          </p>
+
+          <h2>Reading and Writing JSON Like a Tiny Database</h2>
+
+          <p>
+            JSON is often a better option because it can store structured data.
+            For example, you can keep an array of users, tasks, quiz scores, or
+            inventory items.
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Types for JSON Data</h4>
+            <pre><code>type StudentRecord = {
+  id: number;
+  name: string;
+  grade: number;
+};</code></pre>
+          </div>
+
+          <div class="code-example">
+            <h4>Example: Read and Write JSON Records</h4>
+            <pre><code>import { readFile, writeFile } from "node:fs/promises";
+
+type StudentRecord = {
+  id: number;
+  name: string;
+  grade: number;
+};
+
+const filePath = "students.json";
+
+async function readStudents(): Promise&lt;StudentRecord[]&gt; {
+  const fileContents = await readFile(filePath, "utf-8");
+  return JSON.parse(fileContents) as StudentRecord[];
+}
+
+async function writeStudents(students: StudentRecord[]): Promise&lt;void&gt; {
+  const json = JSON.stringify(students, null, 2);
+  await writeFile(filePath, json, "utf-8");
+}</code></pre>
+          </div>
+
+          <h2>Adding a New Record</h2>
+
+          <p>
+            The usual pattern is read, update in memory, then write the updated
+            data back to the file.
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Insert a Record</h4>
+            <pre><code>async function addStudent(newStudent: StudentRecord): Promise&lt;void&gt; {
+  const students = await readStudents();
+  students.push(newStudent);
+  await writeStudents(students);
+}</code></pre>
+          </div>
+
+          <h2>Updating or Deleting a Record</h2>
+
+          <div class="code-example">
+            <h4>Example: Update and Delete</h4>
+            <pre><code>async function updateStudentGrade(
+  id: number,
+  newGrade: number,
+): Promise&lt;void&gt; {
+  const students = await readStudents();
+  const updatedStudents = students.map((student) =&gt;
+    student.id === id ? { ...student, grade: newGrade } : student,
+  );
+
+  await writeStudents(updatedStudents);
+}
+
+async function deleteStudent(id: number): Promise&lt;void&gt; {
+  const students = await readStudents();
+  const filteredStudents = students.filter((student) =&gt; student.id !== id);
+  await writeStudents(filteredStudents);
+}</code></pre>
+          </div>
+
+          <h2>Handling a Missing File</h2>
+
+          <p>
+            A common problem is that the file does not exist yet. You can catch
+            that error and return a sensible default, such as an empty array.
+          </p>
+
+          <div class="code-example">
+            <h4>Example: Safe JSON Read</h4>
+            <pre><code>async function readStudentsSafe(): Promise&lt;StudentRecord[]&gt; {
+  try {
+    const fileContents = await readFile(filePath, "utf-8");
+    return JSON.parse(fileContents) as StudentRecord[];
+  } catch (error) {
+    return [];
+  }
+}</code></pre>
+          </div>
+
+          <div class="key-concepts">
+            <h3>💡 Why This Works</h3>
+            <p>
+              Treat the file as persistent storage, but do the actual data work
+              in TypeScript using arrays, objects, and functions. That is what
+              makes it feel similar to a tiny database.
+            </p>
+          </div>
+
+          <h2>Important Limits</h2>
+
+          <div class="helpful-links">
+            <h3>⚠️ Be Careful About</h3>
+            <ul>
+              <li>
+                Two writes at the same time can overwrite each other if you are
+                not careful
+              </li>
+              <li>
+                Large files become slow because the whole file is often read and
+                rewritten
+              </li>
+              <li>JSON files can break if invalid JSON is written into them</li>
+              <li>
+                This approach is best for simple local data, not high-traffic
+                production systems
+              </li>
+            </ul>
+          </div>
+
+          <h2>Example Project Structure</h2>
+
+          <div class="code-example">
+            <h4>Suggested Layout</h4>
+            <pre><code>my-project/
+  src/
+    app.ts
+    storage.ts
+  data/
+    students.json
+    notes.txt</code></pre>
+          </div>
+
+          <h2>Quick Start</h2>
+
+          <div class="code-example">
+            <h4>Install and Run</h4>
+            <pre><code>npm install typescript ts-node --save-dev
+npm install @types/node --save-dev
+
+# Run your file-based storage script
+npx ts-node src/storage.ts</code></pre>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a href="https://nodejs.org/api/fs.html" target="_blank"
+                  >Node.js Documentation: fs</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON"
+                  target="_blank"
+                  >MDN: Working with JSON</a
+                >
+              </li>
+              <li>
+                <a href="https://typestrong.org/ts-node/" target="_blank"
+                  >ts-node Documentation</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../resources.html" class="back-to-course"
+            >← Back to Resources</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

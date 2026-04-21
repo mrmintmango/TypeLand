@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terminal Input and Output - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Course</a
+          >
+          <h1>⌨️ Terminal Input and Output</h1>
+          <div class="topic-intro">
+            <p>
+              Terminal programs can display information and ask the user for
+              input without needing a browser interface.
+            </p>
+          </div>
+          <h2>Write Output</h2>
+          <div class="code-example">
+            <h4>Example: Basic Output</h4>
+            <pre><code>console.log("Welcome to the app");
+console.error("Something went wrong");</code></pre>
+          </div>
+          <h2>Read Input</h2>
+          <div class="code-example">
+            <h4>Example: Ask a Question</h4>
+            <pre><code>import readline from "node:readline/promises";
+import { stdin as input, stdout as output } from "node:process";
+
+async function run(): Promise&lt;void&gt; {
+  const rl = readline.createInterface({ input, output });
+  const answer = await rl.question("What is your name? ");
+  console.log(`Hello, ${answer}`);
+  rl.close();
+}
+
+run();</code></pre>
+          </div>
+          <p>
+            For a deeper version of this topic, see the dedicated resource page
+            in the Extra Resources section.
+          </p>
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Code Foundations</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

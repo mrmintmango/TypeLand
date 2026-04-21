@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Strings and User Input - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Course</a
+          >
+          <h1>🔤 Strings and User Input</h1>
+          <div class="topic-intro">
+            <p>
+              Programs often work with text from users, files, or interfaces.
+              Strings and input handling are core parts of everyday coding.
+            </p>
+          </div>
+          <h2>String Basics</h2>
+          <div class="code-example">
+            <h4>Example: Text Operations</h4>
+            <pre><code>const firstName = "James";
+const lastName = "Smith";
+const fullName = `${firstName} ${lastName}`;
+
+console.log(fullName.toUpperCase());
+console.log(fullName.length);</code></pre>
+          </div>
+          <h2>Why Input Needs Care</h2>
+          <p>
+            User input can be missing, empty, or in the wrong format. It often
+            needs trimming, validation, or conversion before it is safe to use.
+          </p>
+          <div class="code-example">
+            <h4>Example: Clean Up Input</h4>
+            <pre><code>const rawName = "   Mia   ";
+const cleanedName = rawName.trim();
+
+if (cleanedName.length > 0) {
+  console.log(`Hello, ${cleanedName}`);
+}</code></pre>
+          </div>
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Code Foundations</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

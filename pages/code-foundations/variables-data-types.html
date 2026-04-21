@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Variables, Values, and Data Types - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Course</a
+          >
+          <h1>📝 Variables, Values, and Data Types</h1>
+          <div class="topic-intro">
+            <p>
+              Variables let programs remember information. Data types describe
+              what kind of information is being stored, such as text, numbers,
+              or true/false values.
+            </p>
+          </div>
+          <h2>Why This Matters</h2>
+          <p>
+            Nearly every program depends on storing data, updating it, and
+            passing it around. Understanding the difference between a variable,
+            a value, and a type is one of the first core programming skills.
+          </p>
+          <div class="code-example">
+            <h4>Example: Basic Variables</h4>
+            <pre><code>const username: string = "Ruben";
+let score: number = 0;
+let isLoggedIn: boolean = true;
+
+score = score + 10;
+
+console.log(username);
+console.log(score);
+console.log(isLoggedIn);</code></pre>
+          </div>
+          <h2>Common Data Types</h2>
+          <ul>
+            <li><strong>string</strong> for text</li>
+            <li><strong>number</strong> for numeric values</li>
+            <li><strong>boolean</strong> for true or false</li>
+            <li><strong>array</strong> for lists of values</li>
+            <li><strong>object</strong> for grouped related data</li>
+          </ul>
+          <div class="key-concepts">
+            <h3>🎯 Key Ideas</h3>
+            <ul>
+              <li>
+                Use <code>const</code> when a variable should not be reassigned
+              </li>
+              <li>
+                Use <code>let</code> when a value needs to change over time
+              </li>
+              <li>Pick names that describe what the value represents</li>
+              <li>Choosing the right type makes code easier to reason about</li>
+            </ul>
+          </div>
+          <h2>Real Example</h2>
+          <div class="code-example">
+            <h4>Example: Simple Profile Data</h4>
+            <pre><code>const studentName = "Mia";
+const age = 16;
+const isEnrolled = true;
+
+console.log(`${studentName} is ${age} years old.`);
+console.log(`Enrolled: ${isEnrolled}`);</code></pre>
+          </div>
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Glossary/Variable"
+                  target="_blank"
+                  >MDN: Variable</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
+                  target="_blank"
+                  >TypeScript Handbook: Everyday Types</a
+                >
+              </li>
+            </ul>
+          </div>
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Code Foundations</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

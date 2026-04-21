@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON Fundamentals - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Course</a
+          >
+          <h1>🧾 JSON Fundamentals</h1>
+          <div class="topic-intro">
+            <p>
+              JSON stands for JavaScript Object Notation. It is a text format
+              used to represent structured data in a way that humans and
+              programs can both read.
+            </p>
+          </div>
+          <h2>What JSON Looks Like</h2>
+          <div class="code-example">
+            <h4>Example: JSON Data</h4>
+            <pre><code>{
+  "name": "TypeLand",
+  "topicCount": 14,
+  "published": true,
+  "tags": ["typescript", "coding", "json"]
+}</code></pre>
+          </div>
+          <h2>Important JSON Rules</h2>
+          <ul>
+            <li>Keys use double quotes</li>
+            <li>Strings use double quotes</li>
+            <li>
+              JSON can hold objects, arrays, numbers, booleans, strings, and
+              null
+            </li>
+            <li>JSON cannot store functions</li>
+          </ul>
+          <h2>Convert Between Objects and JSON</h2>
+          <div class="code-example">
+            <h4>Example: Stringify and Parse</h4>
+            <pre><code>const user = {
+  name: "Ava",
+  score: 98,
+};
+
+const jsonText = JSON.stringify(user, null, 2);
+console.log(jsonText);
+
+const parsedUser = JSON.parse(jsonText);
+console.log(parsedUser.name);</code></pre>
+          </div>
+          <div class="key-concepts">
+            <h3>🎯 Key Ideas</h3>
+            <ul>
+              <li>JSON is a data format, not a programming language</li>
+              <li>APIs commonly send and receive JSON</li>
+              <li>
+                <code>JSON.stringify()</code> turns an object into JSON text
+              </li>
+              <li>
+                <code>JSON.parse()</code> turns JSON text into data your program
+                can use
+              </li>
+            </ul>
+          </div>
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Code Foundations</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>
