@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functions and Reusable Code - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Course</a
+          >
+          <h1>⚙️ Functions and Reusable Code</h1>
+          <div class="topic-intro">
+            <p>
+              Functions group related steps into one reusable unit. This makes
+              code easier to test, reuse, and understand.
+            </p>
+          </div>
+          <h2>Parameters and Return Values</h2>
+          <div class="code-example">
+            <h4>Example: Reusable Function</h4>
+            <pre><code>function greetUser(name: string): string {
+  return `Hello, ${name}!`;
+}
+
+const message = greetUser("Ava");
+console.log(message);</code></pre>
+          </div>
+          <h2>Why Functions Help</h2>
+          <ul>
+            <li>They reduce repeated code</li>
+            <li>They make large programs easier to organize</li>
+            <li>They turn complex steps into named building blocks</li>
+          </ul>
+          <div class="code-example">
+            <h4>Example: Break a Task into Steps</h4>
+            <pre><code>function calculateTax(amount: number): number {
+  return amount * 0.08;
+}
+
+function calculateTotal(amount: number): number {
+  return amount + calculateTax(amount);
+}
+
+console.log(calculateTotal(50));</code></pre>
+          </div>
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Code Foundations</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

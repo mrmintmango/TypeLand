@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conditionals and Program Flow - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Course</a
+          >
+          <h1>🔀 Conditionals and Program Flow</h1>
+          <div class="topic-intro">
+            <p>
+              Conditionals let programs choose different paths based on what is
+              true at a given moment.
+            </p>
+          </div>
+          <h2>If, Else If, and Else</h2>
+          <div class="code-example">
+            <h4>Example: Score Check</h4>
+            <pre><code>const score = 82;
+
+if (score >= 90) {
+  console.log("Excellent work");
+} else if (score >= 70) {
+  console.log("You passed");
+} else {
+  console.log("Keep practicing");
+}</code></pre>
+          </div>
+          <h2>Switch Statements</h2>
+          <div class="code-example">
+            <h4>Example: Menu Choice</h4>
+            <pre><code>const choice = "settings";
+
+switch (choice) {
+  case "home":
+    console.log("Show the home screen");
+    break;
+  case "settings":
+    console.log("Open settings");
+    break;
+  default:
+    console.log("Unknown choice");
+}</code></pre>
+          </div>
+          <div class="key-concepts">
+            <h3>🎯 Key Ideas</h3>
+            <ul>
+              <li>Conditionals depend on boolean expressions</li>
+              <li>Use <code>if</code> for flexible conditions</li>
+              <li>
+                Use <code>switch</code> when comparing one value to many fixed
+                options
+              </li>
+            </ul>
+          </div>
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Code Foundations</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

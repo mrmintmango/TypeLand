@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Different Types of Loops - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Course</a
+          >
+          <h1>🔁 Different Types of Loops</h1>
+          <div class="topic-intro">
+            <p>
+              Loops repeat a block of code. They are useful when you need to do
+              the same kind of work multiple times.
+            </p>
+          </div>
+          <h2>For Loop</h2>
+          <div class="code-example">
+            <h4>Example: Count from 1 to 3</h4>
+            <pre><code>for (let index = 1; index <= 3; index++) {
+  console.log(index);
+}</code></pre>
+          </div>
+          <h2>While Loop</h2>
+          <div class="code-example">
+            <h4>Example: Repeat Until Done</h4>
+            <pre><code>let attempts = 0;
+
+while (attempts < 3) {
+  console.log("Trying again...");
+  attempts++;
+}</code></pre>
+          </div>
+          <h2>For...of and forEach</h2>
+          <div class="code-example">
+            <h4>Example: Loop Through an Array</h4>
+            <pre><code>const topics = ["loops", "functions", "JSON"];
+
+for (const topic of topics) {
+  console.log(topic);
+}
+
+topics.forEach((topic) => {
+  console.log(`Review ${topic}`);
+});</code></pre>
+          </div>
+          <div class="key-concepts">
+            <h3>🎯 Key Ideas</h3>
+            <ul>
+              <li>
+                Use <code>for</code> when you need an index or exact count
+              </li>
+              <li>
+                Use <code>while</code> when the stop condition is the main focus
+              </li>
+              <li>
+                Use <code>for...of</code> for readable iteration over arrays
+              </li>
+            </ul>
+          </div>
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Code Foundations</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

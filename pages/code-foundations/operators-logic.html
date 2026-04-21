@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operators, Comparisons, and Boolean Logic - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Course</a
+          >
+          <h1>➕ Operators, Comparisons, and Boolean Logic</h1>
+          <div class="topic-intro">
+            <p>
+              Operators let you calculate values and compare them. Boolean logic
+              lets you combine conditions so programs can make decisions.
+            </p>
+          </div>
+          <h2>Arithmetic and Comparison Operators</h2>
+          <div class="code-example">
+            <h4>Example: Math and Comparisons</h4>
+            <pre><code>const total = 12 + 8;
+const difference = 20 - 5;
+const doubled = 4 * 2;
+const half = 10 / 2;
+
+console.log(total > difference);
+console.log(doubled === half);
+console.log(total !== 25);</code></pre>
+          </div>
+          <h2>Boolean Logic</h2>
+          <p>
+            Use <code>&amp;&amp;</code> when both conditions must be true, use
+            <code>||</code> when either condition can be true, and use
+            <code>!</code> to reverse a boolean value.
+          </p>
+          <div class="code-example">
+            <h4>Example: Combining Conditions</h4>
+            <pre><code>const isLoggedIn = true;
+const hasPaid = false;
+
+console.log(isLoggedIn &amp;&amp; hasPaid);
+console.log(isLoggedIn || hasPaid);
+console.log(!hasPaid);</code></pre>
+          </div>
+          <div class="key-concepts">
+            <h3>🎯 Key Ideas</h3>
+            <ul>
+              <li>Use operators to transform and compare values</li>
+              <li>Every condition eventually becomes true or false</li>
+              <li>
+                Boolean logic is the foundation for conditionals and loops
+              </li>
+            </ul>
+          </div>
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Code Foundations</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

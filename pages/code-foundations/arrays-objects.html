@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays and Objects - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Course</a
+          >
+          <h1>📦 Arrays and Objects</h1>
+          <div class="topic-intro">
+            <p>
+              Arrays store lists of values. Objects store related values under
+              named properties. Most real programs use both together.
+            </p>
+          </div>
+          <h2>Arrays</h2>
+          <div class="code-example">
+            <h4>Example: List of Tasks</h4>
+            <pre><code>const tasks = ["Read", "Practice", "Review"];
+
+console.log(tasks[0]);
+console.log(tasks.length);</code></pre>
+          </div>
+          <h2>Objects</h2>
+          <div class="code-example">
+            <h4>Example: User Record</h4>
+            <pre><code>const user = {
+  name: "Lena",
+  level: "beginner",
+  active: true,
+};
+
+console.log(user.name);
+console.log(user.level);</code></pre>
+          </div>
+          <h2>Using Them Together</h2>
+          <div class="code-example">
+            <h4>Example: Array of Objects</h4>
+            <pre><code>const students = [
+  { name: "Mia", score: 95 },
+  { name: "Noah", score: 88 },
+];
+
+console.log(students[1].name);</code></pre>
+          </div>
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Code Foundations</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>
