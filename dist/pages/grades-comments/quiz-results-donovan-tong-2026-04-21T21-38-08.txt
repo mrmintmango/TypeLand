@@ -1,0 +1,427 @@
+======================================================================
+TYPELAND QUIZ RESULTS
+======================================================================
+
+Student Name: Donovan Tong
+Quiz Started: April 21, 2026 at 02:51:57 PM
+Quiz Completed: April 21, 2026 at 03:38:05 PM
+Duration: 46 minutes 7 seconds
+Total Questions: 30
+
+Grading Rubric: 
+multiple choice: 1 point
+short answer: 2 points
+code completion: 3 points
+
+----------------------------------------------------------------------
+
+Question 1:
+Which declaration causes TypeScript to miss the chance to infer a safer type immediately?
+
+Answer:
+let data;
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 2:
+Which return type should be used for a function that performs an action but does not return a value?
+
+Answer:
+void
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 3:
+Explain the difference between a const variable binding and a readonly object property.
+
+Answer:
+A const variable binding makes a variable unchanged throughout its scope and is more applicable to functions and components. A readonly object property is ensuring that an object property cannot be changed after it is initialized, it is more applicable to data but not limited from functions or components.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 4:
+Why is an explicit type annotation usually better than writing 'let data;' when you already know what the variable should store?
+
+Answer:
+Because it is more type safe, which is preventative of errors. Type safety helps catch those errors earlier in the development process. Code should always be typesafe if possible, especially if you know what the variable should store.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 5:
+Add type annotations so this code stays type-safe without relying on implicit any:
+
+Answer:
+let heroName: string = "Nova";
+let health: number = 100;
+let isAlive: boolean = true;
+
+function takeDamage(amount: number): void {
+  health -= amount;
+
+  if (health <= 0) {
+    isAlive = false;
+  }
+}
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 6:
+Fix the declarations so each variable has an intentional, clear type and no value can silently change to the wrong type later:
+
+Answer:
+let level: number;
+level = 1;
+
+let title: string = "Apprentice";
+
+let isLoggedIn: boolean;
+isLoggedIn = false;
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 7:
+Which statement about optional parameters in TypeScript is correct?
+
+Answer:
+Optional parameters must come after required parameters.
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 8:
+Which function signature correctly uses a rest parameter?
+
+Answer:
+function sum(...numbers: number[]): number {}
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 9:
+Why should function parameters always be annotated even when TypeScript can infer many other types?
+
+Answer:
+To ensure type safety during the development process and to ensure that the function returns what is required.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 10:
+What is the practical difference between an optional parameter and a default parameter?
+
+Answer:
+An optional parameter has a ? mark after naming the parameter and before the colon.
+
+// you described the correct syntax for an optional parameter, but the practical difference lays in their purpose:
+// A default parameter provides a fallback value when no argument (or undefined) is passed
+// An optional parameter means the argument may be omitted, so its value is potentially undefined
+
+Points: 1/2
+
+----------------------------------------------------------------------
+
+Question 11:
+Write a function 'formatPlayer' that takes name (string), level (number), and title (optional string) and returns a string.
+
+Answer:
+const formatPlayer = (name: string, level: number, title?: string): string => { 
+     return `Name: ${name} Level: ${level} ${ 
+          title ? `Title: ${title}` : '' 
+     }`;
+};
+
+// Although not always required, don't forget about the function keyword
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 12:
+Create a type alias 'NumberOperation' for a function that takes two numbers and returns a number. Then write a variable 'multiply' using that type.
+
+Answer:
+type NumberOperation: Function = (number, number): number => {}
+
+const multiply: NumberOperation = (x, y) => {
+     return x * y;
+};
+
+// you understood the second part, multiply is declared correctly
+// but the syntax is incorrect for declaring the type alias
+// it should look like this -> type NumberOperation = (a: number, b: number) => number;
+
+Points: 1/2
+
+----------------------------------------------------------------------
+
+Question 13:
+What type does Array.find return for a number[] array?
+
+Answer:
+number | undefined
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 14:
+Which type annotation correctly represents a two-dimensional string grid?
+
+Answer:
+string[][]
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 15:
+What is the key difference between an array and a tuple in TypeScript?
+
+Answer:
+An array is any list of a specified type, unless it is an any[] array then it can have multiple types. A tuple has a structured list which has predefined types which must be present in each value/index.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 16:
+Why is a tuple usually a better choice than a plain array for storing a coordinate like [row, column]?
+
+Answer:
+Because a tuple will always have a specified set of values per index. An array has one value per index.
+
+// good answer but it's a little off. Both arrays and tuples have one value per index
+// Arrays in TypeScript can have any length while Tuples have a predefined set length of elements. 
+
+Points: 1/2
+
+----------------------------------------------------------------------
+
+Question 17:
+Create a tuple type 'Coordinate' for [row: number, column: number] and declare a variable 'startPosition' with the value [2, 5].
+
+Answer:
+type Coordinate = [row: number, column: number];
+const startPosition: Coordinate = [2, 5];
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 18:
+Write a function 'getEvenScores' that takes a number[] and returns a new array containing only the even numbers.
+
+Answer:
+const getEvenScores = (arr: number[]): number[] => {
+     let evens = []
+     for (let i=0; i < arr.length-1; i++) {
+          if (i%2===0) {
+               evens.push(arr[i]);
+          };
+     };
+     return evens;
+};
+
+// the structure is correct but there are some logical bugs that stop it from working correctly:
+// Wrong condition: i % 2 === 0 checks if the index is even, not the value. It should be arr[i] % 2 === 0.
+// Off-by-one: i < arr.length - 1 skips the last element. It should be i < arr.length.
+// Also this could've been done a lot simpler by using the .filter Array method like this
+// const getEvenScores = (arr: number[]): number[] => arr.filter(n => n % 2 === 0);
+
+Points: 1/2
+
+----------------------------------------------------------------------
+
+Question 19:
+What is the correct syntax for an optional property in an interface?
+
+Answer:
+propertyName?: type;
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 20:
+How can you define a method signature inside an interface?
+
+Answer:
+Only methodName(param: type): returnType;
+
+// Actually Both methodName(param: type): returnType; and methodName: (param: type) => returnType;
+// would correctly define a method signature. 
+
+Points: 0/1
+
+----------------------------------------------------------------------
+
+Question 21:
+Which keyword is used when one interface inherits properties from another interface?
+
+Answer:
+implements
+
+// Correct answer is extends
+
+Points: 0/1
+
+----------------------------------------------------------------------
+
+Question 22:
+When should you prefer an interface over a type alias for defining an object shape?
+
+Answer:
+When you might have a hierarchy or your data might need/use different properties later/elsewhere.
+
+// I'm a little unsure about what you're answer is getting at.
+// Both interfaces and type aliases can be altered to have different values later in the source code.
+// the primary reason would be when you're dealing with large object types like Classes. 
+// I'll still give you a point for understanding that hierarchy plays a role in interfaces.
+
+Points: 1/2
+
+----------------------------------------------------------------------
+
+Question 23:
+What does it mean when an interface extends another interface?
+
+Answer:
+It has all of the properties of the original interface then adds more properties and then defines them.
+
+// I'll give you full points on this one but be careful with that last part,
+// Interfaces define object shape, so when extending from another interface it can add more properties
+// but it does not define what those properties are. Instances of that interface will define those properties.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 24:
+Create an interface 'Quest' with readonly id (number), title (string), and optional reward (string). Then create an interface 'TimedQuest' that extends Quest and adds timeLimitMinutes (number). Finally, create a variable 'dailyQuest' of type TimedQuest.
+
+Answer:
+interface Quest {
+     readonly id: number,
+     title: string,
+     reward?: string,
+};
+
+interface TimedQuest extends Quest {
+     timeLimitMinutes: number,
+};
+
+const dailyQuest: TimedQuest = {
+     id: 117,
+     title: "Fire Temple",
+     reward: "Blaze Rod",
+};
+
+// good job, you made the interfaces correctly, but your dailyQuest object is trying to 
+// re-define the property types with the actual value. That looks like a simple mistake
+// so i'll still give you full points
+
+Points: 3/3
+
+----------------------------------------------------------------------
+
+Question 25:
+What type does TypeScript infer for: let mixed = [1, "two", true];
+
+Answer:
+any[]
+
+// TypeScript will actually infer a union of the literal types it sees in the array
+// so the correct answer would be (string | number | boolean)[]
+
+Points: 0/1
+
+----------------------------------------------------------------------
+
+Question 26:
+Which function declaration correctly defines a generic identity function?
+
+Answer:
+function identity<T>(value: T): T {}
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 27:
+Which built-in TypeScript types commonly use generics?
+
+Answer:
+interface, class, enum
+
+// I can see why you would think this is the correct answer since classes and 
+// interfaces use generics, but those aren't types. The correct answer would be
+// Array<T>, Promise<T>, Map<K, V> since these are types and have generics built into them
+
+Points: 0/1
+
+----------------------------------------------------------------------
+
+Question 28:
+What problem do generics solve in TypeScript?
+
+Answer:
+Ensures a consistent type throughout a function or interface. Without this, typescript would infer any type.
+
+// This isn't the problem that generics solve. Generics solve the problem of a function or class
+// that can work with different types but needs to keep type safety by declaring the type as a generic
+// instead of using any.
+
+Points: 0/2
+
+----------------------------------------------------------------------
+
+Question 29:
+Why is 'T' a common generic type parameter name, and when should you choose a more descriptive generic name instead?
+
+Answer:
+It stands for type. When you need to specify that less than any type will be used.
+
+// Correct, T stands for type which makes it very common. 
+// You're answer to the second question is almost there, you should choose a more descriptive
+// generic name when you want to make it clear what kind of type that generic will be replaced by.
+// This helps the reader of the code understand how that generic should behave in the function or class.
+
+Points: 1/2
+
+----------------------------------------------------------------------
+
+Question 30:
+Create a generic class 'Inventory<T>' with a property 'items: T[]', an 'add(item: T): void' method, and a 'getFirst(): T | undefined' method.
+
+Answer:
+class Inventory<T> {
+     items: T[],
+     
+     add(item: T): void,
+     getFirst(): T | undefined,
+};
+
+// I'll give you a point because you placed the generics in the correct places,
+// but it looks like you created an interface instead of an actual class.
+// Interfaces define the structure, and Classes match that structure while defining the actual logic
+
+Points: 1/3
+
+======================================================================
+END OF QUIZ RESULTS --> 36/50 --> 72%
+======================================================================

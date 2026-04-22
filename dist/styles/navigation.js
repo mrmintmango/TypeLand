@@ -67,6 +67,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     contentWrapper.classList.add("sidebar-open");
     menuToggle.classList.add("active"); // Show X when open
     localStorage.setItem("sidebarOpen", "true");
+  } else if (!isMobile && sidebarState === "false") {
+    sidebar.classList.add("collapsed");
+    // contentWrapper already has no sidebar-open class, so nothing else needed
   }
 
   // Toggle sidebar
