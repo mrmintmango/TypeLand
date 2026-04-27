@@ -342,6 +342,17 @@
   font-size: 0.9em;
 }
 
+.feedback-button-blank {
+  display: inline-block;
+  text-decoration: none;
+  background: linear-gradient(135deg, #bcc6f3 0%, #ad8bce 100%);
+  color: white;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .topic-grid {
