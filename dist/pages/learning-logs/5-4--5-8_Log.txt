@@ -1,0 +1,36 @@
+Week: 5/4/26 - 5/8/26
+
+======================================
+MONDAY
+======================================
+I focused on learning more about the GUI in an MVC scenario and how state and events work. I asked AI to apply it to a real-world scenario to learn it better. I learned a little bit about data flow in GUIs and what that looks like conventionally/ideally in a good MVC. 
+
+
+======================================
+TUESDAY
+======================================
+
+
+
+
+======================================
+WEDNESDAY
+======================================
+
+
+
+
+======================================
+THURSDAY
+======================================
+Today I learned about iframe elements (embedded elements in html) on freeCodeCamp and practiced using them in a workshop given by freeCodeCamp. Learned about styling iframe elements even though customization is pretty limited without CSS.
+
+
+
+======================================
+FRIDAY
+======================================
+Learned more about the specifics of responsibilities between the model, view, and controller and what type of functions or components are where and why. Did some drills to practice and make sure I know the responsibility of each. Learned a little bit about conventions of naming folders of MVC apps (like naming the model "services"). Learned that the "service" or model folder is for communication, and controller is for UI coordination.
+
+
+

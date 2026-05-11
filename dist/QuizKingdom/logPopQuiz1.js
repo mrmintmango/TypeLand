@@ -1,67 +1,67 @@
 import { QuestionType } from "./quizDefinitions.js";
 export const logPopQuiz1Questions = [
-    // JSON & APIs
+    // MVC, GUI State, and Events
     // Question 1 - Multiple Choice (1 point)
     {
         type: QuestionType.MultipleChoice,
-        question: "What does JSON.parse() return when given valid JSON text?",
+        question: "In an MVC app, which layer should primarily own app data and business rules?",
         options: [
-            "A JavaScript value/object",
-            "A JSON string",
-            "A Promise",
-            "A Response object",
+            "Model (often services/data layer)",
+            "View (UI templates/components)",
+            "CSS styles",
+            "The browser devtools",
         ],
     },
     // Question 2 - Multiple Choice (1 point)
     {
         type: QuestionType.MultipleChoice,
-        question: "When preparing data to store or send as text, which function should you use?",
+        question: "In a GUI, what usually triggers controller logic to run?",
         options: [
-            "JSON.stringify()",
-            "JSON.parse()",
-            "response.ok()",
-            "Array.push()",
+            "User events like clicks or input changes",
+            "Random style recalculations",
+            "TypeScript compile output",
+            "Only page refreshes",
         ],
     },
     // Question 3 - Text Input (2 points)
     {
         type: QuestionType.TextInput,
-        question: "APIs often send data as text. Explain why parsing is needed before using that data in app logic.",
+        question: "What is UI state, and why does keeping state changes predictable make GUI behavior easier to manage?",
     },
     // Question 4 - Code Completion (2 points)
     {
         type: QuestionType.CodeCompletion,
-        question: "Parse the JSON string into a typed object and return the username.",
-        starterCode: 'interface User {\n  id: number;\n  username: string;\n}\n\nconst raw = "{\\"id\\":1,\\"username\\":\\"nova\\"}";\n\nfunction getUsername(jsonText: string): string {\n  // your code here\n  return "";\n}',
+        question: "Complete this MVC-style controller function so it updates model state and then re-renders the view.",
+        starterCode: 'type TodoModel = { items: string[] };\n\nfunction render(items: string[]): void {\n  console.log("rendering", items);\n}\n\nfunction addTodo(model: TodoModel, text: string): void {\n  // controller logic: ignore blank text, update model, then render\n}',
     },
-    // Request Flow, Errors, and Defensive Coding
+    // HTML Embeds and Practical Frontend Constraints
     // Question 5 - Multiple Choice (1 point)
     {
         type: QuestionType.MultipleChoice,
-        question: "Which order best matches a typical fetch request flow?",
+        question: "What is the main purpose of an iframe element in HTML?",
         options: [
-            "request -> receive response -> parse -> use data",
-            "parse -> request -> use data -> receive response",
-            "use data -> request -> parse -> receive response",
-            "request -> use data -> parse -> receive response",
+            "Embed another page/resource inside the current page",
+            "Compile TypeScript in the browser",
+            "Create localStorage automatically",
+            "Replace CSS files at runtime",
         ],
     },
     // Question 6 - Text Input (2 points)
     {
         type: QuestionType.TextInput,
-        question: "What does checking response.ok help you prevent in a fetch workflow?",
+        question: "Why can styling or scripting inside an iframe be limited when the iframe points to a different site?",
     },
     // Question 7 - Code Completion (2 points)
     {
         type: QuestionType.CodeCompletion,
-        question: "Add defensive checks so this function safely handles undefined profile data.",
-        starterCode: 'type Profile = { bio?: string };\n\nfunction getBioLength(profile?: Profile): number {\n  // return 0 when bio is missing\n  return profile.bio.length;\n}',
+        question: "Add defensive checks so this function safely handles missing model or title data.",
+        starterCode: 'type LessonCard = { title?: string };\n\nfunction getTitleUpper(card?: LessonCard): string {\n  // return "UNTITLED" when card or title is missing\n  return card.title.toUpperCase();\n}',
     },
-    // CRUD, Objects, and Types
+    // Objects, Mutation, and Type Design
     // Question 8 - Text Input (2 points)
     {
         type: QuestionType.TextInput,
-        question: "In CRUD updates, what is one practical benefit of creating new data instead of mutating existing data in place?",
+        question: "When passing objects into functions, what is one risk of mutating properties directly, and how can you reduce that risk?",
     },
     // Question 9 - Multiple Choice (1 point)
     {
@@ -77,25 +77,25 @@ export const logPopQuiz1Questions = [
     // Question 10 - Multiple Choice (1 point)
     {
         type: QuestionType.MultipleChoice,
-        question: "What does array.push(value) return?",
+        question: "When preparing an object to store or send as text (for APIs/files), which function should you use?",
         options: [
-            "The new length of the array",
-            "The pushed value",
-            "A new copied array",
-            "undefined",
+            "JSON.stringify()",
+            "JSON.parse()",
+            "response.ok",
+            "Object.keys()",
         ],
     },
     // Question 11 - Text Input (2 points)
     {
         type: QuestionType.TextInput,
-        question: "When defining object shape, when would you choose an interface, and when is a type alias usually better?",
+        question: "APIs often send JSON as text. Explain why parsing is needed before that data can be used safely in app logic.",
     },
-    // Generics and Problem Solving
+    // Generics and Defensive Fetch Workflow
     // Question 12 - Code Completion (2 points)
     {
         type: QuestionType.CodeCompletion,
-        question: "Write a generic function firstItem<T> that returns the first item in an array, or undefined if empty.",
-        starterCode: "",
+        question: "Write a generic function getFirst<T> that returns the first array item, or undefined for an empty array.",
+        starterCode: 'function getFirst<T>(items: T[]): T | undefined {\n  // your code here\n  return undefined;\n}',
     },
     // Question 13 - Multiple Choice (1 point)
     {
@@ -111,12 +111,12 @@ export const logPopQuiz1Questions = [
     // Question 14 - Text Input (2 points)
     {
         type: QuestionType.TextInput,
-        question: "When solving array problems, when might filter/map be clearer than a manual loop?",
+        question: "When defining object shape, when would you choose an interface, and when is a type alias usually better?",
     },
     // Question 15 - Code Completion (Challenge, 3 points)
     {
         type: QuestionType.CodeCompletion,
-        question: "Create an async function fetchUsernames(url: string): Promise<string[]> that fetches JSON, checks response.ok, and safely returns usernames (or [] on failure).",
+        question: "Create an async function fetchUsernames(url: string): Promise<string[]> that follows request flow (fetch -> check response.ok -> parse -> use) and safely returns usernames (or [] on failure).",
         starterCode: 'type ApiUser = { username?: string };\n\nasync function fetchUsernames(url: string): Promise<string[]> {\n  // your code here\n  return [];\n}',
     },
 ];
