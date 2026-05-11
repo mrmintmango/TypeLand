@@ -3,7 +3,7 @@
  * Similar to AdventureEngine pattern in adventure.ts
  */
 import { QuizState, } from "./quizDefinitions.js";
-import { beginnerFinalQuizQuestions } from "./beginnerFinalQuizQuestions.js";
+import { logPopQuiz1Questions } from "./logPopQuiz1.js";
 export class QuizEngine {
     constructor() {
         this.session = null;
@@ -15,10 +15,10 @@ export class QuizEngine {
     }
     /**
      * Initialize quiz questions
-     * TypeScript Learning Quiz - Variables, Types, Functions, Classes & Interfaces
+     * Learning-Log Pop Quiz
      */
     initializeQuestions() {
-        this.questions = [...beginnerFinalQuizQuestions];
+        this.questions = [...logPopQuiz1Questions];
     }
     /**
      * Start a new quiz session with student name
