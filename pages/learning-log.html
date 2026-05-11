@@ -437,10 +437,12 @@
         const select = document.getElementById("weekSelect");
         const today = new Date();
         const currentMonday = getMonday(today);
+        const currentWeekKey = getWeekKey(currentMonday);
 
         select.innerHTML = "";
 
         const archivedMondays = Array.from(archivedWeekKeys)
+          .filter((weekKey) => weekKey !== currentWeekKey)
           .map((weekKey) => getMondayFromWeekKey(weekKey))
           .filter((monday) => monday && monday < currentMonday)
           .sort((first, second) => first - second);

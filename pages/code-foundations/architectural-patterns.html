@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Architectural Patterns - MVC, MVP, MVVM - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+      .mermaid {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+      }
+      .pattern-section {
+        margin: 40px 0;
+        padding: 20px;
+        background: #f5f5f5;
+        border-left: 4px solid #007acc;
+        border-radius: 4px;
+      }
+      .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+      }
+      .comparison-table th,
+      .comparison-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+      .comparison-table th {
+        background: #f0f0f0;
+        font-weight: bold;
+      }
+      .comparison-table tr:nth-child(even) {
+        background: #f9f9f9;
+      }
+      .component-box {
+        background: white;
+        border: 2px solid #007acc;
+        padding: 15px;
+        border-radius: 6px;
+        margin: 10px 0;
+        font-weight: bold;
+        color: #007acc;
+      }
+    </style>
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Course</a
+          >
+          <h1>🏗️ Architectural Patterns: MVC, MVP, and MVVM</h1>
+          <div class="topic-intro">
+            <p>
+              As programs grow, organizing code into clear sections becomes
+              essential. Architectural patterns like MVC, MVP, and MVVM provide
+              proven blueprints for separating concerns and making code easier
+              to understand, test, and maintain.
+            </p>
+          </div>
+
+          <h2>Why Architectural Patterns Matter</h2>
+          <p>
+            Without clear structure, code becomes tangled: logic mixed with user
+            interface, hard to test, and difficult for teams to work on. These
+            patterns separate code into layers:
+          </p>
+          <ul>
+            <li>
+              <strong>Model</strong>: The data and business logic (core rules)
+            </li>
+            <li>
+              <strong>View</strong>: What users see on the screen (the
+              interface)
+            </li>
+            <li>
+              <strong>Controller/Presenter/ViewModel</strong>: The bridge
+              between model and view
+            </li>
+          </ul>
+
+          <!-- MVC Pattern -->
+          <div class="pattern-section">
+            <h2>🔄 MVC (Model-View-Controller)</h2>
+            <p>
+              MVC is one of the oldest and most popular patterns. The Controller
+              handles user actions, updates the Model, and tells the View to
+              refresh.
+            </p>
+
+            <h3>How MVC Works:</h3>
+            <div class="mermaid">
+              graph TD
+                User["👤 User Interaction<br/>(Click, Type, Submit)"]
+                Controller["🎮 Controller<br/>(Handles events)"]
+                Model["📦 Model<br/>(Data & Logic)"]
+                View["📺 View<br/>(Renders display)"]
+                User -->|User acts| Controller
+                Controller -->|Updates| Model
+                Model -->|Notifies| View
+                View -->|Shows| User
+                User -->|Interacts with| View
+            </div>
+
+            <h3>Components:</h3>
+            <ul>
+              <li>
+                <strong>Model:</strong> Stores data and business rules. Example:
+                a shopping cart that knows prices and items.
+              </li>
+              <li>
+                <strong>View:</strong> Displays data to the user. Example: the
+                HTML and CSS that shows the cart on screen.
+              </li>
+              <li>
+                <strong>Controller:</strong> Responds to user actions. Example:
+                when a user clicks "Add to Cart", the controller tells the model
+                to add the item.
+              </li>
+            </ul>
+
+            <h3>Real Example: To-Do List</h3>
+            <div class="code-example">
+              <h4>Model (Todo Logic)</h4>
+              <pre><code>class TodoModel {
+  todos: { id: number; text: string; done: boolean }[] = [];
+  
+  addTodo(text: string): void {
+    this.todos.push({ id: Date.now(), text, done: false });
+  }
+  
+  completeTodo(id: number): void {
+    const todo = this.todos.find(t => t.id === id);
+    if (todo) todo.done = true;
+  }
+}</code></pre>
+            </div>
+
+            <div class="code-example">
+              <h4>Controller (Handles User Input)</h4>
+              <pre><code>class TodoController {
+  constructor(private model: TodoModel, private view: TodoView) {}
+  
+  onAddTodoClicked(text: string): void {
+    this.model.addTodo(text);
+    this.view.render(this.model.todos);
+  }
+  
+  onCompleteTodoClicked(id: number): void {
+    this.model.completeTodo(id);
+    this.view.render(this.model.todos);
+  }
+}</code></pre>
+            </div>
+
+            <div class="code-example">
+              <h4>View (Displays Data)</h4>
+              <pre><code>class TodoView {
+  render(todos: any[]): void {
+    let html = "&lt;ul&gt;";
+    todos.forEach(todo => {
+      const checkmark = todo.done ? "✓" : "";
+      html += `&lt;li&gt;${checkmark} ${todo.text}&lt;/li&gt;`;
+    });
+    html += "&lt;/ul&gt;";
+    document.getElementById("app").innerHTML = html;
+  }
+}</code></pre>
+            </div>
+
+            <h3>Pros and Cons</h3>
+            <table class="comparison-table">
+              <tr>
+                <th>Pros</th>
+                <th>Cons</th>
+              </tr>
+              <tr>
+                <td>Simple to understand</td>
+                <td>View and Model can become closely tied</td>
+              </tr>
+              <tr>
+                <td>Works well for small to medium apps</td>
+                <td>Controller can grow large</td>
+              </tr>
+              <tr>
+                <td>Used in many web frameworks</td>
+                <td>Harder to test when view updates the model</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- MVP Pattern -->
+          <div class="pattern-section">
+            <h2>🎭 MVP (Model-View-Presenter)</h2>
+            <p>
+              MVP is similar to MVC, but with a key difference: the Presenter
+              handles ALL interaction logic, and the View is completely passive.
+              The View never directly updates the Model.
+            </p>
+
+            <h3>How MVP Works:</h3>
+            <div class="mermaid">
+              graph TD
+                User["👤 User Interaction<br/>(Click, Type, Submit)"]
+                View["📺 View<br/>(Display only)"]
+                Presenter["🎭 Presenter<br/>(Handles all logic)"]
+                Model["📦 Model<br/>(Data & Rules)"]
+                User -->|User acts| View
+                View -->|Tells Presenter| Presenter
+                Presenter -->|Updates| Model
+                Model -->|Provides data| Presenter
+                Presenter -->|Tells View<br/>what to show| View
+                View -->|Shows to| User
+            </div>
+
+            <h3>Key Difference from MVC:</h3>
+            <p>
+              <strong>View is passive:</strong> The View never directly touches
+              the Model. All communication goes through the Presenter.
+            </p>
+
+            <h3>Real Example: To-Do List with MVP</h3>
+            <div class="code-example">
+              <h4>Model (Same as MVC)</h4>
+              <pre><code>class TodoModel {
+  todos: { id: number; text: string; done: boolean }[] = [];
+  
+  addTodo(text: string): void {
+    this.todos.push({ id: Date.now(), text, done: false });
+  }
+}</code></pre>
+            </div>
+
+            <div class="code-example">
+              <h4>View (Completely Passive)</h4>
+              <pre><code>class TodoView {
+  onAddButtonClicked: (text: string) => void = () => {};
+  onCompleteButtonClicked: (id: number) => void = () => {};
+  
+  addTodoButton = document.getElementById("add-btn");
+  
+  render(todos: any[]): void {
+    // View just displays, never updates model directly
+    let html = "&lt;ul&gt;";
+    todos.forEach(todo => {
+      html += `&lt;li&gt;${todo.text}&lt;/li&gt;`;
+    });
+    document.getElementById("app").innerHTML = html;
+  }
+}</code></pre>
+            </div>
+
+            <div class="code-example">
+              <h4>Presenter (All Logic)</h4>
+              <pre><code>class TodoPresenter {
+  constructor(private model: TodoModel, private view: TodoView) {
+    // Presenter wires everything together
+    this.view.onAddButtonClicked = (text: string) => this.handleAdd(text);
+    this.view.onCompleteButtonClicked = (id: number) => this.handleComplete(id);
+  }
+  
+  private handleAdd(text: string): void {
+    this.model.addTodo(text);
+    this.updateView();
+  }
+  
+  private updateView(): void {
+    this.view.render(this.model.todos);
+  }
+}</code></pre>
+            </div>
+
+            <h3>Pros and Cons</h3>
+            <table class="comparison-table">
+              <tr>
+                <th>Pros</th>
+                <th>Cons</th>
+              </tr>
+              <tr>
+                <td>View is completely testable without the Model</td>
+                <td>More boilerplate code</td>
+              </tr>
+              <tr>
+                <td>Clear separation of concerns</td>
+                <td>Presenter can become large</td>
+              </tr>
+              <tr>
+                <td>Easy to reuse the same View with different Presenters</td>
+                <td>More complex to set up initially</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- MVVM Pattern -->
+          <div class="pattern-section">
+            <h2>⚙️ MVVM (Model-View-ViewModel)</h2>
+            <p>
+              MVVM is modern and used in frameworks like Vue.js, Angular, and
+              WPF. The ViewModel is a transformed version of the Model that's
+              ready for the View. Instead of the code pulling data, the
+              ViewModel <strong>notifies</strong> the View when data changes
+              (often through observables or reactive systems).
+            </p>
+
+            <h3>How MVVM Works:</h3>
+            <div class="mermaid">
+              graph TD
+                User["👤 User Interaction"]
+                View["📺 View<br/>(Binds to ViewModel)"]
+                ViewModel["⚙️ ViewModel<br/>(Transforms Model)"]
+                Model["📦 Model<br/>(Data & Logic)"]
+                User -->|User acts| View
+                View -->|Two-way<br/>binding| ViewModel
+                ViewModel -->|Subscribes to<br/>changes| Model
+                Model -->|Notifies of<br/>updates| ViewModel
+                ViewModel -->|Pushes updates| View
+            </div>
+
+            <h3>Key Feature: Two-Way Binding</h3>
+            <p>
+              In MVVM, the View and ViewModel are connected through
+              <strong>binding</strong>. When the user changes something in the
+              View, the ViewModel updates automatically. When the Model changes,
+              the View updates automatically without explicit code.
+            </p>
+
+            <h3>Real Example: To-Do List with MVVM</h3>
+            <div class="code-example">
+              <h4>Model (Core Data)</h4>
+              <pre><code>class TodoModel {
+  todos: { id: number; text: string; done: boolean }[] = [];
+  
+  addTodo(text: string): void {
+    this.todos.push({ id: Date.now(), text, done: false });
+  }
+}</code></pre>
+            </div>
+
+            <div class="code-example">
+              <h4>ViewModel (Prepared for View)</h4>
+              <pre><code>class TodoViewModel {
+  todos$ = new Observable([]); // Observable = reactive stream
+  
+  constructor(private model: TodoModel) {
+    // ViewModel subscribes to model changes and notifies view
+    this.updateTodos();
+  }
+  
+  addTodo(text: string): void {
+    this.model.addTodo(text);
+    this.updateTodos(); // Notify view of changes
+  }
+  
+  private updateTodos(): void {
+    this.todos$.next(this.model.todos); // Push to all subscribers
+  }
+}</code></pre>
+            </div>
+
+            <div class="code-example">
+              <h4>View (Binds to ViewModel)</h4>
+              <pre><code>// In Vue.js, this would look like:
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;input v-model="newTodoText" placeholder="Add a to-do" /&gt;
+    &lt;button @click="viewModel.addTodo(newTodoText)"&gt;Add&lt;/button&gt;
+    
+    &lt;ul&gt;
+      &lt;li v-for="todo in viewModel.todos$"&gt;
+        {{ todo.text }}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+            </div>
+
+            <h3>Pros and Cons</h3>
+            <table class="comparison-table">
+              <tr>
+                <th>Pros</th>
+                <th>Cons</th>
+              </tr>
+              <tr>
+                <td>Automatic two-way synchronization</td>
+                <td>Requires a reactive framework or library</td>
+              </tr>
+              <tr>
+                <td>Less boilerplate than MVP</td>
+                <td>Can be harder to debug with automatic updates</td>
+              </tr>
+              <tr>
+                <td>Perfect for modern JavaScript frameworks</td>
+                <td>Overkill for simple projects</td>
+              </tr>
+              <tr>
+                <td>ViewModel is highly testable</td>
+                <td>Requires understanding of reactive programming</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Comparison -->
+          <h2>Side-by-Side Comparison</h2>
+          <table class="comparison-table">
+            <tr>
+              <th>Aspect</th>
+              <th>MVC</th>
+              <th>MVP</th>
+              <th>MVVM</th>
+            </tr>
+            <tr>
+              <td><strong>View Updates</strong></td>
+              <td>Controller tells View to update</td>
+              <td>Presenter tells View to update</td>
+              <td>Automatic (binding)</td>
+            </tr>
+            <tr>
+              <td><strong>View-Model Coupling</strong></td>
+              <td>Tight</td>
+              <td>Loose</td>
+              <td>Loose</td>
+            </tr>
+            <tr>
+              <td><strong>View Independence</strong></td>
+              <td>Depends on Model</td>
+              <td>Independent (testable alone)</td>
+              <td>Independent</td>
+            </tr>
+            <tr>
+              <td><strong>Complexity</strong></td>
+              <td>Low</td>
+              <td>Medium</td>
+              <td>Medium-High</td>
+            </tr>
+            <tr>
+              <td><strong>Best For</strong></td>
+              <td>Web frameworks (Rails, Django)</td>
+              <td>Desktop apps, complex UI logic</td>
+              <td>Modern JS frameworks (Vue, Angular)</td>
+            </tr>
+          </table>
+
+          <!-- Choosing a Pattern -->
+          <h2>🎯 Choosing the Right Pattern</h2>
+          <div style="margin: 20px 0">
+            <p><strong>Use MVC if:</strong></p>
+            <ul>
+              <li>Building a traditional web app with a backend framework</li>
+              <li>You want simplicity and fast development</li>
+              <li>The project is small to medium-sized</li>
+            </ul>
+          </div>
+
+          <div style="margin: 20px 0">
+            <p><strong>Use MVP if:</strong></p>
+            <ul>
+              <li>
+                Testing the UI logic is a priority (desktop apps, complex UIs)
+              </li>
+              <li>You want maximum separation between View and Model</li>
+              <li>You need to reuse the same view with different logic</li>
+            </ul>
+          </div>
+
+          <div style="margin: 20px 0">
+            <p><strong>Use MVVM if:</strong></p>
+            <ul>
+              <li>
+                You're using a modern framework (Vue.js, Angular, React + Redux)
+              </li>
+              <li>You want automatic UI synchronization</li>
+              <li>You're comfortable with reactive programming concepts</li>
+            </ul>
+          </div>
+
+          <!-- Key Takeaways -->
+          <div class="key-concepts">
+            <h3>🎯 Key Ideas</h3>
+            <ul>
+              <li>
+                Architectural patterns help organize code into clear, separated
+                layers
+              </li>
+              <li>
+                <strong>Model</strong> holds data and logic,
+                <strong>View</strong> displays it
+              </li>
+              <li>
+                The middle layer (Controller/Presenter/ViewModel) differs by
+                pattern
+              </li>
+              <li>
+                More separation = easier to test and maintain, but more code
+              </li>
+              <li>
+                Choose the pattern that fits your framework and team knowledge
+              </li>
+            </ul>
+          </div>
+
+          <!-- Resources -->
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller"
+                  target="_blank"
+                  >Wikipedia: MVC</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter"
+                  target="_blank"
+                  >Wikipedia: MVP</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel"
+                  target="_blank"
+                  >Wikipedia: MVVM</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.freecodecamp.org/news/the-model-view-controller-pattern-mvc-architecture-and-its-benefits-8b91a449bcb0/"
+                  target="_blank"
+                  >FreeCodeCamp: MVC Explained</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../code-foundations.html" class="back-to-course"
+            >← Back to Code Foundations</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Initialize Mermaid diagrams
+      mermaid.contentLoaderAsync();
+    </script>
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

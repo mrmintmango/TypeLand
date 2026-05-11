@@ -1,0 +1,37 @@
+Week: 4/27/26 - 5/1/26
+
+======================================
+MONDAY
+======================================
+Today I learned about JSON since it is a requirement for the assignment. Learned that JSON can be used regardless of the language you are using to develop your website on. I also learned about JSON.parse() and JSON.stringify() and when to use each, and also which types they take in and return. I also learned a little bit about APIs and that they send text/strings, not objects. 
+
+
+
+======================================
+TUESDAY
+======================================
+Learned about APIs and fetch(). Learned that promises resolve with a response object, and that there are 3 main steps to a request (request/receive response, parsing, and then applying/using). Learned a little bit about handling errors with response.ok.
+
+
+
+======================================
+WEDNESDAY
+======================================
+I learned about CRUD more on the data side (like state, ui, and backend) and learned about mutating data vs creating new data. To help learn this I asked AI to help apply this to the to-do list app. Also learned a little about making crud designs more reliable with validating inputs and making sure the user knows there's an error when the user needs to know.
+
+
+
+======================================
+THURSDAY
+======================================
+Wanted to learn about errors and learned more about "defensive coding". Which means validating data types of inputs and responses before performing steps. I learned about the importance of catching undefined cases and making sure the data is safe before using it in an app.
+
+
+
+======================================
+FRIDAY
+======================================
+
+
+
+
