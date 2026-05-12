@@ -1,0 +1,249 @@
+{
+  "studentName": "Student 1",
+  "grades": [
+    {
+      "type": "quiz",
+      "title": "Quiz Kingdom - Fundamentals",
+      "submitted": "2026-03-20",
+      "status": "graded",
+      "grade": "62%",
+      "feedback": {
+        "kind": "download",
+        "label": "Download Comments",
+        "href": "grades-comments/quiz-results-donovan-tong-2026-03-19-2026-GRADED.txt",
+        "download": true
+      }
+    },
+    {
+      "type": "assignment",
+      "title": "Arrays Assignment",
+      "submitted": "2026-03-31",
+      "status": "graded",
+      "grade": "80%",
+      "feedback": {
+        "kind": "download",
+        "label": "Download Comments",
+        "href": "grades-comments/arrays-assignment-Graded.txt",
+        "download": true
+      }
+    },
+    {
+      "type": "quiz",
+      "title": "Quiz Kingdom - Beginner Quiz 1",
+      "submitted": "2026-04-02",
+      "status": "graded",
+      "grade": "90%",
+      "feedback": {
+        "kind": "download",
+        "label": "Download Comments",
+        "href": "grades-comments/quiz-results-donovan-2026-04-02T21-29-39-GRADED.txt",
+        "download": true
+      }
+    },
+    {
+      "type": "assignment",
+      "title": "Assignment 1",
+      "submitted": "2026-04-02",
+      "status": "graded",
+      "grade": "90%",
+      "feedback": {
+        "kind": "download",
+        "label": "Download Comments",
+        "href": "grades-comments/assignment-1-Graded.txt",
+        "download": true
+      }
+    },
+    {
+      "type": "log",
+      "title": "Learning Log",
+      "submitted": "03-30 - 04-02",
+      "status": "graded",
+      "grade": "80%",
+      "feedback": {
+        "kind": "link",
+        "label": "View Logs",
+        "href": "learning-log.html"
+      }
+    },
+    {
+      "type": "assignment",
+      "title": "Assignment 2",
+      "submitted": "2026-04-07",
+      "status": "graded",
+      "grade": "100%",
+      "feedback": {
+        "kind": "download",
+        "label": "Download Comments",
+        "href": "grades-comments/assignment-2-Graded.txt",
+        "download": true
+      }
+    },
+    {
+      "type": "quiz",
+      "title": "Quiz Kingdom - Beginner Quiz 2",
+      "submitted": "2026-04-09",
+      "status": "graded",
+      "grade": "87%",
+      "feedback": {
+        "kind": "download",
+        "label": "Download Comments",
+        "href": "grades-comments/quiz-results-donovan-2026-04-09T21-11-58-GRADED.txt",
+        "download": true
+      }
+    },
+    {
+      "type": "log",
+      "title": "Learning Log",
+      "submitted": "04-06 - 04-10",
+      "status": "graded",
+      "grade": "80%",
+      "feedback": {
+        "kind": "link",
+        "label": "View Logs",
+        "href": "learning-log.html"
+      }
+    },
+    {
+      "type": "assignment",
+      "title": "Beginner Course Assignment",
+      "submitted": "2026-04-16",
+      "status": "graded",
+      "grade": "92.5%",
+      "feedback": {
+        "kind": "download",
+        "label": "Download Comments",
+        "href": "grades-comments/beginner-course-assignment-GRADED.txt",
+        "download": true
+      }
+    },
+    {
+      "type": "log",
+      "title": "Learning Log",
+      "submitted": "04-13 - 04-17",
+      "status": "graded",
+      "grade": "100%",
+      "feedback": {
+        "kind": "link",
+        "label": "View Logs",
+        "href": "learning-log.html"
+      }
+    },
+    {
+      "type": "quiz",
+      "title": "Quiz Kingdom - Final Beginner Quiz",
+      "submitted": "2026-04-21",
+      "status": "graded",
+      "grade": "72%",
+      "feedback": {
+        "kind": "download",
+        "label": "Download Comments",
+        "href": "grades-comments/quiz-results-donovan-tong-2026-04-21T21-38-08.txt",
+        "download": true
+      }
+    },
+    {
+      "type": "assignment",
+      "title": "Interactive TO-DO List",
+      "submitted": "2026-04-23",
+      "status": "graded",
+      "grade": "95%",
+      "feedback": {
+        "kind": "none",
+        "label": "No Comments"
+      }
+    },
+    {
+      "type": "log",
+      "title": "Learning Log",
+      "submitted": "04-20 - 04-24",
+      "status": "graded",
+      "grade": "40%",
+      "feedback": {
+        "kind": "link",
+        "label": "View Logs",
+        "href": "learning-log.html"
+      }
+    },
+    {
+      "type": "assignment",
+      "title": "Creating a tiny DB",
+      "submitted": "2026-04-28",
+      "status": "graded",
+      "grade": "95%",
+      "feedback": {
+        "kind": "none",
+        "label": "No Comments"
+      }
+    },
+    {
+      "type": "log",
+      "title": "Learning Log",
+      "submitted": "04-27 - 05-01",
+      "status": "graded",
+      "grade": "80%",
+      "feedback": {
+        "kind": "link",
+        "label": "View Logs",
+        "href": "learning-log.html"
+      }
+    },
+    {
+      "type": "assignment",
+      "title": "MVC GUI assignment",
+      "submitted": "2026-05-07",
+      "status": "graded",
+      "grade": "85%",
+      "feedback": {
+        "kind": "none",
+        "label": "No Comments"
+      }
+    },
+    {
+      "type": "log",
+      "title": "Learning Log",
+      "submitted": "05-04 - 05-08",
+      "status": "graded",
+      "grade": "60%",
+      "feedback": {
+        "kind": "link",
+        "label": "View Logs",
+        "href": "learning-log.html"
+      }
+    },
+        {
+      "type": "quiz",
+      "title": "Learning Log Pop Quiz 1",
+      "submitted": "2026-05-11",
+      "status": "graded",
+      "grade": "68%",
+      "feedback": {
+        "kind": "download",
+        "label": "Download Comments",
+        "href": "grades-comments/quiz-results-donovan-tong-2026-05-11T22-52-50.txt",
+        "download": true
+      }
+    },
+    {
+      "type": "assignment",
+      "title": "Logic Gates Assignment",
+      "submitted": "2026-05-12",
+      "status": "graded",
+      "grade": "105%",
+      "feedback": {
+        "kind": "none",
+        "label": "No Comments"
+      }
+    },
+    {
+      "type": "assignment",
+      "title": "Practice Writing Jest Tests",
+      "submitted": "2026-05-13",
+      "status": "pending",
+      "grade": "---",
+      "feedback": {
+        "kind": "pending",
+        "label": "Pending"
+      }
+    }
+  ]
+}
