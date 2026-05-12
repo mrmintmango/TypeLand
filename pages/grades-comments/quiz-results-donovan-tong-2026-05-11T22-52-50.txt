@@ -1,0 +1,237 @@
+======================================================================
+TYPELAND QUIZ RESULTS
+======================================================================
+
+Student Name: Donovan Tong
+Quiz Started: May 11, 2026 at 04:16:16 PM
+Quiz Completed: May 11, 2026 at 04:52:46 PM
+Duration: 36 minutes 30 seconds
+Total Questions: 15
+
+----------------------------------------------------------------------
+
+Question 1:
+In an MVC app, which layer should primarily own app data and business rules?
+
+Answer:
+Model (often services/data layer)
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 2:
+In a GUI, what usually triggers controller logic to run?
+
+Answer:
+User events like clicks or input changes
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 3:
+What is UI state, and why does keeping state changes predictable make GUI behavior easier to manage?
+
+Answer:
+State is a type of listener that is always paying attention to user input. Because then your program will be more intuitive in how to handle edge cases and code will be more defensive.
+
+// Almost! you have a good reason for why it makes GUI behavior easier to manage,
+// but UI state is the data that describes what the interface shows at any moment, not so much a listener. 
+
+Points: 1/2
+
+----------------------------------------------------------------------
+
+Question 4:
+Complete this MVC-style controller function so it updates model state and then re-renders the view.
+
+Answer:
+type TodoModel = { items: string[] };
+
+function render(items: string[]): TodoModel {
+  console.log("rendering", items);
+}
+
+function addTodo(model: TodoModel, text: string): void {
+  // controller logic: ignore blank text, update model, then render
+}
+
+// This one might seem a bit tricky but it's not too hard when you remember what your add todo function
+// does in your todo list application: updates the list of todo items and saves it, or in this cases
+// it updates the list of items and then renders it (using the pre-made render function)
+// the correct answer would look like this:
+
+type TodoModel = { items: string[] };
+
+function render(items: string[]): void {
+  console.log("rendering", items);
+}
+
+function addTodo(model: TodoModel, text: string): void {
+  if (!text.trim()) return; // this check isn't necessary to get full points, just the next two lines
+  model.items = [...model.items, text];
+  render(model.items);
+}
+
+Points: 0/2
+
+----------------------------------------------------------------------
+
+Question 5:
+What is the main purpose of an iframe element in HTML?
+
+Answer:
+Embed another page/resource inside the current page
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 6:
+Why can styling or scripting inside an iframe be limited when the iframe points to a different site?
+
+Answer:
+Because natively, iframe only supports changing the position and the layout.
+
+// I'll give you full points on this one because that's correct, but more importantly
+// whatever is inside an iframe is completely controlled by a different site which controls it's own
+// css and js, which can't be overriden without permission. 
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 7:
+Add defensive checks so this function safely handles missing model or title data.
+
+Answer:
+type LessonCard = { title?: string };
+
+function getTitleUpper(card?: LessonCard): string {
+  // return "UNTITLED" when card or title is missing
+  if (!card || card.title === "") {
+     return "UNTITLED";
+  }
+  return card.title.toUpperCase();
+}
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 8:
+When passing objects into functions, what is one risk of mutating properties directly, and how can you reduce that risk?
+
+Answer:
+Data could be mutated into an incorrect type. Reduce the risk by mutating within that same type. Maintain consistency.
+
+// That's an issue with mutation in general and one that the IDE will quickly catch. When mutating object properties
+// that are passed into a function, you end up changing those properties on the object itself which can cause strange behavior
+// in other parts of the code. It's best to reduce this risk by having the function return a new object instead of modifying the existing one. 
+
+Points: 0/2
+
+----------------------------------------------------------------------
+
+Question 9:
+If you pass an object into a function and change one of its properties inside that function, what usually happens?
+
+Answer:
+The original object can be affected
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 10:
+When preparing an object to store or send as text (for APIs/files), which function should you use?
+
+Answer:
+JSON.stringify()
+
+Points: 1/1
+
+----------------------------------------------------------------------
+
+Question 11:
+APIs often send JSON as text. Explain why parsing is needed before that data can be used safely in app logic.
+
+Answer:
+Because JavaScript/TypeScript doesn't know that the text is data, it is just a string. App logic cannot be applied to it.
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 12:
+Write a generic function getFirst<T> that returns the first array item, or undefined for an empty array.
+
+Answer:
+function getFirst<T>(items: T[]): T | undefined {
+  if (items.length > 0) {
+    return items[0];
+  }
+  return undefined;
+}
+
+Points: 2/2
+
+----------------------------------------------------------------------
+
+Question 13:
+If a generic function needs to use value.length, which constraint is appropriate?
+
+Answer:
+No constraint is needed
+
+// not quite. How will the function now that the generic type has a length attribute?
+// we can specify this by making sure the generic extends any type that has a length attribute
+// We do that like this -> <T extends { length: number }>
+// This is an example of implementing restraints on Generics
+
+Points: 0/1
+
+----------------------------------------------------------------------
+
+Question 14:
+When defining object shape, when would you choose an interface, and when is a type alias usually better?
+
+Answer:
+Use interface when you may need to use a hierarchy of data, and use a type alias when you only need a single data structure throughout your codebase.
+
+// Good job on recognizing the hierarchy of data again but I'm expecting a little bit more.
+// I also don't quite understand what you mean by needing a single data structure throughout the codebase?
+// Covering any of this points would get full points on this question:
+// - Interface: object shapes, extension/implementation-friendly contracts.
+// - Type alias: unions/intersections and composition-heavy type modeling.
+// Or put more simply, use interfaces for objects and type aliases for simpler data that may need unions/intersections. 
+
+Points: 0/1
+
+----------------------------------------------------------------------
+
+Question 15:
+Create an async function fetchUsernames(url: string): Promise<string[]> that follows request flow (fetch -> check response.ok -> parse -> use) and safely returns usernames (or [] on failure).
+
+Answer:
+type ApiUser = { username?: string };
+
+async function fetchUsernames(url: string): Promise<string[]> {
+  try {
+  const names = await fetch(url);
+  if (names.ok) {
+    return names.map((user) => user.username)
+  } else {
+    return []
+  };
+  } catch {
+  return []
+  };
+}
+
+Points: 3/3
+
+======================================================================
+END OF QUIZ RESULTS ==> 17/25 ==> 68%
+======================================================================
