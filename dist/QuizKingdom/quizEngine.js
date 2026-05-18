@@ -3,22 +3,19 @@
  * Similar to AdventureEngine pattern in adventure.ts
  */
 import { QuizState, } from "./quizDefinitions.js";
-import { logPopQuiz1Questions } from "./logPopQuiz1.js";
 export class QuizEngine {
     constructor() {
         this.session = null;
         this.state = QuizState.NotStarted;
         this.questions = [];
-        // Initialize with empty questions array
-        // Teacher will populate this with actual TypeScript quiz questions
-        this.initializeQuestions();
+        // Questions are loaded via setQuestions() before starting the quiz
     }
     /**
-     * Initialize quiz questions
-     * Learning-Log Pop Quiz
+     * Load the questions for a specific quiz.
+     * Must be called before startQuiz().
      */
-    initializeQuestions() {
-        this.questions = [...logPopQuiz1Questions];
+    setQuestions(questions) {
+        this.questions = [...questions];
     }
     /**
      * Start a new quiz session with student name

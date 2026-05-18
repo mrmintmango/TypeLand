@@ -6,11 +6,14 @@
 import { QuizEngine } from "./quizEngine.js";
 import { QuestionType, QuizQuestion, QuizState } from "./quizDefinitions.js";
 import { exportQuizResults } from "./fileExporter.js";
+import { quizRegistry, QuizEntry } from "./quizRegistry.js";
 
 export class QuizRenderer {
   private engine: QuizEngine;
+  private selectedQuiz: QuizEntry | null = null;
 
   // DOM Elements
+  private quizSelectionSection: HTMLElement | null = null;
   private nameEntrySection: HTMLElement | null = null;
   private quizSection: HTMLElement | null = null;
   private completionSection: HTMLElement | null = null;
@@ -44,6 +47,7 @@ export class QuizRenderer {
    */
   private initializeDOMElements(): void {
     // Sections
+    this.quizSelectionSection = document.getElementById("quizSelectionSection");
     this.nameEntrySection = document.getElementById("nameEntrySection");
     this.quizSection = document.getElementById("quizSection");
     this.completionSection = document.getElementById("completionSection");
@@ -235,6 +239,7 @@ export class QuizRenderer {
    */
   private handleRetake(): void {
     this.engine.reset();
+    this.selectedQuiz = null;
     if (this.nameInput) {
       this.nameInput.value = "";
     }
@@ -273,6 +278,12 @@ export class QuizRenderer {
    * Main render method - displays appropriate section based on quiz state
    */
   private render(): void {
+    // Show quiz selection first if no quiz has been chosen yet
+    if (!this.selectedQuiz) {
+      this.renderQuizSelection();
+      return;
+    }
+
     const state = this.engine.getState();
 
     switch (state) {
@@ -289,12 +300,85 @@ export class QuizRenderer {
   }
 
   /**
+   * Render the quiz selection section
+   */
+  private renderQuizSelection(): void {
+    this.showSection(this.quizSelectionSection);
+    this.hideSection(this.nameEntrySection);
+    this.hideSection(this.quizSection);
+    this.hideSection(this.completionSection);
+
+    const listEl = document.getElementById("quizList");
+    if (!listEl) return;
+
+    listEl.innerHTML = "";
+
+    quizRegistry.forEach((quiz) => {
+      const card = document.createElement("div");
+      card.className = "quiz-card";
+      if (quiz.isActive) {
+        card.classList.add("quiz-card--active");
+      }
+
+      const header = document.createElement("div");
+      header.className = "quiz-card__header";
+
+      const title = document.createElement("h3");
+      title.textContent = quiz.name;
+
+      if (quiz.isActive) {
+        const badge = document.createElement("span");
+        badge.className = "quiz-card__badge";
+        badge.textContent = "Active";
+        header.appendChild(badge);
+      }
+
+      header.appendChild(title);
+
+      const desc = document.createElement("p");
+      desc.className = "quiz-card__desc";
+      desc.textContent = quiz.description;
+
+      const meta = document.createElement("p");
+      meta.className = "quiz-card__meta";
+      meta.textContent = `${quiz.questions.length} question${quiz.questions.length !== 1 ? "s" : ""}`;
+
+      const btn = document.createElement("button");
+      btn.className = "quiz-card__btn";
+      btn.textContent = quiz.isActive ? "Take Quiz" : "Take Quiz";
+      btn.addEventListener("click", () => this.handleSelectQuiz(quiz));
+
+      card.appendChild(header);
+      card.appendChild(desc);
+      card.appendChild(meta);
+      card.appendChild(btn);
+      listEl.appendChild(card);
+    });
+  }
+
+  /**
+   * Handle a quiz card selection
+   */
+  private handleSelectQuiz(quiz: QuizEntry): void {
+    this.selectedQuiz = quiz;
+    this.engine.setQuestions(quiz.questions);
+    this.render();
+  }
+
+  /**
    * Render the name entry section
    */
   private renderNameEntry(): void {
+    this.hideSection(this.quizSelectionSection);
     this.showSection(this.nameEntrySection);
     this.hideSection(this.quizSection);
     this.hideSection(this.completionSection);
+
+    // Show the selected quiz name in the welcome header
+    const quizTitle = document.getElementById("selectedQuizTitle");
+    if (quizTitle && this.selectedQuiz) {
+      quizTitle.textContent = this.selectedQuiz.name;
+    }
   }
 
   /**

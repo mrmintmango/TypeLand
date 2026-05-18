@@ -139,16 +139,22 @@
     <div class="content-wrapper" id="contentWrapper">
       <div class="container">
         <header>
-          <h1>📝 TypeLand Learning Log Pop Quiz 📝</h1>
-          <p class="instructions">
-            A focused 15-question check-in based on recent learning logs.
-          </p>
+            <h1>📝 TypeLand Quiz Kingdom 📝</h1>
+            <p class="instructions">
+              Select a quiz and enter your name to begin.
         </header>
 
         <main class="quiz-container">
+          <!-- Quiz Selection Section -->
+          <section id="quizSelectionSection" class="quiz-section">
+            <h2>Choose a Quiz</h2>
+            <p class="instructions">Select a quiz below. The <span class="active-label">Active</span> quiz is the current live assignment.</p>
+            <div id="quizList" class="quiz-list"></div>
+          </section>
+
           <!-- Name Entry Section -->
           <section id="nameEntrySection" class="quiz-section name-entry">
-            <h2>Welcome to the Quiz!</h2>
+            <h2>Welcome to <span id="selectedQuizTitle">the Quiz</span>!</h2>
             <p>Please enter your name to begin:</p>
 
             <div class="name-input-group">

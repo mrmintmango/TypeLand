@@ -10,7 +10,6 @@ import {
   QuizSession,
   ValidationResult,
 } from "./quizDefinitions.js";
-import { logPopQuiz1Questions } from "./logPopQuiz1.js";
 
 export class QuizEngine {
   private session: QuizSession | null = null;
@@ -18,17 +17,15 @@ export class QuizEngine {
   private questions: QuizQuestion[] = [];
 
   constructor() {
-    // Initialize with empty questions array
-    // Teacher will populate this with actual TypeScript quiz questions
-    this.initializeQuestions();
+    // Questions are loaded via setQuestions() before starting the quiz
   }
 
   /**
-   * Initialize quiz questions
-   * Learning-Log Pop Quiz
+   * Load the questions for a specific quiz.
+   * Must be called before startQuiz().
    */
-  private initializeQuestions(): void {
-    this.questions = [...logPopQuiz1Questions];
+  public setQuestions(questions: QuizQuestion[]): void {
+    this.questions = [...questions];
   }
 
   /**
