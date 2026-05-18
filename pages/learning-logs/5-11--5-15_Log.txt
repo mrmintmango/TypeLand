@@ -1,0 +1,37 @@
+Week: 5/11/26 - 5/15/26
+
+======================================
+MONDAY
+======================================
+Focused on and learned about object mutation and references since I struggled with it on the quiz. Learned how primitives copy by value. Learned how mutation within a function affects the original value. Practiced different cases of these by doing drills. 
+
+
+
+======================================
+TUESDAY
+======================================
+
+
+
+
+======================================
+WEDNESDAY
+======================================
+Reviewed UI state. Used AI to learn principles. Learned how state is not a listener or event handler, but is a snapshot of the data. Learned how the UI reads that state snapshot and renders accordingly. Learned that the state is the data that describes what an interface looks like at any given moment. 
+
+
+
+======================================
+THURSDAY
+======================================
+I learned more deeply about the pattern of controllers. I learned primarily about how the main responsibilities are to read input, guard invalid data, update the model, then call the view. Did some practicing of writing controller functions in the RGUC pattern. 
+
+
+
+======================================
+FRIDAY
+======================================
+
+
+
+
