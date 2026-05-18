@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sequence Diagrams - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+      .mermaid {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+      }
+      .section-highlight {
+        background: #f5f5f5;
+        padding: 20px;
+        border-left: 4px solid #007acc;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+      .arrow-legend {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin: 20px 0;
+      }
+      .arrow-item {
+        background: white;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        background: white;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background: #f0f0f0;
+        font-weight: bold;
+      }
+      tr:nth-child(even) {
+        background: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../resources.html" class="back-to-course"
+            >← Back to Resources</a
+          >
+
+          <h1>⏱️ Sequence Diagrams</h1>
+
+          <div class="topic-intro">
+            <p>
+              While class diagrams show <strong>what</strong> classes exist and
+              their structure, sequence diagrams show
+              <strong>how objects interact over time</strong>. They display the
+              sequence of messages and method calls that happen during a
+              specific scenario.
+            </p>
+          </div>
+
+          <h2>What Sequence Diagrams Show</h2>
+          <div class="key-concepts">
+            <ul>
+              <li>
+                <strong>Actors/Objects:</strong> The participants in the
+                interaction
+              </li>
+              <li>
+                <strong>Messages:</strong> Method calls between objects
+              </li>
+              <li>
+                <strong>Order:</strong> The sequence of steps from top to bottom
+              </li>
+              <li>
+                <strong>Timing:</strong> Who calls whom and when</li>
+              <li>
+                <strong>Return values:</strong> What comes back from calls
+              </li>
+            </ul>
+          </div>
+
+          <h2>When to Use Sequence Diagrams</h2>
+
+          <div class="section-highlight">
+            <h3>Use Sequence Diagrams for:</h3>
+            <ul>
+              <li>
+                <strong>Showing workflows:</strong> How an order gets placed from
+                start to finish
+              </li>
+              <li>
+                <strong>API interactions:</strong> How client and server
+                communicate
+              </li>
+              <li>
+                <strong>Complex scenarios:</strong> Login, payment processing,
+                multi-step procedures
+              </li>
+              <li>
+                <strong>Debugging flows:</strong> Understanding a confusing
+                interaction
+              </li>
+              <li>
+                <strong>Requirements:</strong> Showing stakeholders what happens
+                in a use case
+              </li>
+            </ul>
+          </div>
+
+          <h2>Reading a Sequence Diagram</h2>
+
+          <div class="section-highlight">
+            <h3>Anatomy of a Sequence Diagram</h3>
+            <ul>
+              <li>
+                <strong>Top:</strong> Boxes representing actors or objects
+              </li>
+              <li>
+                <strong>Vertical dashed lines:</strong> "Lifelines" showing the
+                lifetime of each object
+              </li>
+              <li>
+                <strong>Horizontal arrows:</strong> Messages or method calls
+              </li>
+              <li>
+                <strong>Numbers:</strong> The order in which messages happen
+              </li>
+            </ul>
+
+            <p>Read from <strong>top to bottom</strong>. Each arrow shows one step in the flow.</p>
+          </div>
+
+          <h2>Types of Messages (Arrows)</h2>
+
+          <table>
+            <tr>
+              <th>Arrow Type</th>
+              <th>Meaning</th>
+              <th>Line Style</th>
+              <th>When Used</th>
+            </tr>
+            <tr>
+              <td>
+                <code>Actor → Object</code>
+              </td>
+              <td>Synchronous call (waits for response)</td>
+              <td>Solid line with solid arrowhead</td>
+              <td>
+                Normal method calls (most common)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>Object ← Object</code>
+              </td>
+              <td>Return value (coming back)</td>
+              <td>Dashed line with open arrowhead</td>
+              <td>
+                Showing what value is sent back
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>Object →→ Object</code>
+              </td>
+              <td>Asynchronous call (doesn't wait)</td>
+              <td>Solid line with half arrowhead</td>
+              <td>
+                Fire-and-forget, events, promises
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>Object → Object : self</code>
+              </td>
+              <td>Self-call (calls own method)</td>
+              <td>Arrow loops back to same object</td>
+              <td>
+                Internal processing
+              </td>
+            </tr>
+          </table>
+
+          <h2>Example: Simple Purchase Flow</h2>
+
+          <div class="section-highlight">
+            <div class="mermaid">
+              sequenceDiagram
+                participant Customer
+                participant ShoppingCart
+                participant PaymentProcessor
+                participant Database
+
+                Customer->>ShoppingCart: addItem(product)
+                ShoppingCart->>ShoppingCart: updateTotal()
+                ShoppingCart-->>Customer: confirmed
+
+                Customer->>ShoppingCart: checkout()
+                ShoppingCart->>PaymentProcessor: processPayment(amount)
+                PaymentProcessor->>PaymentProcessor: validateCard()
+                PaymentProcessor-->>ShoppingCart: paymentApproved
+
+                ShoppingCart->>Database: saveOrder(orderDetails)
+                Database-->>ShoppingCart: orderSaved
+
+                ShoppingCart-->>Customer: orderConfirmed
+            </div>
+
+            <h3>What This Diagram Shows:</h3>
+            <ol>
+              <li>Customer adds an item to cart</li>
+              <li>ShoppingCart updates its total internally</li>
+              <li>ShoppingCart confirms to customer</li>
+              <li>Customer checks out</li>
+              <li>ShoppingCart calls PaymentProcessor to handle payment</li>
+              <li>PaymentProcessor validates and approves</li>
+              <li>ShoppingCart saves the order to database</li>
+              <li>Database confirms save</li>
+              <li>ShoppingCart confirms order to customer</li>
+            </ol>
+          </div>
+
+          <h2>Sequence with Loops and Conditions</h2>
+
+          <div class="section-highlight">
+            <p>
+              Sequence diagrams can show conditional logic and repeated actions
+              using special blocks.
+            </p>
+
+            <div class="mermaid">
+              sequenceDiagram
+                participant User
+                participant LoginService
+                participant Database
+                participant Logger
+
+                User->>LoginService: login(username, password)
+
+                alt username exists
+                  LoginService->>Database: getUser(username)
+                  Database-->>LoginService: user
+                  
+                  LoginService->>LoginService: validatePassword()
+                  
+                  alt password correct
+                    LoginService->>Logger: logEvent("Login successful")
+                    LoginService-->>User: authToken
+                  else password incorrect
+                    LoginService->>Logger: logEvent("Login failed")
+                    LoginService-->>User: error("Invalid password")
+                  end
+                else username not found
+                  LoginService->>Logger: logEvent("User not found")
+                  LoginService-->>User: error("User does not exist")
+                end
+            </div>
+
+            <h3>What You See Here:</h3>
+            <ul>
+              <li>
+                <strong>alt block:</strong> Alternative paths (if/else)
+              </li>
+              <li>
+                <strong>Nested alt:</strong> Multiple conditions checked
+              </li>
+              <li>
+                <strong>Different outcomes:</strong> Based on conditions
+              </li>
+            </ul>
+          </div>
+
+          <h2>Sequence with Parallel Processing</h2>
+
+          <div class="section-highlight">
+            <p>
+              Use parallel blocks (par) to show actions happening at the same
+              time.
+            </p>
+
+            <div class="mermaid">
+              sequenceDiagram
+                participant Client
+                participant API
+                participant EmailService
+                participant AnalyticsService
+
+                Client->>API: registerUser(data)
+
+                par send confirmation
+                  API->>EmailService: sendWelcomeEmail(email)
+                and track event
+                  API->>AnalyticsService: trackEvent("user_registered")
+                end
+
+                API-->>Client: userCreated
+            </div>
+
+            <h3>What You See Here:</h3>
+            <ul>
+              <li>
+                <strong>par block:</strong> Actions that can happen at the same
+                time
+              </li>
+              <li>
+                The API sends an email AND records an event in parallel
+              </li>
+              <li>Doesn't have to wait for one to finish before the other starts</li>
+            </ul>
+          </div>
+
+          <h2>How to Read Symbols and Notation</h2>
+
+          <table>
+            <tr>
+              <th>Symbol</th>
+              <th>Meaning</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td><code>:</code></td>
+              <td>Separator between object name and lifeline</td>
+              <td><code>User : UserController</code></td>
+            </tr>
+            <tr>
+              <td><code>methodName(param)</code></td>
+              <td>Method call with parameter</td>
+              <td><code>sendEmail(address)</code></td>
+            </tr>
+            <tr>
+              <td><code>methodName() : returnValue</code></td>
+              <td>Show return value on arrow</td>
+              <td><code>getUser() : User</code></td>
+            </tr>
+            <tr>
+              <td><code>*methodName()</code></td>
+              <td>Repeated call (loop)</td>
+              <td><code>*iterate(item)</code></td>
+            </tr>
+            <tr>
+              <td><code>loop { ... }</code></td>
+              <td>Explicit loop block</td>
+              <td>Run same sequence multiple times</td>
+            </tr>
+            <tr>
+              <td><code>alt { ... } else { ... }</code></td>
+              <td>If/else conditional</td>
+              <td>Different paths based on condition</td>
+            </tr>
+          </table>
+
+          <h2>Example: API Call with Error Handling</h2>
+
+          <div class="section-highlight">
+            <div class="mermaid">
+              sequenceDiagram
+                participant Browser
+                participant Server
+                participant Database
+                participant ErrorLogger
+
+                Browser->>Server: GET /user/123
+
+                Server->>Database: query(SELECT user WHERE id=123)
+
+                alt user found
+                  Database-->>Server: user_record
+                  Server-->>Browser: 200 OK + user_data
+                else user not found
+                  Database-->>Server: null
+                  Server->>ErrorLogger: log("User 123 not found")
+                  Server-->>Browser: 404 Not Found
+                else database error
+                  Database-->>Server: error
+                  Server->>ErrorLogger: log("Database error")
+                  Server-->>Browser: 500 Server Error
+                end
+            </div>
+
+            <h3>Lesson from This Diagram:</h3>
+            <ul>
+              <li>Show all possible outcomes</li>
+              <li>Include error paths, not just happy path</li>
+              <li>Demonstrate what gets logged</li>
+            </ul>
+          </div>
+
+          <h2>Tips for Reading and Creating Sequence Diagrams</h2>
+
+          <div class="key-concepts">
+            <ul>
+              <li>
+                <strong>Read top to bottom:</strong> Time flows downward
+              </li>
+              <li>
+                <strong>Follow the arrows:</strong> Each arrow is one step
+              </li>
+              <li>
+                <strong>Check dashed vs. solid:</strong> Dashed = return, Solid
+                = call
+              </li>
+              <li>
+                <strong>Look for blocks:</strong> alt, par, loop, etc. show
+                special logic
+              </li>
+              <li>
+                <strong>Count the steps:</strong> Make sure the order makes sense
+              </li>
+              <li>
+                <strong>Include error cases:</strong> Don't just show the happy
+                path
+              </li>
+            </ul>
+          </div>
+
+          <h2>Sequence vs. Class Diagrams</h2>
+
+          <table>
+            <tr>
+              <th>Aspect</th>
+              <th>Class Diagram</th>
+              <th>Sequence Diagram</th>
+            </tr>
+            <tr>
+              <td><strong>Shows</strong></td>
+              <td>Structure (what exists)</td>
+              <td>Behavior (what happens)</td>
+            </tr>
+            <tr>
+              <td><strong>Time dimension</strong></td>
+              <td>No time</td>
+              <td>Top to bottom = time</td>
+            </tr>
+            <tr>
+              <td><strong>Use for</strong></td>
+              <td>Design before coding</td>
+              <td>Explain workflows or trace bugs</td>
+            </tr>
+            <tr>
+              <td><strong>Focus</strong></td>
+              <td>Classes and relationships</td>
+              <td>Objects and interactions</td>
+            </tr>
+            <tr>
+              <td><strong>Best audience</strong></td>
+              <td>Developers, architects</td>
+              <td>Everyone (easier to follow)</td>
+            </tr>
+          </table>
+
+          <h2>Next Steps</h2>
+          <div class="key-concepts">
+            <ul>
+              <li>
+                <a href="uml-diagrams.html">Review UML syntax basics →</a>
+              </li>
+              <li>
+                <a href="class-diagrams.html">Learn Class Diagrams for structure →</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.uml-diagrams.org/sequence-diagrams.html"
+                  target="_blank"
+                  >UML-Diagrams.org: Sequence Diagrams</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://mermaid.js.org/syntax/sequenceDiagram.html"
+                  target="_blank"
+                  >Mermaid: Sequence Diagram Syntax</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://lucid.app/lucidchart/templates/uml-sequence-diagram"
+                  target="_blank"
+                  >Lucidchart: Sequence Diagram Templates</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../resources.html" class="back-to-course"
+            >← Back to Resources</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      mermaid.contentLoaderAsync();
+    </script>
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

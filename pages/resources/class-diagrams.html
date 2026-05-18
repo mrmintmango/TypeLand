@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Diagrams - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+      .mermaid {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+      }
+      .section-highlight {
+        background: #f5f5f5;
+        padding: 20px;
+        border-left: 4px solid #007acc;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        background: white;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background: #f0f0f0;
+        font-weight: bold;
+      }
+      tr:nth-child(even) {
+        background: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../resources.html" class="back-to-course"
+            >← Back to Resources</a
+          >
+
+          <h1>🏛️ Class Diagrams</h1>
+
+          <div class="topic-intro">
+            <p>
+              Class diagrams are the most common UML diagram type. They show
+              the structure of classes, their attributes, methods, and how they
+              relate to each other. Think of them as a blueprint for your
+              object-oriented code.
+            </p>
+          </div>
+
+          <h2>What Class Diagrams Show</h2>
+          <div class="key-concepts">
+            <ul>
+              <li><strong>Classes:</strong> The main building blocks</li>
+              <li><strong>Attributes:</strong> Data each class holds</li>
+              <li><strong>Methods:</strong> Actions each class can perform</li>
+              <li>
+                <strong>Relationships:</strong> How classes connect and depend
+                on each other
+              </li>
+              <li>
+                <strong>Visibility:</strong> What is public, private, or
+                protected
+              </li>
+            </ul>
+          </div>
+
+          <h2>When to Use Class Diagrams</h2>
+
+          <div class="section-highlight">
+            <h3>Use Class Diagrams for:</h3>
+            <ul>
+              <li>
+                <strong>Design phase:</strong> Plan classes before you code
+              </li>
+              <li>
+                <strong>Large systems:</strong> Show how many classes fit
+                together
+              </li>
+              <li>
+                <strong>Documentation:</strong> Explain the structure to new
+                team members
+              </li>
+              <li>
+                <strong>Identifying patterns:</strong> Spot inheritance
+                opportunities and design issues
+              </li>
+              <li>
+                <strong>API design:</strong> Show what's public vs. internal
+              </li>
+            </ul>
+          </div>
+
+          <h2>Reading a Class Diagram</h2>
+
+          <div class="section-highlight">
+            <h3>The Three-Part Class Box</h3>
+            <p>Every class box is divided into three horizontal sections:</p>
+
+            <div class="code-example">
+              <h4>Example Class Box Structure</h4>
+              <pre><code>
+                ┌─────────────────────────────┐
+                │ Dog                         │ ← 1. Class Name
+                ├─────────────────────────────┤
+                │ - name: string              │ ← 2. Attributes (data fields)
+                │ - age: number               │    + public, - private, # protected
+                │ - breed: string             │
+                ├─────────────────────────────┤
+                │ + getName(): string         │ ← 3. Methods (operations)
+                │ + setAge(age: number): void │
+                │ - calculateAge(): number    │
+                └─────────────────────────────┘
+                    </code></pre>
+            </div>
+          </div>
+
+          <h2>Attributes: How to Read Them</h2>
+
+          <table>
+            <tr>
+              <th>Syntax</th>
+              <th>Meaning</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td><code>+ attribute: Type</code></td>
+              <td>Public attribute</td>
+              <td><code>+ name: string</code></td>
+            </tr>
+            <tr>
+              <td><code>- attribute: Type</code></td>
+              <td>Private attribute</td>
+              <td><code>- id: number</code></td>
+            </tr>
+            <tr>
+              <td><code># attribute: Type</code></td>
+              <td>Protected attribute</td>
+              <td><code># internalId: string</code></td>
+            </tr>
+            <tr>
+              <td><code>attribute: Type = value</code></td>
+              <td>With default value</td>
+              <td><code>- count: number = 0</code></td>
+            </tr>
+            <tr>
+              <td><code>{static} attribute: Type</code></td>
+              <td>Static (shared across all instances)</td>
+              <td><code>{static} version: string</code></td>
+            </tr>
+          </table>
+
+          <h2>Methods: How to Read Them</h2>
+
+          <table>
+            <tr>
+              <th>Syntax</th>
+              <th>Meaning</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td><code>+ method(): ReturnType</code></td>
+              <td>Public method</td>
+              <td><code>+ bark(): void</code></td>
+            </tr>
+            <tr>
+              <td><code>- method(): ReturnType</code></td>
+              <td>Private method</td>
+              <td><code>- validate(): boolean</code></td>
+            </tr>
+            <tr>
+              <td><code>+ method(param: Type): ReturnType</code></td>
+              <td>Method with parameter</td>
+              <td><code>+ setName(name: string): void</code></td>
+            </tr>
+            <tr>
+              <td><code>+ method(p1, p2): Type</code></td>
+              <td>Multiple parameters</td>
+              <td><code>+ create(name: string, age: number): Dog</code></td>
+            </tr>
+            <tr>
+              <td><code>{abstract} method(): Type</code></td>
+              <td>Abstract method (must be implemented)</td>
+              <td><code>{abstract} move(): void</code></td>
+            </tr>
+          </table>
+
+          <h2>Relationships Between Classes</h2>
+
+          <div class="section-highlight">
+            <h3>Inheritance (Is-A)</h3>
+            <p>
+              When a class extends another, use a hollow triangle arrow pointing
+              to the parent class.
+            </p>
+
+            <div class="mermaid">
+              classDiagram
+                class Animal {
+                  - name: string
+                  + move()
+                  + sleep()
+                }
+                class Dog {
+                  - breed: string
+                  + bark()
+                }
+                class Cat {
+                  - color: string
+                  + meow()
+                }
+                Animal --|> Dog : extends
+                Animal --|> Cat : extends
+            </div>
+
+            <p>
+              In code, this means <code>Dog extends Animal</code> and
+              <code>Cat extends Animal</code>.
+            </p>
+          </div>
+
+          <div class="section-highlight">
+            <h3>Association (Has-A)</h3>
+            <p>
+              When one class knows about or uses another, draw a solid arrow or
+              line between them. Add multiplicity numbers to show how many.
+            </p>
+
+            <div class="mermaid">
+              classDiagram
+                class Student {
+                  - id: number
+                  - name: string
+                }
+                class Course {
+                  - title: string
+                  - code: string
+                }
+                Student "*" -- "1..*" Course : enrolls in
+            </div>
+
+            <p>
+              This reads: "Many Students enroll in one or more Courses."
+            </p>
+          </div>
+
+          <div class="section-highlight">
+            <h3>Composition (Strong Ownership)</h3>
+            <p>
+              When one class owns another and they have a strong life-cycle
+              dependency, use a filled diamond. The contained object can't
+              exist without the container.
+            </p>
+
+            <div class="mermaid">
+              classDiagram
+                class House {
+                  - address: string
+                }
+                class Room {
+                  - number: string
+                  - size: number
+                }
+                House "1" *-- "1..*" Room : contains
+            </div>
+
+            <p>
+              This means: "A House is made up of one or more Rooms. Rooms don't
+              exist without a House."
+            </p>
+          </div>
+
+          <div class="section-highlight">
+            <h3>Aggregation (Weak Ownership)</h3>
+            <p>
+              When one class contains another but they can exist independently,
+              use a hollow diamond.
+            </p>
+
+            <div class="mermaid">
+              classDiagram
+                class Team {
+                  - name: string
+                }
+                class Player {
+                  - name: string
+                  - number: number
+                }
+                Team "1" o-- "*" Player : has
+            </div>
+
+            <p>
+              This means: "A Team has many Players, but Players can exist
+              independently (they could join another team)."
+            </p>
+          </div>
+
+          <h2>Real Example: E-commerce System</h2>
+
+          <div class="section-highlight">
+            <div class="mermaid">
+              classDiagram
+                class User {
+                  - userId: number
+                  - name: string
+                  - email: string
+                  + register()
+                  + login()
+                  + logout()
+                }
+                class Order {
+                  - orderId: number
+                  - date: Date
+                  - total: number
+                  + calculateTotal()
+                  + addItem()
+                  + removeItem()
+                }
+                class Product {
+                  - productId: number
+                  - name: string
+                  - price: number
+                  + getDescription()
+                  + updatePrice()
+                }
+                class ShoppingCart {
+                  - items: Product[]
+                  + addProduct()
+                  + removeProduct()
+                  + getTotal()
+                }
+                User "1" -- "*" Order : places
+                User "1" -- "1" ShoppingCart : owns
+                ShoppingCart "*" -- "*" Product : contains
+                Order "*" -- "*" Product : includes
+            </div>
+
+            <h3>What This Diagram Shows:</h3>
+            <ul>
+              <li>A User can place multiple Orders</li>
+              <li>Each User owns exactly one ShoppingCart</li>
+              <li>A ShoppingCart contains multiple Products</li>
+              <li>An Order can include multiple Products</li>
+            </ul>
+          </div>
+
+          <h2>Tips for Reading Class Diagrams</h2>
+
+          <div class="key-concepts">
+            <ul>
+              <li>
+                <strong>Start at the top:</strong> Read class names and
+                attributes first
+              </li>
+              <li>
+                <strong>Follow the arrows:</strong> Understand relationships by
+                tracing arrows
+              </li>
+              <li>
+                <strong>Check multiplicity:</strong> Look for numbers to
+                understand "how many"
+              </li>
+              <li>
+                <strong>Check visibility:</strong> Notice which attributes and
+                methods are public (+) vs. private (-)
+              </li>
+              <li>
+                <strong>Spot patterns:</strong> Look for inheritance hierarchies
+                (triangles) vs. "has-a" relationships (diamonds)
+              </li>
+            </ul>
+          </div>
+
+          <h2>Common Mistakes to Avoid</h2>
+
+          <table>
+            <tr>
+              <th>Mistake</th>
+              <th>Problem</th>
+              <th>Fix</th>
+            </tr>
+            <tr>
+              <td>Too many classes on one diagram</td>
+              <td>Becomes hard to read</td>
+              <td>Split into smaller focused diagrams</td>
+            </tr>
+            <tr>
+              <td>Missing multiplicity</td>
+              <td>Unclear how many items are involved</td>
+              <td>Add numbers like 1, *, or 1..*</td>
+            </tr>
+            <tr>
+              <td>Mixing different details</td>
+              <td>Confuses the purpose</td>
+              <td>Show either structure or behavior, not both</td>
+            </tr>
+            <tr>
+              <td>Forgetting visibility symbols</td>
+              <td>API confusion</td>
+              <td>Always mark +, -, or #</td>
+            </tr>
+          </table>
+
+          <h2>Next Steps</h2>
+          <div class="key-concepts">
+            <ul>
+              <li>
+                <a href="uml-diagrams.html">Review UML syntax basics →</a>
+              </li>
+              <li>
+                <a href="sequence-diagrams.html">Learn Sequence Diagrams for showing behavior →</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.uml-diagrams.org/class-diagrams.html"
+                  target="_blank"
+                  >UML-Diagrams.org: Class Diagrams</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://lucid.app/lucidchart/templates/uml-class-diagram"
+                  target="_blank"
+                  >Lucidchart: UML Class Diagram Templates</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../resources.html" class="back-to-course"
+            >← Back to Resources</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      mermaid.contentLoaderAsync();
+    </script>
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UML Diagrams and Syntax - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+    <style>
+      .syntax-box {
+        background: #f0f0f0;
+        border-left: 4px solid #007acc;
+        padding: 15px;
+        margin: 15px 0;
+        font-family: monospace;
+        border-radius: 4px;
+      }
+      .diagram-section {
+        margin: 30px 0;
+        padding: 20px;
+        background: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+      }
+      .arrow-example {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin: 15px 0;
+        padding: 10px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      .arrow-visual {
+        font-size: 18px;
+        font-weight: bold;
+        min-width: 60px;
+      }
+      .box-example {
+        background: white;
+        border: 2px solid #333;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 14px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        background: white;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background: #f0f0f0;
+        font-weight: bold;
+      }
+      tr:nth-child(even) {
+        background: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../resources.html" class="back-to-course"
+            >← Back to Resources</a
+          >
+
+          <h1>📊 UML Diagrams and Syntax</h1>
+
+          <div class="topic-intro">
+            <p>
+              UML (Unified Modeling Language) is a visual way to design and
+              communicate software structure before you build it. Instead of
+              describing everything in words, you draw boxes, lines, and arrows
+              to show how classes, objects, and systems connect and interact.
+            </p>
+          </div>
+
+          <h2>Why UML Matters</h2>
+          <div class="key-concepts">
+            <ul>
+              <li>
+                <strong>Plan before code:</strong> Sketch your design visually
+              </li>
+              <li>
+                <strong>Communicate clearly:</strong> Show teammates and
+                stakeholders how the system works
+              </li>
+              <li>
+                <strong>Catch design problems early:</strong> Fix issues on
+                paper, not in code
+              </li>
+              <li>
+                <strong>Document structure:</strong> Keep a record of your
+                architecture
+              </li>
+            </ul>
+          </div>
+
+          <h2>Common UML Diagram Types</h2>
+
+          <div class="diagram-section">
+            <h3>Types of UML Diagrams</h3>
+            <p>
+              UML includes many diagram types. Here are the most useful for
+              software design:
+            </p>
+            <table>
+              <tr>
+                <th>Diagram Type</th>
+                <th>Purpose</th>
+                <th>Best For</th>
+              </tr>
+              <tr>
+                <td><strong>Class Diagram</strong></td>
+                <td>Show classes, attributes, methods, and relationships</td>
+                <td>Object-oriented design</td>
+              </tr>
+              <tr>
+                <td><strong>Sequence Diagram</strong></td>
+                <td>Show how objects communicate over time</td>
+                <td>Interaction and flow</td>
+              </tr>
+              <tr>
+                <td><strong>Use Case Diagram</strong></td>
+                <td>Show actors and what they do in the system</td>
+                <td>Requirements and scope</td>
+              </tr>
+              <tr>
+                <td><strong>State Diagram</strong></td>
+                <td>Show states and transitions</td>
+                <td>Complex state machines</td>
+              </tr>
+            </table>
+          </div>
+
+          <h2>UML Boxes and Notation</h2>
+
+          <div class="diagram-section">
+            <h3>Class Box Anatomy</h3>
+            <p>
+              A class in UML is drawn as a box divided into three sections:
+            </p>
+            <div class="box-example"> 
+                <pre><code>
+                ┌─────────────────────────────┐
+                │ Dog                         │ ← 1. Class Name
+                ├─────────────────────────────┤
+                │ - name: string              │ ← 2. Attributes (data fields)
+                │ - age: number               │    + public, - private, # protected
+                │ - breed: string             │
+                ├─────────────────────────────┤
+                │ + getName(): string         │ ← 3. Methods (operations)
+                │ + setAge(age: number): void │
+                │ - calculateAge(): number    │
+                └─────────────────────────────┘
+                    </code></pre>
+            </div>
+
+            <h3>Visibility Symbols</h3>
+            <table>
+              <tr>
+                <th>Symbol</th>
+                <th>Meaning</th>
+                <th>Example</th>
+              </tr>
+              <tr>
+                <td><code>+</code></td>
+                <td>Public (visible to all)</td>
+                <td><code>+ getName(): string</code></td>
+              </tr>
+              <tr>
+                <td><code>-</code></td>
+                <td>Private (hidden inside)</td>
+                <td><code>- id: number</code></td>
+              </tr>
+              <tr>
+                <td><code>#</code></td>
+                <td>Protected (visible to subclasses)</td>
+                <td><code># validate(): boolean</code></td>
+              </tr>
+              <tr>
+                <td><code>~</code></td>
+                <td>Package (visible in package)</td>
+                <td><code>~ helper(): void</code></td>
+              </tr>
+            </table>
+          </div>
+
+          <h2>Relationships and Arrows</h2>
+
+          <div class="diagram-section">
+            <h3>Main Arrow Types</h3>
+
+            <p><strong>Association:</strong> One class knows about another</p>
+            <div class="arrow-example">
+              <div class="arrow-visual">Student ———→ Course</div>
+              <div>Solid line: a Student has a relationship with Course</div>
+            </div>
+
+            <p><strong>Inheritance (Generalization):</strong> One class extends another</p>
+            <div class="arrow-example">
+              <div class="arrow-visual">Animal ←|——— Dog</div>
+              <div>Hollow triangle: Dog extends/is-a Animal</div>
+            </div>
+
+            <p><strong>Implementation:</strong> Class implements an interface</p>
+            <div class="arrow-example">
+              <div class="arrow-visual">Drawable ←|····· Circle</div>
+              <div>Hollow triangle + dashed line: Circle implements Drawable</div>
+            </div>
+
+            <p><strong>Composition:</strong> Strong "has-a" relationship (part of)</p>
+            <div class="arrow-example">
+              <div class="arrow-visual">House ◆——— Room</div>
+              <div>Filled diamond: House owns Rooms; Room can't exist without House</div>
+            </div>
+
+            <p><strong>Aggregation:</strong> Weak "has-a" relationship (contains)</p>
+            <div class="arrow-example">
+              <div class="arrow-visual">Team ◇——— Player</div>
+              <div>Hollow diamond: Team has Players; Players can exist without Team</div>
+            </div>
+
+            <p><strong>Dependency:</strong> One class uses another temporarily</p>
+            <div class="arrow-example">
+              <div class="arrow-visual">Logger ····→ File</div>
+              <div>Dashed line: Logger temporarily uses File</div>
+            </div>
+          </div>
+
+          <h2>Multiplicity (How Many?)</h2>
+
+          <div class="diagram-section">
+            <p>
+              Numbers on arrows show how many instances are involved in a
+              relationship.
+            </p>
+            <table>
+              <tr>
+                <th>Notation</th>
+                <th>Meaning</th>
+                <th>Example</th>
+              </tr>
+              <tr>
+                <td><code>1</code></td>
+                <td>Exactly one</td>
+                <td>One Student has one StudentID</td>
+              </tr>
+              <tr>
+                <td><code>0..1</code></td>
+                <td>Zero or one</td>
+                <td>A Student may have zero or one Scholarship</td>
+              </tr>
+              <tr>
+                <td><code>*</code> or <code>0..*</code></td>
+                <td>Zero or more</td>
+                <td>A Course has zero or more Students</td>
+              </tr>
+              <tr>
+                <td><code>1..*</code></td>
+                <td>One or more</td>
+                <td>A Team has one or more Players</td>
+              </tr>
+              <tr>
+                <td><code>2..5</code></td>
+                <td>Between two and five</td>
+                <td>A Car has 2-5 Doors</td>
+              </tr>
+            </table>
+
+            <h3>Example with Multiplicity</h3>
+            <div class="syntax-box">
+              Teacher ————— 1..* Student<br />
+              <br />
+              This reads as: "One Teacher is associated with one or more
+              Students"
+            </div>
+          </div>
+
+          <h2>Quick Reference: Arrow Legend</h2>
+
+          <div class="diagram-section">
+            <table>
+              <tr>
+                <th>Arrow Type</th>
+                <th>Meaning</th>
+                <th>Line Style</th>
+                <th>Use When</th>
+              </tr>
+              <tr>
+                <td>Solid with arrowhead</td>
+                <td>Association</td>
+                <td>Solid line</td>
+                <td>Showing a regular relationship</td>
+              </tr>
+              <tr>
+                <td>Hollow triangle</td>
+                <td>Inheritance</td>
+                <td>Solid line</td>
+                <td>One class extends another</td>
+              </tr>
+              <tr>
+                <td>Hollow triangle (dashed)</td>
+                <td>Implementation</td>
+                <td>Dashed line</td>
+                <td>Class implements interface</td>
+              </tr>
+              <tr>
+                <td>Filled diamond</td>
+                <td>Composition</td>
+                <td>Solid line</td>
+                <td>Strong ownership</td>
+              </tr>
+              <tr>
+                <td>Hollow diamond</td>
+                <td>Aggregation</td>
+                <td>Solid line</td>
+                <td>Weak ownership</td>
+              </tr>
+              <tr>
+                <td>Dashed arrow</td>
+                <td>Dependency</td>
+                <td>Dashed line</td>
+                <td>Temporary use</td>
+              </tr>
+            </table>
+          </div>
+
+          <h2>Related Topics</h2>
+          <div class="key-concepts">
+            <ul>
+              <li>
+                <a href="class-diagrams.html">Learn about Class Diagrams →</a>
+              </li>
+              <li>
+                <a href="sequence-diagrams.html">Learn about Sequence Diagrams →</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="helpful-links">
+            <h3>📚 Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.uml-diagrams.org/"
+                  target="_blank"
+                  >UML Diagrams (Comprehensive Reference)</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.lucidchart.com/pages/uml-diagram"
+                  target="_blank"
+                  >Lucidchart: UML Basics</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://en.wikipedia.org/wiki/Unified_Modeling_Language"
+                  target="_blank"
+                  >Wikipedia: UML</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="../resources.html" class="back-to-course"
+            >← Back to Resources</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>
