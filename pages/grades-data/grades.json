@@ -235,6 +235,18 @@
       }
     },
     {
+      "type": "log",
+      "title": "Learning Log",
+      "submitted": "05-11 - 05-15",
+      "status": "graded",
+      "grade": "60%",
+      "feedback": {
+        "kind": "link",
+        "label": "View Logs",
+        "href": "learning-log.html"
+      }
+    },
+    {
       "type": "assignment",
       "title": "Practice Writing Jest Tests",
       "submitted": "2026-05-18",
