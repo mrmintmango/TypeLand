@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 2: Type Safety in Production - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../webstore-course.html" class="back-to-course"
+            >← Back to Webstore Course</a
+          >
+
+          <h1>Week 2: TypeScript for Real Code</h1>
+
+          <div class="topic-intro">
+            <p>
+              This week teaches safe refactoring in a production codebase.
+              Emphasis is on type contracts at boundaries: service calls, API
+              payloads, and error responses.
+            </p>
+          </div>
+
+          <h2>Learning Objectives</h2>
+          <ul>
+            <li>Replace weak typing at module boundaries.</li>
+            <li>Use narrowing and runtime-safe guards together.</li>
+            <li>Define stable result and error contracts.</li>
+            <li>Refactor without behavior regressions.</li>
+          </ul>
+
+          <h2>Detailed Topics</h2>
+          <h3>1. Contract-First Thinking</h3>
+          <p>
+            Teach the student to start from inputs and outputs. Every API or
+            service function should make expected shape and constraints explicit
+            in type definitions.
+          </p>
+
+          <h3>2. Practical Narrowing Patterns</h3>
+          <p>
+            Cover unknown-to-known transitions, discriminated unions for success
+            and failure states, and common guards for optional values.
+          </p>
+
+          <h3>3. Refactor Strategy</h3>
+          <p>
+            Make small, testable changes: update one boundary, run tests,
+            confirm behavior parity, then move to the next boundary.
+          </p>
+
+          <h2>Pair Session Plan (90 Minutes)</h2>
+          <ol>
+            <li>Select one medium service module.</li>
+            <li>Document current weak spots in type safety.</li>
+            <li>Introduce safer interfaces and response unions.</li>
+            <li>Run targeted verification and discuss risk reduction.</li>
+          </ol>
+
+          <h2>Independent Ticket</h2>
+          <p>
+            Submit a PR that hardens one component/API helper with stricter
+            types and runtime guards while preserving behavior.
+          </p>
+
+          <h2>Mentor Checkpoint</h2>
+          <ul>
+            <li>Student can explain tradeoffs of strictness vs speed.</li>
+            <li>Student can reason about nullable and optional data safely.</li>
+            <li>Student produces readable type names and contracts.</li>
+          </ul>
+
+          <div class="helpful-links">
+            <h3>Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html"
+                  target="_blank"
+                  >TypeScript Narrowing</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.typescriptlang.org/docs/handbook/2/objects.html"
+                  target="_blank"
+                  >TypeScript Objects and Contracts</a
+                >
+              </li>
+              <li>
+                <a href="https://zod.dev/" target="_blank">Zod Runtime Validation</a>
+              </li>
+              <li>
+                <a
+                  href="https://kentcdodds.com/blog/write-tests-not-too-many-mostly-integration"
+                  target="_blank"
+                  >Testing Confidence During Refactors</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="week-1.html" class="back-to-course">← Previous: Week 1</a>
+          <a href="week-3.html" class="back-to-course">Next: Week 3 →</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

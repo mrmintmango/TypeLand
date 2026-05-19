@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 8: Integrations and Security - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../webstore-course.html" class="back-to-course"
+            >← Back to Webstore Course</a
+          >
+
+          <h1>Week 8: Integrations and Security-Sensitive Flows</h1>
+
+          <div class="topic-intro">
+            <p>
+              This week is dedicated to high-risk integration paths in
+              ecommerce. Students learn secure patterns for Stripe integration,
+              authorization flows, webhooks, idempotency, and signature or
+              authorization awareness.
+            </p>
+          </div>
+
+          <h2>Learning Objectives</h2>
+          <ul>
+            <li>Understand Stripe checkout and payment intent flow boundaries.</li>
+            <li>Apply correct authorization checks on sensitive endpoints.</li>
+            <li>Implement webhook signature verification and trust boundaries.</li>
+            <li>Design idempotent handlers for retry-safe behavior.</li>
+            <li>Log security events without leaking secrets.</li>
+          </ul>
+
+          <h2>Detailed Topics</h2>
+          <h3>1. Stripe Integration Patterns</h3>
+          <p>
+            Cover client-to-server payment lifecycle, key separation, and safe
+            handling of payment status transitions. Emphasize server-confirmed
+            source of truth over client assumptions.
+          </p>
+
+          <h3>2. Authorization-Related Flows</h3>
+          <p>
+            Teach that authentication answers "who are you" while authorization
+            answers "are you allowed." Every account, order, or payment endpoint
+            should validate ownership and role constraints.
+          </p>
+
+          <h3>3. Webhook Security</h3>
+          <p>
+            Webhooks are inbound privileged messages. Validate provider
+            signatures, reject unsigned or stale payloads, and isolate parsing
+            from business side effects.
+          </p>
+
+          <h3>4. Idempotency</h3>
+          <p>
+            External systems retry. Handlers must be safe under repeated
+            delivery. Store idempotency keys or event IDs to ensure repeated
+            calls do not duplicate side effects.
+          </p>
+
+          <h3>5. Signature and Authorization Awareness</h3>
+          <p>
+            Distinguish authenticity from permissions. A valid webhook signature
+            proves source authenticity, not business authorization. Internal
+            endpoints still need explicit permission checks.
+          </p>
+
+          <div class="code-example">
+            <h4>Example Security Checklist for a Webhook Endpoint</h4>
+            <pre><code>1. Read raw body exactly as required by provider SDK.
+2. Verify signature with provider secret.
+3. Reject invalid signatures with a safe error response.
+4. Check event age tolerance to reduce replay risk.
+5. Enforce idempotency using event ID or request key.
+6. Route only supported event types.
+7. Log event metadata (not secrets or full payloads).
+8. Return deterministic status for retry behavior.</code></pre>
+          </div>
+
+          <h2>Pair Session Plan (90 Minutes)</h2>
+          <ol>
+            <li>Review one auth/payment/webhook endpoint.</li>
+            <li>Add explicit authorization and validation checks.</li>
+            <li>Add signature verification or improve existing checks.</li>
+            <li>Implement idempotency guard and verify repeated requests.</li>
+          </ol>
+
+          <h2>Independent Ticket</h2>
+          <p>
+            Harden one integration-sensitive API path and submit a security
+            checklist with threat notes and verification steps.
+          </p>
+
+          <h2>Mentor Checkpoint</h2>
+          <ul>
+            <li>Student can explain trust boundaries clearly.</li>
+            <li>Student differentiates authentication and authorization.</li>
+            <li>Student demonstrates replay-safe handling.</li>
+            <li>Student avoids logging secrets or sensitive PII.</li>
+          </ul>
+
+          <div class="helpful-links">
+            <h3>Helpful Resources</h3>
+            <ul>
+              <li>
+                <a href="https://docs.stripe.com/payments" target="_blank"
+                  >Stripe Payments Overview</a
+                >
+              </li>
+              <li>
+                <a href="https://docs.stripe.com/webhooks/signatures" target="_blank"
+                  >Stripe Webhook Signature Verification</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+                  target="_blank"
+                  >OWASP Authorization Cheat Sheet</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html"
+                  target="_blank"
+                  >OWASP REST Security Cheat Sheet</a
+                >
+              </li>
+              <li>
+                <a href="https://hookdeck.com/webhooks/guides" target="_blank"
+                  >Webhook Reliability and Security Guides</a
+                >
+              </li>
+              <li>
+                <a href="https://stripe.com/docs/idempotency" target="_blank"
+                  >Stripe Idempotency Keys</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="week-7.html" class="back-to-course">← Previous: Week 7</a>
+          <a href="week-9.html" class="back-to-course">Next: Week 9 →</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

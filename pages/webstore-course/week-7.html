@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 7: Testing Strategy - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../webstore-course.html" class="back-to-course"
+            >← Back to Webstore Course</a
+          >
+
+          <h1>Week 7: Testing Strategy in This Repo</h1>
+
+          <div class="topic-intro">
+            <p>
+              Testing week focuses on confidence engineering. The student learns
+              to write tests that protect real business behavior rather than
+              implementation details.
+            </p>
+          </div>
+
+          <h2>Learning Objectives</h2>
+          <ul>
+            <li>Create route tests for success and failure scenarios.</li>
+            <li>Use mocks to isolate external dependencies.</li>
+            <li>Model edge cases tied to real business risk.</li>
+            <li>Use tests as documentation of expected behavior.</li>
+          </ul>
+
+          <h2>Detailed Topics</h2>
+          <h3>1. Test Scope Decisions</h3>
+          <p>
+            Teach when to use route-level tests, helper unit tests, and
+            integration-style tests. Route tests often provide best value for
+            internal APIs with business logic.
+          </p>
+
+          <h3>2. Mocking Strategy</h3>
+          <p>
+            Mock only external or unstable boundaries. Keep business logic paths
+            as realistic as possible to avoid false confidence.
+          </p>
+
+          <h3>3. Regression-Focused Test Design</h3>
+          <p>
+            Include malformed inputs, missing auth, dependency timeout, and
+            repeated request behavior when relevant.
+          </p>
+
+          <h2>Pair Session Plan (90 Minutes)</h2>
+          <ol>
+            <li>Select one checkout/account/cart API route.</li>
+            <li>Map critical behaviors and likely failure points.</li>
+            <li>Implement at least five targeted test cases.</li>
+            <li>Review test clarity and signal quality.</li>
+          </ol>
+
+          <h2>Independent Ticket</h2>
+          <p>
+            Add tests to one route that currently has weak coverage and include
+            one scenario likely to catch a historical regression.
+          </p>
+
+          <h2>Mentor Checkpoint</h2>
+          <ul>
+            <li>Student can explain why each test exists.</li>
+            <li>Student avoids over-mocking core behavior paths.</li>
+            <li>Student writes test names as behavior statements.</li>
+          </ul>
+
+          <div class="helpful-links">
+            <h3>Helpful Resources</h3>
+            <ul>
+              <li>
+                <a href="https://jestjs.io/docs/getting-started" target="_blank"
+                  >Jest Documentation</a
+                >
+              </li>
+              <li>
+                <a href="https://testingjavascript.com/" target="_blank"
+                  >Testing JavaScript by Kent C. Dodds</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://martinfowler.com/articles/practical-test-pyramid.html"
+                  target="_blank"
+                  >Practical Test Pyramid</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://testing-library.com/docs/guiding-principles/"
+                  target="_blank"
+                  >Testing Library Principles</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="week-6.html" class="back-to-course">← Previous: Week 6</a>
+          <a href="week-8.html" class="back-to-course">Next: Week 8 →</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>
