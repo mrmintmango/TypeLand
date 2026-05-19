@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 5: Provider Abstractions - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../webstore-course.html" class="back-to-course"
+            >← Back to Webstore Course</a
+          >
+
+          <h1>Week 5: Commerce Framework and Provider Abstractions</h1>
+
+          <div class="topic-intro">
+            <p>
+              Week 5 is the architecture pivot point. Students learn exactly why
+              some logic belongs in shared commerce contracts while other logic
+              belongs in provider packages.
+            </p>
+          </div>
+
+          <h2>Learning Objectives</h2>
+          <ul>
+            <li>Understand shared hooks and provider-specific handlers.</li>
+            <li>Place new behavior in the correct layer consistently.</li>
+            <li>Avoid duplicate business logic across providers.</li>
+            <li>Document layer decisions for future maintainers.</li>
+          </ul>
+
+          <h2>Detailed Topics</h2>
+          <h3>1. Shared Contract Design</h3>
+          <p>
+            A shared hook should define stable behavior and types, without
+            leaking provider-specific assumptions into app code.
+          </p>
+
+          <h3>2. Provider Adapter Responsibilities</h3>
+          <p>
+            Provider packages translate shared contracts into concrete API or SDK
+            calls, normalize responses, and isolate external differences.
+          </p>
+
+          <h3>3. Change Placement Decision Framework</h3>
+          <p>
+            Teach a repeatable decision method: ask whether logic is universal,
+            provider-specific, or purely app UX. This reduces architecture drift
+            over time.
+          </p>
+
+          <h2>Pair Session Plan (90 Minutes)</h2>
+          <ol>
+            <li>Pick one cart or product behavior to extend.</li>
+            <li>Update shared contract and one provider implementation.</li>
+            <li>Verify app usage remains provider-agnostic.</li>
+            <li>Review tradeoffs in a short design note.</li>
+          </ol>
+
+          <h2>Independent Ticket</h2>
+          <p>
+            Add one hook extension and submit a layer-decision document that
+            explains why each line of logic belongs where it was placed.
+          </p>
+
+          <h2>Mentor Checkpoint</h2>
+          <ul>
+            <li>Student separates shared and provider logic correctly.</li>
+            <li>Student preserves abstraction boundaries in review.</li>
+            <li>Student communicates architecture reasoning clearly.</li>
+          </ul>
+
+          <div class="helpful-links">
+            <h3>Helpful Resources</h3>
+            <ul>
+              <li>
+                <a href="https://refactoring.guru/design-patterns/adapter" target="_blank"
+                  >Adapter Pattern</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://martinfowler.com/articles/micro-frontends.html"
+                  target="_blank"
+                  >Architecture Boundaries and Ownership</a
+                >
+              </li>
+              <li>
+                <a href="https://swr.vercel.app/docs/getting-started" target="_blank"
+                  >SWR Basics</a
+                >
+              </li>
+              <li>
+                <a href="https://12factor.net/" target="_blank">The Twelve-Factor App</a>
+              </li>
+            </ul>
+          </div>
+
+          <a href="week-4.html" class="back-to-course">← Previous: Week 4</a>
+          <a href="week-6.html" class="back-to-course">Next: Week 6 →</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

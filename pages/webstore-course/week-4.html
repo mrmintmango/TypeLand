@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 4: Pages, API, Middleware - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../webstore-course.html" class="back-to-course"
+            >← Back to Webstore Course</a
+          >
+
+          <h1>Week 4: Next.js App Structure and Routing</h1>
+
+          <div class="topic-intro">
+            <p>
+              This week connects frontend feature delivery with backend behavior
+              inside the same Next.js application using page routes, API routes,
+              and middleware.
+            </p>
+          </div>
+
+          <h2>Learning Objectives</h2>
+          <ul>
+            <li>Build one page-level feature tied to API behavior.</li>
+            <li>Define clean request and response contracts.</li>
+            <li>Understand middleware behavior in protected routes.</li>
+            <li>Trace full request lifecycle and debug failures.</li>
+          </ul>
+
+          <h2>Detailed Topics</h2>
+          <h3>1. Route Ownership</h3>
+          <p>
+            Clarify when logic should remain in page components vs move into API
+            handlers or shared utility modules.
+          </p>
+
+          <h3>2. Middleware as Guardrails</h3>
+          <p>
+            Middleware should enforce route-level rules such as access control,
+            lock state, or environment-based behavior before page logic runs.
+          </p>
+
+          <h3>3. API Contract Discipline</h3>
+          <p>
+            Teach explicit success and error payloads. Client components should
+            depend on stable response shapes and status handling.
+          </p>
+
+          <h2>Pair Session Plan (90 Minutes)</h2>
+          <ol>
+            <li>Pick one page-level user flow to improve.</li>
+            <li>Update one related API route with stronger validation.</li>
+            <li>Test middleware impact on authenticated vs guest flows.</li>
+            <li>Verify end-to-end behavior manually.</li>
+          </ol>
+
+          <h2>Independent Ticket</h2>
+          <p>
+            Ship one page and API slice with a short test plan and expected
+            failure behavior notes.
+          </p>
+
+          <h2>Mentor Checkpoint</h2>
+          <ul>
+            <li>Student can explain why middleware is needed in this flow.</li>
+            <li>
+              Student handles validation failures with user-safe messaging.
+            </li>
+            <li>Student can debug one intentional broken request path.</li>
+          </ul>
+
+          <div class="helpful-links">
+            <h3>Helpful Resources</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://nextjs.org/docs/pages/building-your-application/routing/api-routes"
+                  target="_blank"
+                  >Next.js API Routes</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://nextjs.org/docs/pages/building-your-application/routing/middleware"
+                  target="_blank"
+                  >Next.js Middleware</a
+                >
+              </li>
+              <li>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" target="_blank"
+                  >HTTP Status Code Reference</a
+                >
+              </li>
+              <li>
+                <a href="https://cheatsheetseries.owasp.org/" target="_blank"
+                  >OWASP Cheat Sheet Series</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="week-3.html" class="back-to-course">← Previous: Week 3</a>
+          <a href="week-5.html" class="back-to-course">Next: Week 5 →</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

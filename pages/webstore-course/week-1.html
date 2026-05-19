@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 1: Runtime Foundations - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../webstore-course.html" class="back-to-course"
+            >← Back to Webstore Course</a
+          >
+
+          <h1>Week 1: Monorepo and Runtime Foundations</h1>
+
+          <div class="topic-intro">
+            <p>
+              This week builds the student mental model of the codebase. The
+              student should finish Week 1 able to explain where code belongs,
+              how requests move through the app, and where common failures are
+              likely to occur.
+            </p>
+          </div>
+
+          <h2>Learning Objectives</h2>
+          <ul>
+            <li>Identify the responsibility of each top-level package.</li>
+            <li>Trace one request from UI action to API and provider layer.</li>
+            <li>Distinguish app-layer code from shared/provider code.</li>
+            <li>Run common local workflows: install, dev, build, test.</li>
+          </ul>
+
+          <h2>Detailed Topics</h2>
+          <h3>1. Monorepo Architecture Map</h3>
+          <p>
+            Walk through package boundaries: storefront app, shared commerce
+            abstractions, and provider-specific implementations. Explain the
+            reason monorepos are useful for keeping contracts aligned across
+            teams.
+          </p>
+
+          <h3>2. Runtime Flow in Production</h3>
+          <p>
+            Use one real feature flow, such as add-to-cart or checkout billing
+            update, and trace each handoff: UI event, client service, internal
+            API route, provider client, external integration, and response.
+          </p>
+
+          <h3>3. Environment and Tooling Basics</h3>
+          <p>
+            Review package manager scripts, orchestrated task running, and
+            coding standards checks. Teach the student to read errors from build
+            and test output before editing code.
+          </p>
+
+          <h2>Pair Session Plan (90 Minutes)</h2>
+          <ol>
+            <li>Open one UI page and identify data dependencies.</li>
+            <li>Locate corresponding API route and validation logic.</li>
+            <li>Find provider handler or SDK call path.</li>
+            <li>Document two failure modes and expected logs.</li>
+          </ol>
+
+          <h2>Independent Ticket</h2>
+          <p>
+            Create a one-page architecture note with one request flow diagram and
+            one ownership matrix describing which layer should own future
+            changes.
+          </p>
+
+          <h2>Mentor Checkpoint</h2>
+          <ul>
+            <li>Student can explain why provider abstraction exists.</li>
+            <li>
+              Student can justify code placement for a hypothetical cart change.
+            </li>
+            <li>Student can run project tasks without guidance.</li>
+          </ul>
+
+          <div class="helpful-links">
+            <h3>Helpful Resources</h3>
+            <ul>
+              <li>
+                <a href="https://pnpm.io/workspaces" target="_blank"
+                  >pnpm Workspaces</a
+                >
+              </li>
+              <li>
+                <a href="https://turbo.build/repo/docs" target="_blank"
+                  >Turborepo Documentation</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://nextjs.org/docs/pages/building-your-application/routing"
+                  target="_blank"
+                  >Next.js Pages Router</a
+                >
+              </li>
+              <li>
+                <a href="https://martinfowler.com/bliki/Monorepo.html" target="_blank"
+                  >Monorepo Overview (Martin Fowler)</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="week-2.html" class="back-to-course">Next: Week 2 →</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

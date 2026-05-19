@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 6: Data and Validation - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../webstore-course.html" class="back-to-course"
+            >← Back to Webstore Course</a
+          >
+
+          <h1>Week 6: Data Fetching, Caching, and Validation</h1>
+
+          <div class="topic-intro">
+            <p>
+              This week builds reliability habits in data-heavy ecommerce flows.
+              The student learns to keep UI data fresh and API boundaries safe.
+            </p>
+          </div>
+
+          <h2>Learning Objectives</h2>
+          <ul>
+            <li>Understand mutation, revalidation, and stale data risks.</li>
+            <li>Design consistent API validation and error contracts.</li>
+            <li>Reduce UI inconsistency after write operations.</li>
+            <li>Document expected behavior for edge-case inputs.</li>
+          </ul>
+
+          <h2>Detailed Topics</h2>
+          <h3>1. Caching and Invalidation Mental Model</h3>
+          <p>
+            Teach the student to explicitly define what must refresh after each
+            mutation: cart totals, stock, promotions, account summaries.
+          </p>
+
+          <h3>2. Validation at the API Boundary</h3>
+          <p>
+            Validate structure, required fields, value ranges, and contextual
+            authorization. Reject invalid requests before business logic runs.
+          </p>
+
+          <h3>3. Error Contracts for Frontend Stability</h3>
+          <p>
+            Standardize error shape so components can handle failures
+            predictably without brittle condition checks.
+          </p>
+
+          <h2>Pair Session Plan (90 Minutes)</h2>
+          <ol>
+            <li>Find one stale-data bug in cart or account flow.</li>
+            <li>Patch cache strategy and verify post-mutation behavior.</li>
+            <li>Harden one API route input contract.</li>
+            <li>Confirm consistent error payload handling in UI.</li>
+          </ol>
+
+          <h2>Independent Ticket</h2>
+          <p>
+            Submit one PR that includes both a cache consistency fix and an API
+            validation improvement with documented outcomes.
+          </p>
+
+          <h2>Mentor Checkpoint</h2>
+          <ul>
+            <li>Student predicts which keys require revalidation.</li>
+            <li>Student rejects malformed input with useful messages.</li>
+            <li>Student demonstrates stable UI behavior after failures.</li>
+          </ul>
+
+          <div class="helpful-links">
+            <h3>Helpful Resources</h3>
+            <ul>
+              <li>
+                <a href="https://swr.vercel.app/docs/mutation" target="_blank"
+                  >SWR Mutation and Revalidation</a
+                >
+              </li>
+              <li>
+                <a href="https://zod.dev/?id=basic-usage" target="_blank"
+                  >Zod Validation Basics</a
+                >
+              </li>
+              <li>
+                <a href="https://jsonapi.org/format/#errors" target="_blank"
+                  >Error Object Design Reference</a
+                >
+              </li>
+              <li>
+                <a href="https://martinfowler.com/articles/patterns-of-distributed-systems/idempotent-receiver.html" target="_blank"
+                  >Idempotent Receiver Pattern</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="week-5.html" class="back-to-course">← Previous: Week 5</a>
+          <a href="week-7.html" class="back-to-course">Next: Week 7 →</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

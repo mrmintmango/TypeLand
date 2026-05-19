@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 3: UI Delivery Patterns - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../webstore-course.html" class="back-to-course"
+            >← Back to Webstore Course</a
+          >
+
+          <h1>Week 3: React Component Patterns</h1>
+
+          <div class="topic-intro">
+            <p>
+              This week focuses on production UI habits: predictable state,
+              resilient rendering, accessibility, and maintainable component
+              boundaries.
+            </p>
+          </div>
+
+          <h2>Learning Objectives</h2>
+          <ul>
+            <li>Separate display concerns from data concerns.</li>
+            <li>Handle loading, empty, error, and success states consistently.</li>
+            <li>Improve UX without architecture drift.</li>
+            <li>Build mobile-safe and keyboard-accessible interactions.</li>
+          </ul>
+
+          <h2>Detailed Topics</h2>
+          <h3>1. State Modeling for UI Reliability</h3>
+          <p>
+            Encourage explicit UI state modeling. Avoid implicit assumptions by
+            making state transitions visible in rendering logic.
+          </p>
+
+          <h3>2. Component Composition in Existing Design Systems</h3>
+          <p>
+            Teach extension over reinvention: reuse existing primitives and
+            patterns before introducing new abstractions.
+          </p>
+
+          <h3>3. Error UX and Recovery Paths</h3>
+          <p>
+            A production UI should explain what failed and offer the next action
+            clearly, such as retry, edit input, or support path.
+          </p>
+
+          <h2>Pair Session Plan (90 Minutes)</h2>
+          <ol>
+            <li>Pick one product, cart, or account component.</li>
+            <li>Add resilient loading and empty treatment.</li>
+            <li>Improve an error state with clear user guidance.</li>
+            <li>Verify keyboard access and responsive behavior.</li>
+          </ol>
+
+          <h2>Independent Ticket</h2>
+          <p>
+            Deliver one UI enhancement with before/after screenshots and a short
+            note describing state management choices.
+          </p>
+
+          <h2>Mentor Checkpoint</h2>
+          <ul>
+            <li>Student can justify state boundaries in review.</li>
+            <li>Student avoids logic duplication across components.</li>
+            <li>Student includes accessibility checks by default.</li>
+          </ul>
+
+          <div class="helpful-links">
+            <h3>Helpful Resources</h3>
+            <ul>
+              <li>
+                <a href="https://react.dev/learn" target="_blank">React Documentation</a>
+              </li>
+              <li>
+                <a href="https://web.dev/articles/learn-accessibility" target="_blank"
+                  >Web Accessibility Guide</a
+                >
+              </li>
+              <li>
+                <a href="https://www.w3.org/WAI/ARIA/apg/" target="_blank"
+                  >WAI-ARIA Authoring Practices</a
+                >
+              </li>
+              <li>
+                <a href="https://uxdesign.cc/error-messages-that-actually-help-users-6f96dbb23232" target="_blank"
+                  >Designing Helpful Error States</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="week-2.html" class="back-to-course">← Previous: Week 2</a>
+          <a href="week-4.html" class="back-to-course">Next: Week 4 →</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>

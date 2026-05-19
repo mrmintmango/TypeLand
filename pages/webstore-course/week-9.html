@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 9: Debugging and Performance - TypeLand</title>
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <link rel="stylesheet" href="../../styles/navigation.css" />
+    <link rel="stylesheet" href="../../styles/courses.css" />
+  </head>
+  <body data-nav-base="../../">
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="container" style="background: #f8f9fa">
+        <div class="topic-page">
+          <a href="../webstore-course.html" class="back-to-course"
+            >← Back to Webstore Course</a
+          >
+
+          <h1>Week 9: Performance, Debugging, and Production Readiness</h1>
+
+          <div class="topic-intro">
+            <p>
+              This week trains incident response habits. Students investigate a
+              realistic issue, isolate root cause, fix safely, and present
+              measurable verification.
+            </p>
+          </div>
+
+          <h2>Learning Objectives</h2>
+          <ul>
+            <li>Use a structured debugging process under uncertainty.</li>
+            <li>Capture evidence before and after code changes.</li>
+            <li>Reduce unnecessary renders and network churn.</li>
+            <li>Document root cause and prevention actions.</li>
+          </ul>
+
+          <h2>Detailed Topics</h2>
+          <h3>1. Incident Triage Workflow</h3>
+          <p>
+            Define symptoms, identify scope, gather logs and traces, then test
+            hypotheses quickly with minimal risk.
+          </p>
+
+          <h3>2. Performance Signals in Ecommerce</h3>
+          <p>
+            Watch page hydration delays, repeated API calls, stale cache loops,
+            and expensive renders in cart and checkout paths.
+          </p>
+
+          <h3>3. Verification and Regression Guardrails</h3>
+          <p>
+            A fix is complete only with measurable improvement and follow-up
+            safeguards such as test additions or monitors.
+          </p>
+
+          <h2>Pair Session Plan (90 Minutes)</h2>
+          <ol>
+            <li>Seed one bug or slow flow in a sandbox branch.</li>
+            <li>Capture baseline metrics and reproduction steps.</li>
+            <li>Implement fix and verify measurable improvement.</li>
+            <li>Write a concise root-cause analysis summary.</li>
+          </ol>
+
+          <h2>Independent Ticket</h2>
+          <p>
+            Deliver one bug-hunt PR with evidence-based verification and one
+            preventive action that lowers recurrence risk.
+          </p>
+
+          <h2>Mentor Checkpoint</h2>
+          <ul>
+            <li>Student distinguishes symptoms from root cause.</li>
+            <li>Student uses data, not guesses, to validate the fix.</li>
+            <li>Student identifies at least one long-term safeguard.</li>
+          </ul>
+
+          <div class="helpful-links">
+            <h3>Helpful Resources</h3>
+            <ul>
+              <li>
+                <a href="https://nextjs.org/docs/pages/building-your-application/optimizing" target="_blank"
+                  >Next.js Optimization</a
+                >
+              </li>
+              <li>
+                <a href="https://web.dev/vitals/" target="_blank">Core Web Vitals</a>
+              </li>
+              <li>
+                <a href="https://react.dev/reference/react/Profiler" target="_blank"
+                  >React Profiler</a
+                >
+              </li>
+              <li>
+                <a href="https://swr.vercel.app/docs/advanced/performance" target="_blank"
+                  >SWR Performance Tips</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a href="week-8.html" class="back-to-course">← Previous: Week 8</a>
+          <a href="week-10.html" class="back-to-course">Next: Week 10 →</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../styles/navigation.js"></script>
+  </body>
+</html>
